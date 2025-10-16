@@ -227,7 +227,7 @@ jsonInput.addEventListener('change', (e)=>{ const f = e.target.files?.[0]; if (f
 mediaInput.addEventListener('change', (e)=> handleMediaFiles(e.target.files||[]));
 resetBtn.addEventListener('click', resetAll);
 
-// Stopper la boucle si l’utilisateur lance/seek le morceau complet
+// Stopper la boucle si l’utilisateur lance/seek le morceau complet 
 const stopLoop = ()=> clearLoop();
 ['play','seeking','ended'].forEach(ev=> player.addEventListener(ev, stopLoop));
 </script></body>
