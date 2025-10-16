@@ -3,9 +3,9 @@
   "title": "Bonobo",
   "audio": "Bonobo.mp3",
   "parts": [
-    { "id": "intro-avec-surdo", "label": "intro avec surdo", "start": 0,   "end": 20,  "images": [], "text": "intro avec surdo" },
-    { "id": "tambourim-surdo", "label": "tambourim+surdo", "start": 20,  "end": 36,  "images": [], "text": "tambourim+surdo" },
-    { "id": "agogo-ou-cloche-tambourim-surdo", "label": "agogo ou cloche?+tambourim+surdo", "start": 36,  "end": 65,  "images": [], "text": "agogo ou cloche?+tambourim+surdo" },
+    { "id": "intro-avec-surdo", "label": "intro avec surdo", "start": 0,   "end": 20,  "images": [bonobo 01 - appel.png], "text": "intro avec surdo" },
+    { "id": "tambourim-surdo", "label": "tambourim+surdo", "start": 20,  "end": 36,  "images": [bonobo 01 - appel.png], "text": "tambourim+surdo" },
+    { "id": "agogo-ou-cloche-tambourim-surdo", "label": "agogo ou cloche?+tambourim+surdo", "start": 36,  "end": 65,  "images": [bonobo 01 - appel.png], "text": "agogo ou cloche?+tambourim+surdo" },
     { "id": "plus-de-cloche", "label": "plus de cloche", "start": 65,  "end": 69,  "images": [], "text": "plus de cloche" },
     { "id": "sifflet-et-break", "label": "sifflet et break", "start": 69,  "end": 74,  "images": [], "text": "sifflet et break" },
     { "id": "surdos-et-petite-cloche-et-chacalot", "label": "surdos et petite cloche et chacalot?", "start": 74,  "end": 94,  "images": [], "text": "surdos et petite cloche et chacalot?" },
