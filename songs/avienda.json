@@ -1,0 +1,8 @@
+{
+  "$schema": "https://example.com/batucada.schema.v1.json",
+  "title": "Avienda",
+  "audio": "media/avienda/avienda-Fast.mp3",
+  "parts": [
+    { "id": "intro", "label": "Intro", "start": 0, "end": null, "images": ["media/avienda/intro.png"], "text": "" }
+  ]
+}
