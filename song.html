@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.2.5)</title>
+<title>Batucada • Morceau (v0.2.6)</title>
 <meta name="theme-color" content="#111" />
 <style>
   :root{
@@ -49,16 +49,17 @@
   .sections{display:grid;gap:12px;grid-template-columns:1fr;margin-top:14px}
   @media(min-width:700px){ .sections{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
 
-  .part{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+  .part{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card);outline:none}
+  .part:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .partHead{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
   .partHead h3{font-size:1rem;margin:0;flex:1;cursor:pointer}
   .partHead h3:hover{background:color-mix(in srgb,var(--card) 80%,transparent)}
 
-  /* High-contrast play button (visible in dark theme) */
+  /* High-contrast play button */
   .playbtn{
     border:1px solid var(--border);
-    background:var(--fg);   /* light in dark mode, dark in light mode */
-    color:var(--bg);        /* opposite for contrast */
+    background:var(--fg);
+    color:var(--bg);
     padding:6px 12px;
     border-radius:999px;
     cursor:pointer;
@@ -92,7 +93,7 @@
   <div class="bar" id="hdr">
     <a class="iconbtn" href="index.html">← Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
-    <span class="pill">v0.2.5</span>
+    <span class="pill">v0.2.6</span>
     <div class="spacer"></div>
     <button id="themeBtn" class="iconbtn">🌓 Thème</button>
     <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
@@ -121,9 +122,9 @@
 <section id="changelog" class="changelog">
   <h4>Changelog</h4>
   <ul class="small">
-    <li><strong>v0.2.5</strong> — Boutons ▶ plus visibles en thème sombre + fiabilisation de la lecture de sections.</li>
-    <li><strong>v0.2.3/0.2.4</strong> — Chargement JSON &amp; lecteur collant.</li>
-    <li><strong>v0.2.2</strong> — Suppression du pinch/zoom, images plein cadre.</li>
+    <li><strong>v0.2.6</strong> — Nouveau système de clic : un seul gestionnaire global, plus fiable sur mobile et desktop.</li>
+    <li><strong>v0.2.5</strong> — Boutons ▶ contrastés en thème sombre, corrections audio.</li>
+    <li><strong>v0.2.3–0.2.4</strong> — Chargement JSON &amp; lecteur collant.</li>
   </ul>
 </section>
 
@@ -167,16 +168,23 @@
   let loopRAF=null;
   function clearLoop(){ if(loopRAF) cancelAnimationFrame(loopRAF); loopRAF=null; player.loop=false; }
 
-  function playSegment(start,end){
+  function playSegmentFromDataset(ds){
     clearLoop();
-    const s = Math.max(0, Number(start) || 0);
+    let start = ds.start !== undefined && ds.start !== "" ? Number(ds.start) : 0;
+    let end   = ds.end !== undefined && ds.end !== "" ? Number(ds.end)   : NaN;
+    if(!Number.isFinite(start)) start = 0;
+
     if(player.readyState === 0){ player.load(); }
+
     player.pause();
-    player.currentTime = s;
+    player.currentTime = Math.max(0,start);
+
     const p = player.play();
     if(p && p.catch){ p.catch(()=>{}); }
-    if (Number.isFinite(end)){
-      const e = Math.max(s + 0.25, Number(end));
+
+    if(Number.isFinite(end)){
+      const s = player.currentTime;
+      const e = Math.max(s + 0.25, end);
       const tick=()=>{ if(player.currentTime>=e) player.currentTime=s; loopRAF=requestAnimationFrame(tick); };
       loopRAF=requestAnimationFrame(tick);
     }
@@ -223,6 +231,9 @@
     (data.parts||[]).forEach((p, idx)=>{
       const art=document.createElement('article');
       art.className='part';
+      art.setAttribute('tabindex','0');
+      if(p.start !== undefined) art.dataset.start = p.start;
+      if(p.end   !== undefined) art.dataset.end   = p.end;
 
       const label = p.label || `Partie ${idx+1}`;
       const startTxt = Number.isFinite(p.start) ? Number(p.start).toFixed(1) : '—';
@@ -241,29 +252,39 @@
             <img src="${firstImg}" alt="${label}" loading="lazy" decoding="async">
           </figure>
         ` : `
-          <figure class="sheet noimg" role="button" tabindex="0" aria-label="Lire ${label}">
+          <figure class="sheet noimg" aria-label="${label}">
             <span class="label">${label}</span>
           </figure>
         `}
         <div class="meta"><span class="dot"></span> Repère : ${startTxt} s${endTxt}</div>
       `;
 
-      const doPlay = ()=> playSegment(p.start, p.end);
-
-      const btn = art.querySelector('.playbtn');
-      const title = art.querySelector('h3');
-      btn.addEventListener('click', doPlay);
-      title.addEventListener('click', doPlay);
-
-      if(!firstImg){
-        const fig = art.querySelector('.sheet.noimg');
-        fig.addEventListener('click', doPlay);
-        fig.addEventListener('keydown', e=>{
-          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); doPlay(); }
-        });
-      }
-
       sectionsWrap.appendChild(art);
+    });
+
+    /* Event delegation: one handler for all parts */
+    sectionsWrap.addEventListener('click', (e)=>{
+      let t=e.target;
+      while(t && t!==sectionsWrap){
+        if(t.classList && t.classList.contains('part')){
+          playSegmentFromDataset(t.dataset);
+          return;
+        }
+        t=t.parentElement;
+      }
+    });
+
+    sectionsWrap.addEventListener('keydown', (e)=>{
+      if(e.key!=='Enter' && e.key!==' ') return;
+      let t=e.target;
+      while(t && t!==sectionsWrap){
+        if(t.classList && t.classList.contains('part')){
+          e.preventDefault();
+          playSegmentFromDataset(t.dataset);
+          return;
+        }
+        t=t.parentElement;
+      }
     });
   }
   init();
