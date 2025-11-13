@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau</title>
+<title>Batucada • Morceau (v0.2.3)</title>
 <meta name="theme-color" content="#111" />
 <style>
-  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  :root{
+    --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6;
+    --header-h:56px; /* will be updated by JS */
+  }
   @media (prefers-color-scheme: dark){
     :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
   }
@@ -15,71 +18,83 @@
 
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+  body{touch-action:pan-y pinch-zoom;}
 
-  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);
-         backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
-  .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:20;
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(6px);
+    background:color-mix(in srgb,var(--bg) 85%,transparent)
+  }
+  .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .title{font-weight:800}
-  .spacer{flex:1}
+  .spacer{flex:1;min-width:10px}
   .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);
            border-radius:10px;padding:8px 10px;font-weight:600;text-decoration:none}
+  .pill{font-size:.8rem;border-radius:999px;padding:6px 10px;border:1px solid var(--border);background:var(--card)}
+
+  /* Sticky player just under header */
+  .playerSticky{
+    position:sticky;
+    top:calc(var(--header-h) + 6px);
+    z-index:15;
+  }
+  .playerCard{margin:10px auto;padding:12px;border:1px solid var(--border);
+              border-radius:14px;background:var(--card);max-width:980px}
+  .playerCard h2{font-size:1rem;margin:0 0 8px}
+  audio{width:100%}
 
   main{max-width:980px;margin:0 auto;padding:16px}
   .note{font-size:.95rem;color:var(--muted);margin:6px 0 12px}
 
-  .playerCard{margin:14px 0;padding:14px;border:1px solid var(--border);
-              border-radius:14px;background:var(--card)}
-  .playerCard h2{font-size:1rem;margin:0 0 8px}
-  audio{width:100%}
-
   .sections{display:grid;gap:12px;grid-template-columns:1fr;margin-top:14px}
   @media(min-width:700px){ .sections{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+
   .part{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
-  .part h3{font-size:1rem;margin:0;padding:10px 12px;border-bottom:1px solid var(--border)}
+  .partHead{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
+  .partHead h3{font-size:1rem;margin:0;flex:1;cursor:pointer}
+  .partHead h3:hover{background:color-mix(in srgb,var(--card) 80%,transparent)}
+  .playbtn{border:1px solid var(--border);background:var(--bg);padding:6px 10px;border-radius:8px;cursor:pointer}
 
-  /* Large preview when there IS an image */
-  .sheet{
-    display:flex;align-items:center;justify-content:center;
-    aspect-ratio:4/3;
-    background:repeating-linear-gradient(
-      0deg,#0000,#0000 10px,
-      color-mix(in srgb, var(--border) 60%, transparent) 10px,
-      color-mix(in srgb, var(--border) 60%, transparent) 11px
-    );
-    cursor:pointer;
-  }
-  .sheet .label{
-    background:rgba(0,0,0,.08);color:var(--fg);padding:6px 10px;border-radius:20px;font-weight:700;
-    backdrop-filter:blur(2px)
-  }
+  /* Image sections (no crop) */
+  .sheet.hasimg{padding:0;background:none}
+  .sheet.hasimg img{display:block;width:100%;height:auto;border:0}
 
-  /* Compact row when NO image */
+  /* Compact when NO image */
   .sheet.noimg{
-    aspect-ratio:auto;min-height:44px;height:44px;justify-content:flex-start;
-    background:none !important;padding:6px 10px;
+    aspect-ratio:auto; min-height:44px; height:44px; display:flex; align-items:center; padding:6px 10px;
+    background:none !important;
   }
   .sheet.noimg .label{
-    background:var(--card);border:1px solid var(--border);color:inherit;
+    background:var(--card);border:1px solid var(--border);color:inherit;padding:6px 10px;border-radius:20px;font-weight:700;
   }
 
   .meta{display:flex;gap:10px;align-items:center;padding:10px 12px;color:var(--muted);font-size:.9rem}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* Changelog panel */
+  .changelog{max-width:980px;margin:10px auto 40px;border:1px dashed var(--border);border-radius:12px;background:var(--card);padding:12px;display:none}
+  .changelog.open{display:block}
+  .changelog h4{margin:0 0 6px}
+  .small{font-size:.85rem;color:var(--muted)}
 </style>
 </head>
 <body id="app" data-theme="">
 <header>
-  <div class="bar">
+  <div class="bar" id="hdr">
     <a class="iconbtn" href="index.html">← Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
+    <span class="pill">v0.2.3</span>
     <div class="spacer"></div>
     <button id="themeBtn" class="iconbtn">🌓 Thème</button>
+    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
   </div>
 </header>
 
-<main>
-  <p class="note">Tapez une section pour y sauter. Si une fin est définie, la section boucle.</p>
-
+<!-- Sticky player bar -->
+<div class="playerSticky">
   <section class="playerCard" aria-labelledby="fullTrackTitle">
     <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
     <audio id="player" controls preload="metadata">
@@ -87,6 +102,10 @@
       Votre navigateur ne supporte pas la balise audio.
     </audio>
   </section>
+</div>
+
+<main>
+  <p class="note">Touchez ▶ ou le titre d’une section pour y sauter. Les images de partitions ne sont pas recadrées.</p>
 
   <section aria-labelledby="partsTitle">
     <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
@@ -94,23 +113,52 @@
   </section>
 </main>
 
+<section id="changelog" class="changelog">
+  <h4>Changelog</h4>
+  <ul class="small">
+    <li><strong>v0.2.3</strong> — Résout les problèmes de chargement de JSON (espaces / majuscules) et garde le lecteur collant.</li>
+    <li><strong>v0.2.2</strong> — Lecteur audio collant. Suppression du pinch/zoom. Affichage images plein cadre.</li>
+    <li><strong>v0.2.1</strong> — Amélioration de la fiabilité audio et mise en page des sections.</li>
+    <li><strong>v0.2.0</strong> — Version multi-pages avec JSON par morceau, thèmes clair/sombre.</li>
+  </ul>
+  <p class="small">Ajoutez vos notes ici.</p>
+</section>
+
 <script>
-  /* Theme */
+  /* Theme + changelog toggle + header height sync */
   const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
-  function setTheme(m){ app.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
+  const logBtn=document.getElementById('changelogBtn');
+  const logPanel=document.getElementById('changelog');
+  const headerEl=document.getElementById('hdr');
+
+  function setTheme(m){
+    app.setAttribute('data-theme', m);
+    try{localStorage.setItem('bat_theme', m);}catch{}
+  }
   setTheme(localStorage.getItem('bat_theme')||"");
-  themeBtn.onclick=()=>{ const cur=app.getAttribute('data-theme')||""; setTheme(cur==="dark"?"light":cur==="light"?"":"dark"); };
+  themeBtn.onclick=()=>{
+    const cur=app.getAttribute('data-theme')||"";
+    setTheme(cur==="dark"?"light":cur==="light"?"":"dark");
+  };
+  logBtn.onclick=()=>{
+    logPanel.classList.toggle('open');
+    logPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  function syncHeaderH(){
+    document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+  }
+  window.addEventListener('resize', syncHeaderH, {passive:true});
+  syncHeaderH();
 
   /* Helpers */
   const el=(s,r=document)=>r.querySelector(s);
   const q=new URLSearchParams(location.search);
-  const slug=q.get('id');                       // e.g. bonobo
-  const jsonUrl = slug ? `songs/${slug}.json` : null;
-
+  const rawSlug = q.get('id') || "";
+  const baseSlug = rawSlug.trim();       // remove stray spaces
+  const sectionsWrap = el('#sections');
   const player = el('#player');
   const audioSrc = el('#audioSrc');
-  const sectionsWrap = el('#sections');
   const songTitle = el('#songTitle');
 
   let loopRAF=null;
@@ -118,7 +166,6 @@
   function playSegment(start,end){
     clearLoop();
     const s = Math.max(0, Number(start) || 0);
-    player.pause();
     player.currentTime = s;
     player.play().catch(()=>{});
     if (Number.isFinite(end)){
@@ -127,27 +174,52 @@
       loopRAF=requestAnimationFrame(tick);
     }
   }
-  ['play','seeking','ended','pause'].forEach(ev=> player.addEventListener(ev, clearLoop));
+  player.addEventListener('seeking', clearLoop);
+  player.addEventListener('ended', clearLoop);
 
-  async function init(){
-    if(!jsonUrl){ sectionsWrap.innerHTML='<p style="color:#c00">Paramètre manquant : ?id=slug</p>'; return; }
-
-    let data=null;
-    try{
-      const res = await fetch(jsonUrl, {cache:'no-cache'});
-      if(!res.ok) throw new Error('JSON introuvable');
-      data = await res.json();
-    }catch(e){
-      sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${jsonUrl}</code></p>`;
-      return;
+  async function loadSongData(){
+    if(!baseSlug){
+      sectionsWrap.innerHTML='<p style="color:#c00">Paramètre manquant : <code>?id=slug</code></p>';
+      return null;
     }
 
+    const candidates = [];
+    candidates.push(baseSlug);
+    candidates.push(baseSlug.toLowerCase());
+    const cap = baseSlug.charAt(0).toUpperCase() + baseSlug.slice(1).toLowerCase();
+    candidates.push(cap);
+
+    const tried = new Set();
+    for(const name of candidates){
+      if(tried.has(name)) continue;
+      tried.add(name);
+      const url = `songs/${name}.json`;
+      try{
+        const res = await fetch(url,{cache:'no-cache'});
+        if(res.ok){
+          // store used path for later debugging if needed
+          loadSongData.lastUrl = url;
+          return await res.json();
+        }
+      }catch(e){
+        // ignore and try next
+      }
+    }
+    const last = `songs/${[...tried].pop()}.json`;
+    sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${last}</code> (fichier introuvable sur GitHub ?).</p>`;
+    return null;
+  }
+
+  async function init(){
+    const data = await loadSongData();
+    if(!data) return;
+
     /* Title */
-    songTitle.textContent = data.title || slug;
+    songTitle.textContent = data.title || baseSlug;
 
     /* Audio */
     audioSrc.src = data.audio || '';
-    player.pause(); player.load();
+    player.load();  // prepare but don't autoplay
 
     /* Parts */
     sectionsWrap.innerHTML='';
@@ -159,29 +231,37 @@
       const startTxt = Number.isFinite(p.start) ? Number(p.start).toFixed(1) : '—';
       const endTxt   = Number.isFinite(p.end)   ? ` • fin : ${Number(p.end).toFixed(1)} s` : '';
 
-      const firstImg = (Array.isArray(p.images) && p.images[0]) ? p.images[0] : null;
+      const imgs = Array.isArray(p.images) ? p.images : (p.images ? [p.images] : []);
+      const firstImg = imgs.length ? imgs[0] : null;
 
       art.innerHTML = `
-        <h3>${label}</h3>
-        <figure class="sheet${firstImg ? '' : ' noimg'}" role="button" tabindex="0" aria-label="Lire ${label}">
-          <span class="label">${label}</span>
-        </figure>
+        <div class="partHead">
+          <button class="playbtn" title="Lire cette section">▶</button>
+          <h3 title="Lire cette section">${label}</h3>
+        </div>
+        ${firstImg ? `
+          <figure class="sheet hasimg" aria-label="${label}">
+            <img src="${firstImg}" alt="${label}" loading="lazy" decoding="async">
+          </figure>
+        ` : `
+          <figure class="sheet noimg" role="button" tabindex="0" aria-label="Lire ${label}">
+            <span class="label">${label}</span>
+          </figure>
+        `}
         <div class="meta"><span class="dot"></span> Repère : ${startTxt} s${endTxt}</div>
       `;
 
-      const fig = art.querySelector('.sheet');
-      const pill = fig.querySelector('.label');
+      const doPlay = ()=> playSegment(p.start, p.end);
+      art.querySelector('.playbtn').addEventListener('click', doPlay);
+      art.querySelector('.partHead h3').addEventListener('click', doPlay);
 
-      if(firstImg){
-        fig.style.background = `center/cover no-repeat url("${firstImg}")`;
-        pill.style.background='rgba(0,0,0,.35)';
-        pill.style.color='#fff';
+      if(!firstImg){
+        const fig = art.querySelector('.sheet.noimg');
+        fig.addEventListener('click', doPlay);
+        fig.addEventListener('keydown', e=>{
+          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); doPlay(); }
+        });
       }
-
-      fig.addEventListener('click', ()=> playSegment(p.start, p.end));
-      fig.addEventListener('keydown', e=>{
-        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playSegment(p.start,p.end); }
-      });
 
       sectionsWrap.appendChild(art);
     });
