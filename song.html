@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.2.3)</title>
+<title>Batucada • Morceau (v0.2.5)</title>
 <meta name="theme-color" content="#111" />
 <style>
   :root{
     --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6;
-    --header-h:56px; /* will be updated by JS */
+    --header-h:56px;
   }
   @media (prefers-color-scheme: dark){
     :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
@@ -20,7 +20,6 @@
   html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
   body{touch-action:pan-y pinch-zoom;}
 
-  /* Header */
   header{
     position:sticky; top:0; z-index:20;
     border-bottom:1px solid var(--border);
@@ -34,7 +33,6 @@
            border-radius:10px;padding:8px 10px;font-weight:600;text-decoration:none}
   .pill{font-size:.8rem;border-radius:999px;padding:6px 10px;border:1px solid var(--border);background:var(--card)}
 
-  /* Sticky player just under header */
   .playerSticky{
     position:sticky;
     top:calc(var(--header-h) + 6px);
@@ -55,13 +53,22 @@
   .partHead{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
   .partHead h3{font-size:1rem;margin:0;flex:1;cursor:pointer}
   .partHead h3:hover{background:color-mix(in srgb,var(--card) 80%,transparent)}
-  .playbtn{border:1px solid var(--border);background:var(--bg);padding:6px 10px;border-radius:8px;cursor:pointer}
 
-  /* Image sections (no crop) */
+  /* High-contrast play button (visible in dark theme) */
+  .playbtn{
+    border:1px solid var(--border);
+    background:var(--fg);   /* light in dark mode, dark in light mode */
+    color:var(--bg);        /* opposite for contrast */
+    padding:6px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .playbtn:hover{filter:brightness(1.05);}
+
   .sheet.hasimg{padding:0;background:none}
   .sheet.hasimg img{display:block;width:100%;height:auto;border:0}
 
-  /* Compact when NO image */
   .sheet.noimg{
     aspect-ratio:auto; min-height:44px; height:44px; display:flex; align-items:center; padding:6px 10px;
     background:none !important;
@@ -74,7 +81,6 @@
   .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-  /* Changelog panel */
   .changelog{max-width:980px;margin:10px auto 40px;border:1px dashed var(--border);border-radius:12px;background:var(--card);padding:12px;display:none}
   .changelog.open{display:block}
   .changelog h4{margin:0 0 6px}
@@ -86,14 +92,13 @@
   <div class="bar" id="hdr">
     <a class="iconbtn" href="index.html">← Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
-    <span class="pill">v0.2.3</span>
+    <span class="pill">v0.2.5</span>
     <div class="spacer"></div>
     <button id="themeBtn" class="iconbtn">🌓 Thème</button>
     <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
   </div>
 </header>
 
-<!-- Sticky player bar -->
 <div class="playerSticky">
   <section class="playerCard" aria-labelledby="fullTrackTitle">
     <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
@@ -116,16 +121,14 @@
 <section id="changelog" class="changelog">
   <h4>Changelog</h4>
   <ul class="small">
-    <li><strong>v0.2.3</strong> — Résout les problèmes de chargement de JSON (espaces / majuscules) et garde le lecteur collant.</li>
-    <li><strong>v0.2.2</strong> — Lecteur audio collant. Suppression du pinch/zoom. Affichage images plein cadre.</li>
-    <li><strong>v0.2.1</strong> — Amélioration de la fiabilité audio et mise en page des sections.</li>
-    <li><strong>v0.2.0</strong> — Version multi-pages avec JSON par morceau, thèmes clair/sombre.</li>
+    <li><strong>v0.2.5</strong> — Boutons ▶ plus visibles en thème sombre + fiabilisation de la lecture de sections.</li>
+    <li><strong>v0.2.3/0.2.4</strong> — Chargement JSON &amp; lecteur collant.</li>
+    <li><strong>v0.2.2</strong> — Suppression du pinch/zoom, images plein cadre.</li>
   </ul>
-  <p class="small">Ajoutez vos notes ici.</p>
 </section>
 
 <script>
-  /* Theme + changelog toggle + header height sync */
+  /* Theme + changelog + header height */
   const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
   const logBtn=document.getElementById('changelogBtn');
@@ -155,7 +158,7 @@
   const el=(s,r=document)=>r.querySelector(s);
   const q=new URLSearchParams(location.search);
   const rawSlug = q.get('id') || "";
-  const baseSlug = rawSlug.trim();       // remove stray spaces
+  const baseSlug = rawSlug.trim();
   const sectionsWrap = el('#sections');
   const player = el('#player');
   const audioSrc = el('#audioSrc');
@@ -163,17 +166,22 @@
 
   let loopRAF=null;
   function clearLoop(){ if(loopRAF) cancelAnimationFrame(loopRAF); loopRAF=null; player.loop=false; }
+
   function playSegment(start,end){
     clearLoop();
     const s = Math.max(0, Number(start) || 0);
+    if(player.readyState === 0){ player.load(); }
+    player.pause();
     player.currentTime = s;
-    player.play().catch(()=>{});
+    const p = player.play();
+    if(p && p.catch){ p.catch(()=>{}); }
     if (Number.isFinite(end)){
       const e = Math.max(s + 0.25, Number(end));
       const tick=()=>{ if(player.currentTime>=e) player.currentTime=s; loopRAF=requestAnimationFrame(tick); };
       loopRAF=requestAnimationFrame(tick);
     }
   }
+
   player.addEventListener('seeking', clearLoop);
   player.addEventListener('ended', clearLoop);
 
@@ -182,31 +190,24 @@
       sectionsWrap.innerHTML='<p style="color:#c00">Paramètre manquant : <code>?id=slug</code></p>';
       return null;
     }
-
-    const candidates = [];
-    candidates.push(baseSlug);
-    candidates.push(baseSlug.toLowerCase());
+    const names=[];
+    names.push(baseSlug);
+    names.push(baseSlug.toLowerCase());
     const cap = baseSlug.charAt(0).toUpperCase() + baseSlug.slice(1).toLowerCase();
-    candidates.push(cap);
+    names.push(cap);
 
-    const tried = new Set();
-    for(const name of candidates){
-      if(tried.has(name)) continue;
-      tried.add(name);
-      const url = `songs/${name}.json`;
+    const tried=[];
+    for(const name of names){
+      const clean=name.trim(); if(!clean) continue;
+      const url=`songs/${clean}.json`;
+      tried.push(url);
       try{
-        const res = await fetch(url,{cache:'no-cache'});
-        if(res.ok){
-          // store used path for later debugging if needed
-          loadSongData.lastUrl = url;
-          return await res.json();
-        }
-      }catch(e){
-        // ignore and try next
-      }
+        const res=await fetch(url,{cache:'no-cache'});
+        if(res.ok){ return await res.json(); }
+      }catch(e){/* ignore */}
     }
-    const last = `songs/${[...tried].pop()}.json`;
-    sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${last}</code> (fichier introuvable sur GitHub ?).</p>`;
+    const last=tried[tried.length-1] || `songs/${baseSlug}.json`;
+    sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${last}</code>. Vérifie le nom exact du fichier JSON.</p>`;
     return null;
   }
 
@@ -214,17 +215,13 @@
     const data = await loadSongData();
     if(!data) return;
 
-    /* Title */
     songTitle.textContent = data.title || baseSlug;
-
-    /* Audio */
     audioSrc.src = data.audio || '';
-    player.load();  // prepare but don't autoplay
+    player.load();
 
-    /* Parts */
     sectionsWrap.innerHTML='';
     (data.parts||[]).forEach((p, idx)=>{
-      const art = document.createElement('article');
+      const art=document.createElement('article');
       art.className='part';
 
       const label = p.label || `Partie ${idx+1}`;
@@ -236,8 +233,8 @@
 
       art.innerHTML = `
         <div class="partHead">
-          <button class="playbtn" title="Lire cette section">▶</button>
-          <h3 title="Lire cette section">${label}</h3>
+          <button class="playbtn" type="button">▶</button>
+          <h3>${label}</h3>
         </div>
         ${firstImg ? `
           <figure class="sheet hasimg" aria-label="${label}">
@@ -252,8 +249,11 @@
       `;
 
       const doPlay = ()=> playSegment(p.start, p.end);
-      art.querySelector('.playbtn').addEventListener('click', doPlay);
-      art.querySelector('.partHead h3').addEventListener('click', doPlay);
+
+      const btn = art.querySelector('.playbtn');
+      const title = art.querySelector('h3');
+      btn.addEventListener('click', doPlay);
+      title.addEventListener('click', doPlay);
 
       if(!firstImg){
         const fig = art.querySelector('.sheet.noimg');
