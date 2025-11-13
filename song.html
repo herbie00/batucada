@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.2.6)</title>
+<title>Batucada • Morceau (v0.2.7)</title>
 <meta name="theme-color" content="#111" />
 <style>
   :root{
@@ -42,6 +42,8 @@
               border-radius:14px;background:var(--card);max-width:980px}
   .playerCard h2{font-size:1rem;margin:0 0 8px}
   audio{width:100%}
+  .audioDebug{margin-top:4px;font-size:.8rem;color:var(--muted);}
+  .audioDebug a{color:var(--accent);}
 
   main{max-width:980px;margin:0 auto;padding:16px}
   .note{font-size:.95rem;color:var(--muted);margin:6px 0 12px}
@@ -55,7 +57,6 @@
   .partHead h3{font-size:1rem;margin:0;flex:1;cursor:pointer}
   .partHead h3:hover{background:color-mix(in srgb,var(--card) 80%,transparent)}
 
-  /* High-contrast play button */
   .playbtn{
     border:1px solid var(--border);
     background:var(--fg);
@@ -86,6 +87,7 @@
   .changelog.open{display:block}
   .changelog h4{margin:0 0 6px}
   .small{font-size:.85rem;color:var(--muted)}
+  .error{color:#f97373;}
 </style>
 </head>
 <body id="app" data-theme="">
@@ -93,7 +95,7 @@
   <div class="bar" id="hdr">
     <a class="iconbtn" href="index.html">← Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
-    <span class="pill">v0.2.6</span>
+    <span class="pill">v0.2.7</span>
     <div class="spacer"></div>
     <button id="themeBtn" class="iconbtn">🌓 Thème</button>
     <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
@@ -107,6 +109,7 @@
       <source id="audioSrc" src="" />
       Votre navigateur ne supporte pas la balise audio.
     </audio>
+    <div id="audioDebug" class="audioDebug"></div>
   </section>
 </div>
 
@@ -122,14 +125,13 @@
 <section id="changelog" class="changelog">
   <h4>Changelog</h4>
   <ul class="small">
-    <li><strong>v0.2.6</strong> — Nouveau système de clic : un seul gestionnaire global, plus fiable sur mobile et desktop.</li>
-    <li><strong>v0.2.5</strong> — Boutons ▶ contrastés en thème sombre, corrections audio.</li>
-    <li><strong>v0.2.3–0.2.4</strong> — Chargement JSON &amp; lecteur collant.</li>
+    <li><strong>v0.2.7</strong> — Message de debug audio (chemin exact + lien pour tester) et gestion des erreurs de chargement.</li>
+    <li><strong>v0.2.6</strong> — Gestionnaire global pour les clics sur les sections.</li>
+    <li><strong>v0.2.5</strong> — Boutons ▶ contrastés en thème sombre.</li>
   </ul>
 </section>
 
 <script>
-  /* Theme + changelog + header height */
   const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
   const logBtn=document.getElementById('changelogBtn');
@@ -155,7 +157,6 @@
   window.addEventListener('resize', syncHeaderH, {passive:true});
   syncHeaderH();
 
-  /* Helpers */
   const el=(s,r=document)=>r.querySelector(s);
   const q=new URLSearchParams(location.search);
   const rawSlug = q.get('id') || "";
@@ -163,6 +164,7 @@
   const sectionsWrap = el('#sections');
   const player = el('#player');
   const audioSrc = el('#audioSrc');
+  const audioDebug = el('#audioDebug');
   const songTitle = el('#songTitle');
 
   let loopRAF=null;
@@ -193,9 +195,19 @@
   player.addEventListener('seeking', clearLoop);
   player.addEventListener('ended', clearLoop);
 
+  player.addEventListener('loadedmetadata', ()=>{
+    audioDebug.innerHTML = `Audio chargé ✔ (durée&nbsp;: ${player.duration.toFixed(1)} s)`;
+  });
+
+  player.addEventListener('error', ()=>{
+    const src = audioSrc.src || '(aucun)';
+    audioDebug.innerHTML = `<span class="error">Erreur de chargement audio :</span> <code>${src}</code><br>
+      Vérifie que le fichier existe bien à cette adresse (casse exacte, dossier, etc.).`;
+  });
+
   async function loadSongData(){
     if(!baseSlug){
-      sectionsWrap.innerHTML='<p style="color:#c00">Paramètre manquant : <code>?id=slug</code></p>';
+      sectionsWrap.innerHTML='<p class="error">Paramètre manquant : <code>?id=slug</code></p>';
       return null;
     }
     const names=[];
@@ -215,7 +227,7 @@
       }catch(e){/* ignore */}
     }
     const last=tried[tried.length-1] || `songs/${baseSlug}.json`;
-    sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${last}</code>. Vérifie le nom exact du fichier JSON.</p>`;
+    sectionsWrap.innerHTML = `<p class="error">Erreur de chargement de <code>${last}</code>. Vérifie le nom exact du fichier JSON.</p>`;
     return null;
   }
 
@@ -224,8 +236,15 @@
     if(!data) return;
 
     songTitle.textContent = data.title || baseSlug;
-    audioSrc.src = data.audio || '';
-    player.load();
+
+    if(data.audio){
+      audioSrc.src = data.audio;
+      player.load();
+      const href = new URL(data.audio, window.location.href).toString();
+      audioDebug.innerHTML = `Chemin audio : <code>${data.audio}</code> — <a href="${href}" target="_blank" rel="noopener">Tester le fichier audio</a>`;
+    }else{
+      audioDebug.innerHTML = `<span class="error">Aucun chemin audio défini dans le JSON.</span>`;
+    }
 
     sectionsWrap.innerHTML='';
     (data.parts||[]).forEach((p, idx)=>{
@@ -262,7 +281,6 @@
       sectionsWrap.appendChild(art);
     });
 
-    /* Event delegation: one handler for all parts */
     sectionsWrap.addEventListener('click', (e)=>{
       let t=e.target;
       while(t && t!==sectionsWrap){
