@@ -1,0 +1,115 @@
+avienda
+ avienda
+	Avienda Surdo Rep Tamb 1
+	0 a 8
+	
+	Avienda Surdo Rep Tamb 2
+	8 a 16
+
+	Avienda Surdo Rep Tamb 3
+	16 a 24
+	
+	break debut
+	24 a 32
+
+	Avienda R1
+	32 a 40
+
+	Avienda R1 + Agogo
+	40 a 48
+
+	Avienda R1 + Tamb
+	48 a 56
+
+
+	Avienda R1 + Tamb + Apito
+	56 a 64
+
+	Break début
+	64 a 72
+
+Bonobo
+
+	appel
+	0 a 10.7
+
+	appel
+	10.6 a 	21.4
+
+	appel + tamb 1
+	21.3 a 32
+
+	appel + tamb 2
+	32 a 42.7
+
+	appel + tamb + agogo
+	42.6 a 53.4
+
+	appel + tamb + agogo
+	53.3 a 64
+
+	appel + tamb + agogo
+	64 a 74.7
+
+	appel + tamb + fin de l'appel
+	74.6 a 85.4
+
+	surdo = chocalo ou basque + Agogo
+	85.3 a 96
+
+	surdo = chocalo ou basque + Agogo
+	96 a 1m46,7
+
+	surdo + snare
+	1m46,6 a 2m08
+
+	surdo = chocalo ou basque + Agogo
+	2m08 a 2m18,7
+
+	surdo = chocalo ou basque + Agogo
+	2m18,6 a 2m29,4
+
+	surdo + snare
+	2m29,3 a 2m40
+
+surdo + snare + agogo
+2m40 a 2m50,7
+2m56,6 a 3m01,4
+3m01,3 a 3m12
+3m12 a 3m22,7
+3m22,6 a 3m33,7
+
+surdo + snare + agogo + rep
+3m33,6 a 3m44
+3m44 a 3m54,3
+3m54,4 a 4m05,7
+4m05,6 a 4m16
+
+surdo + snare + agogo + rep + tamb
+4m16 a 4m25,4
+4m25,3 a 4m37,7
+4m37,6 a 4m48
+4m48 a 4m58,7
+
+Snare
+4m58.6 a 5m09,4
+5m09,3 a 5m20
+
+snare + chorus surdo
+5m20 a 5m30,7
+5m30,6 a 5m41,4
+
+snare + groove CG et Tamb
+5m52 a 6m02,7
+
+snare + chorus surdo
+6m02,6 a 6m13,7
+6m13,6 a 6m24
+
+snare + chorus surdo + apito
+6m24 a 6m34,7
+6m34.6 a 6m45.4
+
+
+
+

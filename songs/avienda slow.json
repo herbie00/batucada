@@ -1,0 +1,14 @@
+{
+  "title": "Avienda Slow",
+  "audio": "media/avienda/Avienda-Slow.mp3",
+  "parts": [
+    { "id": "avienda1", "label": "Avienda Surdo Rep Tamb 1–3", "start": 0, "end": 24, "images": ["media/avienda/part1.png", "media/avienda/part2.png", "media/avienda/part3.png"] },
+    { "id": "break1", "label": "Break début", "start": 24, "end": 32, "images": ["media/avienda/break1.png"] },
+    { "id": "r1", "label": "Avienda R1", "start": 32, "end": 40, "images": ["media/avienda/r1.png"] },
+    { "id": "r1-agogo", "label": "Avienda R1 + Agogo", "start": 40, "end": 48, "images": ["media/avienda/r1-agogo.png"] },
+    { "id": "r1-tamb", "label": "Avienda R1 + Tamb", "start": 48, "end": 56, "images": ["media/avienda/r1-tamb.png"] },
+    { "id": "r1-tamb-apito", "label": "Avienda R1 + Tamb + Apito", "start": 56, "end": 64, "images": ["media/avienda/r1-tamb-apito.png"] },
+    { "id": "break2", "label": "Break début", "start": 64, "end": 72, "images": ["media/avienda/break2.png"] }
+  ]
+}
+
