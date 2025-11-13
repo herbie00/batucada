@@ -7,32 +7,64 @@
 <meta name="theme-color" content="#111" />
 <style>
   :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
-  @media (prefers-color-scheme: dark){ :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; } }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  }
   [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
   [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
-  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);
+         backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
   .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
   .title{font-weight:800}
   .spacer{flex:1}
-  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);
+           border-radius:10px;padding:8px 10px;font-weight:600;text-decoration:none}
+
   main{max-width:980px;margin:0 auto;padding:16px}
   .note{font-size:.95rem;color:var(--muted);margin:6px 0 12px}
-  .playerCard{margin:14px 0;padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--card)}
+
+  .playerCard{margin:14px 0;padding:14px;border:1px solid var(--border);
+              border-radius:14px;background:var(--card)}
   .playerCard h2{font-size:1rem;margin:0 0 8px}
   audio{width:100%}
+
   .sections{display:grid;gap:12px;grid-template-columns:1fr;margin-top:14px}
   @media(min-width:700px){ .sections{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
   .part{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
   .part h3{font-size:1rem;margin:0;padding:10px 12px;border-bottom:1px solid var(--border)}
-  .sheet{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:
-    repeating-linear-gradient(0deg, #0000, #0000 10px, color-mix(in srgb, var(--border) 60%, transparent) 10px, color-mix(in srgb, var(--border) 60%, transparent) 11px);
-    cursor:pointer;}
-  .sheet .label{background:rgba(0,0,0,.08);color:var(--fg);padding:6px 10px;border-radius:20px;font-weight:700;backdrop-filter:blur(2px)}
+
+  /* Large preview when there IS an image */
+  .sheet{
+    display:flex;align-items:center;justify-content:center;
+    aspect-ratio:4/3;
+    background:repeating-linear-gradient(
+      0deg,#0000,#0000 10px,
+      color-mix(in srgb, var(--border) 60%, transparent) 10px,
+      color-mix(in srgb, var(--border) 60%, transparent) 11px
+    );
+    cursor:pointer;
+  }
+  .sheet .label{
+    background:rgba(0,0,0,.08);color:var(--fg);padding:6px 10px;border-radius:20px;font-weight:700;
+    backdrop-filter:blur(2px)
+  }
+
+  /* Compact row when NO image */
+  .sheet.noimg{
+    aspect-ratio:auto;min-height:44px;height:44px;justify-content:flex-start;
+    background:none !important;padding:6px 10px;
+  }
+  .sheet.noimg .label{
+    background:var(--card);border:1px solid var(--border);color:inherit;
+  }
+
   .meta{display:flex;gap:10px;align-items:center;padding:10px 12px;color:var(--muted);font-size:.9rem}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-  .row{display:flex;gap:10px;align-items:center}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 </style>
 </head>
 <body id="app" data-theme="">
@@ -44,6 +76,7 @@
     <button id="themeBtn" class="iconbtn">🌓 Thème</button>
   </div>
 </header>
+
 <main>
   <p class="note">Tapez une section pour y sauter. Si une fin est définie, la section boucle.</p>
 
@@ -62,17 +95,17 @@
 </main>
 
 <script>
-  // theme
+  /* Theme */
   const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
   function setTheme(m){ app.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
   setTheme(localStorage.getItem('bat_theme')||"");
   themeBtn.onclick=()=>{ const cur=app.getAttribute('data-theme')||""; setTheme(cur==="dark"?"light":cur==="light"?"":"dark"); };
 
-  // helpers
+  /* Helpers */
   const el=(s,r=document)=>r.querySelector(s);
-  const params=new URLSearchParams(location.search);
-  const slug=params.get('id'); // e.g., bonobo
+  const q=new URLSearchParams(location.search);
+  const slug=q.get('id');                       // e.g. bonobo
   const jsonUrl = slug ? `songs/${slug}.json` : null;
 
   const player = el('#player');
@@ -84,57 +117,72 @@
   function clearLoop(){ if(loopRAF) cancelAnimationFrame(loopRAF); loopRAF=null; player.loop=false; }
   function playSegment(start,end){
     clearLoop();
+    const s = Math.max(0, Number(start) || 0);
     player.pause();
-    player.currentTime = Math.max(0, Number(start)||0);
+    player.currentTime = s;
     player.play().catch(()=>{});
-    if (isFinite(end)){
-      const s=Math.max(0, Number(start)||0);
-      const e=Math.max(s+0.25, Number(end));
+    if (Number.isFinite(end)){
+      const e = Math.max(s + 0.25, Number(end));
       const tick=()=>{ if(player.currentTime>=e) player.currentTime=s; loopRAF=requestAnimationFrame(tick); };
       loopRAF=requestAnimationFrame(tick);
     }
   }
-  ['play','seeking','ended'].forEach(ev=> player.addEventListener(ev, clearLoop));
+  ['play','seeking','ended','pause'].forEach(ev=> player.addEventListener(ev, clearLoop));
 
   async function init(){
-    if(!jsonUrl){ sectionsWrap.innerHTML='<p>Paramètre manquant.</p>'; return; }
+    if(!jsonUrl){ sectionsWrap.innerHTML='<p style="color:#c00">Paramètre manquant : ?id=slug</p>'; return; }
+
     let data=null;
     try{
       const res = await fetch(jsonUrl, {cache:'no-cache'});
       if(!res.ok) throw new Error('JSON introuvable');
       data = await res.json();
     }catch(e){
-      sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de ${jsonUrl}</p>`;
+      sectionsWrap.innerHTML = `<p style="color:#c00">Erreur de chargement de <code>${jsonUrl}</code></p>`;
       return;
     }
 
-    // title
+    /* Title */
     songTitle.textContent = data.title || slug;
 
-    // audio (absolute or relative)
+    /* Audio */
     audioSrc.src = data.audio || '';
     player.pause(); player.load();
 
-    // parts
+    /* Parts */
     sectionsWrap.innerHTML='';
     (data.parts||[]).forEach((p, idx)=>{
       const art = document.createElement('article');
       art.className='part';
+
+      const label = p.label || `Partie ${idx+1}`;
+      const startTxt = Number.isFinite(p.start) ? Number(p.start).toFixed(1) : '—';
+      const endTxt   = Number.isFinite(p.end)   ? ` • fin : ${Number(p.end).toFixed(1)} s` : '';
+
       const firstImg = (Array.isArray(p.images) && p.images[0]) ? p.images[0] : null;
+
       art.innerHTML = `
-        <h3>${p.label || `Partie ${idx+1}`}</h3>
-        <figure class="sheet" role="button" tabindex="0" aria-label="Lire ${p.label||`Partie ${idx+1}`}">
-          <span class="label">${p.text ? p.text.replace(/</g,'&lt;') : (p.label||'Partie')}</span>
+        <h3>${label}</h3>
+        <figure class="sheet${firstImg ? '' : ' noimg'}" role="button" tabindex="0" aria-label="Lire ${label}">
+          <span class="label">${label}</span>
         </figure>
-        <div class="meta"><span class="dot"></span> Repère : ${isFinite(p.start)? Number(p.start).toFixed(1) : '—'} s${isFinite(p.end)? ` • fin : ${Number(p.end).toFixed(1)} s` : ''}</div>`;
+        <div class="meta"><span class="dot"></span> Repère : ${startTxt} s${endTxt}</div>
+      `;
+
       const fig = art.querySelector('.sheet');
+      const pill = fig.querySelector('.label');
+
       if(firstImg){
         fig.style.background = `center/cover no-repeat url("${firstImg}")`;
-        fig.querySelector('.label').style.background='rgba(0,0,0,.35)';
-        fig.querySelector('.label').style.color='#fff';
+        pill.style.background='rgba(0,0,0,.35)';
+        pill.style.color='#fff';
       }
+
       fig.addEventListener('click', ()=> playSegment(p.start, p.end));
-      fig.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playSegment(p.start,p.end); }});
+      fig.addEventListener('keydown', e=>{
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playSegment(p.start,p.end); }
+      });
+
       sectionsWrap.appendChild(art);
     });
   }
