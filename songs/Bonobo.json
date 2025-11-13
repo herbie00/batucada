@@ -1,6 +1,6 @@
 {
   "title": "Bonobo",
-  "audio": "media/bonobo/bonobo.mp3",
+  "audio": "media/bonobo/Bonobo.mp3",
   "parts": [
     { "id": "appel1", "label": "Appel 1–2", "start": 0, "end": 21.4, "images": ["media/bonobo/bonobo 01 - appel.png"] },
     { "id": "appel-tamb", "label": "Appel + Tamb 1–2", "start": 21.3, "end": 42.7, "images": ["media/bonobo/bonobo 01 - appel.png"] },
