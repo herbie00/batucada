@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada • Morceaux</title>
+<meta name="theme-color" content="#111" />
+<style>
+  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; } }
+  [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  .title{font-weight:800}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600}
+  main{max-width:980px;margin:0 auto;padding:16px}
+  .grid{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:680px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr));} }
+  a.card{display:block;border:1px solid var(--border);background:var(--card);border-radius:14px;padding:14px;text-decoration:none;color:inherit}
+  a.card h2{margin:0 0 6px;font-size:1.05rem}
+  a.card p{margin:0;color:var(--muted)}
+</style>
+</head>
+<body id="app" data-theme="">
+<header>
+  <div class="bar">
+    <div class="title">Batucada — Morceaux</div>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
+  </div>
+</header>
+<main>
+  <div class="grid">
+    <a class="card" href="bonobo.html"><h2>bonobo</h2><p>Ouvrir la page du morceau</p></a>
+    <a class="card" href="tout-le-monde-sur-le-pont.html"><h2>tout le monde sur le pont</h2><p>Ouvrir la page du morceau</p></a>
+    <a class="card" href="avienda.html"><h2>avienda</h2><p>Ouvrir la page du morceau</p></a>
+    <a class="card" href="fura-dels-baus.html"><h2>furia del baos</h2><p>Ouvrir la page du morceau</p></a>
+    <a class="card" href="rio-banane.html"><h2>rio banane</h2><p>Ouvrir la page du morceau</p></a>
+    <a class="card" href="https://www.youtube.com/playlist?list=PLfZFIFaIfglpF5JXqTExc3omTcuwulxeQ"><h2>Tutos Youtube lien de whatsapp</h2><p>plusieurs videos</p></a>
+    <a class="card" href="https://youtu.be/LYnYZ8CpD2g?si=78BSYHGFglmmbJR9"><h2>Toucan Poule</h2><p>Batoucada pas à pas</p></a>
+    <a class="card" href="tests tables.html"><h2>autres fichiers issus de GDrive</h2><p>fichiers audio et partitions Garence</p></a>
+  </div>
+</main>
+<script>
+  const app=document.getElementById('app');
+  const btn=document.getElementById('themeBtn');
+  function setTheme(m){ app.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
+  setTheme(localStorage.getItem('bat_theme')||"");
+  btn.onclick=()=>{ const cur=app.getAttribute('data-theme')||""; setTheme(cur==="dark"?"light":cur==="light"?"":"dark"); };
+</script>
+</body>
+</html>

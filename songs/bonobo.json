@@ -1,0 +1,22 @@
+{
+  "title": "bonobo",
+  "audio": "media/bonobo.mp3",
+  "parts": [
+    { "id": "appel1", "label": "Appel 1–2", "start": 0, "end": 21.4, "images": ["media/bonobo 01 - appel.png"] },
+    { "id": "appel-tamb", "label": "Appel + Tamb 1–2", "start": 21.3, "end": 42.7, "images": ["media/bonobo 01 - appel.png"] },
+    { "id": "appel-tamb-agogo", "label": "Appel + Tamb + Agogo 1–3", "start": 42.6, "end": 74.7, "images": ["media/bonobo 01 - appel.png"] },
+    { "id": "appel-tamb-fin", "label": "Appel + Tamb + Fin de l'appel", "start": 74.6, "end": 85.4, "images": ["media/bonobo 02 - fin de appel.png"] },
+    { "id": "surdo-agogo1", "label": "Surdo + Chocalo ou Basque + Agogo 1", "start": 85.3, "end": 106.7, "images": ["media/bonobo 03 - rythme 1.png"] },
+    { "id": "surdo-snare1", "label": "Surdo + Snare 1", "start": 106.6, "end": 128, "images": ["media/bonobo/"] },
+    { "id": "surdo-agogo2", "label": "Surdo + Chocalo ou Basque + Agogo 2–3", "start": 128, "end": 149.4, "images": ["media/bonobo 04 - rythme 1.png"] },
+    { "id": "surdo-snare2", "label": "Surdo + Snare 2", "start": 149.3, "end": 160, "images": ["media/bonobo 04 - rythme 2.png"] },
+    { "id": "surdo-snare-agogo", "label": "Surdo + Snare + Agogo 1–5", "start": 160, "end": 213.7, "images": ["media/bonobo 04 - rythme 2.png"] },
+    { "id": "surdo-snare-agogo-rep", "label": "Surdo + Snare + Agogo + Rep 1–4", "start": 213.6, "end": 256, "images": ["media/bonobo/"] },
+    { "id": "surdo-snare-agogo-rep-tamb", "label": "Surdo + Snare + Agogo + Rep + Tamb 1–4", "start": 256, "end": 298.7, "images": ["media/bonobo/"] },
+    { "id": "snare", "label": "Snare 1–2", "start": 298.6, "end": 320, "images": ["media/bonobo/"] },
+    { "id": "snare-chorus1", "label": "Snare + Chorus Surdo 1–2", "start": 320, "end": 341.4, "images": ["media/bonobo/"] },
+    { "id": "snare-groove", "label": "Snare + Groove CG et Tamb", "start": 352, "end": 362.7, "images": ["media/bonobo/"] },
+    { "id": "snare-chorus2", "label": "Snare + Chorus Surdo 3–4", "start": 362.6, "end": 384, "images": ["media/bonobo/"] },
+    { "id": "snare-chorus-apito", "label": "Snare + Chorus Surdo + Apito 1–2", "start": 384, "end": 405.4, "images": ["media/bonobo/"] }
+  ]
+}

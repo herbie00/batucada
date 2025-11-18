@@ -1,0 +1,9 @@
+{
+  "$schema": "https://example.com/batucada.schema.v1.json",
+  "title": "tout le monde sur le pont",
+  "audio": "tout le monde sur le pont.mp3",
+  "parts": [
+    { "id": "id", "label": "label", "start": 0,   "end": 8,  "images": [tout le monde sur le pont.png], "text": "text" },
+    { "id": "id", "label": "label", "start": 8,   "end": 16,  "images": [tout le monde sur le pont.png], "text": "text" }
+  ]
+}

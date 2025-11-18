@@ -1,0 +1,9 @@
+{
+  "$schema": "https://example.com/batucada.schema.v1.json",
+  "title": "fura dels baus",
+  "audio": "fura dels baus.m4a",
+  "parts": [
+    { "id": "id", "label": "label", "start": 0,   "end": 8,  "images": [fura dels baus.png], "text": "text" },
+    { "id": "id", "label": "label", "start": 8,   "end": 16,  "images": [fura dels baus.png], "text": "text" }
+  ]
+}
