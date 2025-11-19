@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada - Vid&eacute;os YouTube</title>
+<meta name="theme-color" content="#111" />
+<style>
+  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  @media(prefers-color-scheme: dark){
+    :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  }
+  [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif}
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .bar{max-width:1100px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  .title{font-weight:800}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600;text-decoration:none}
+  main{max-width:1100px;margin:0 auto;padding:18px;display:flex;flex-direction:column;gap:22px}
+  .intro{border:1px solid var(--border);background:var(--card);border-radius:14px;padding:14px;font-size:0.95rem;color:var(--muted)}
+  .videos{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:780px){ .videos{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  .video-card{border:1px solid var(--border);border-radius:16px;background:var(--card);padding:14px;display:flex;flex-direction:column;gap:10px}
+  .video-card h2{margin:0;font-size:1.1rem}
+  .video-card p{margin:0;font-size:0.9rem;color:var(--muted)}
+  .video-wrapper{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border)}
+  .video-wrapper iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  footer{margin:30px auto 10px;text-align:center;font-size:0.85rem;color:var(--muted)}
+</style>
+</head>
+<body id="page" data-theme="">
+<header>
+  <div class="bar">
+    <a class="iconbtn" href="index.html">&larr; Retour</a>
+    <div class="title">Vid&eacute;os YouTube</div>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn" type="button">Changer de th&egrave;me</button>
+  </div>
+</header>
+<main>
+  <section class="intro">
+    vid'eos de la playslist youtube "Batucada pas à pas"
+
+  <section class="videos" aria-label="Liste des vid&eacute;os YouTube">
+    <article class="video-card">
+      <h2>Tutos WhatsApp (playlist)</h2>
+      <p>Playlist collective partag&eacute;e sur WhatsApp.</p>
+      <div class="video-wrapper">
+        <iframe src="https://youtu.be/jl9YvqbXOfA?si=HMFbzeg4kwZb8b9n" title="tout le monde sur le pont tr`es lent" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </article>
+
+    <article class="video-card">
+      <h2>Toucan Poule</h2>
+      <p>Batucada Pas &agrave; Pas.</p>
+      <div class="video-wrapper">
+        <iframe src="https://youtu.be/vblLOHBt8pU?si=TOV4-zJ9Pnxov_c7" title="tout le monde sur le pont lent" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </article>
+  </section>
+</main>
+
+
+<script>
+  const page=document.getElementById('page');
+  const btn=document.getElementById('themeBtn');
+  function setTheme(m){ page.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
+  setTheme(localStorage.getItem('bat_theme')||"");
+  btn.onclick=()=>{
+    const cur=page.getAttribute('data-theme')||"";
+    setTheme(cur==="dark"?"light":cur==="light"?"":"dark");
+  };
+</script>
+</body>
+</html>
