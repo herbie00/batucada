@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tous les fichiers • Media</title>
+  <style>
+    :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6 }
+    @media (prefers-color-scheme: dark){ :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b } }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+    header{border-bottom:1px solid var(--border);padding:12px 16px}
+    main{max-width:980px;margin:18px auto;padding:0 16px}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+    select[multiple]{min-width:220px;height:120px;padding:6px}
+    input[type=search]{padding:8px;border:1px solid var(--border);border-radius:8px}
+    .list{display:grid;gap:12px}
+    .item{display:flex;gap:12px;align-items:center;border:1px solid var(--border);background:var(--card);padding:10px;border-radius:10px}
+    .thumb{width:140px;max-height:90px;object-fit:cover;border-radius:6px}
+    .meta{flex:1}
+    .meta h3{margin:0 0 6px;font-size:1rem}
+    .meta p{margin:0;color:var(--muted);font-size:0.9rem}
+    .smalllink{color:var(--accent);text-decoration:none;font-weight:600}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tous les fichiers</h1>
+    <p style="margin:6px 0 0;color:var(--muted)">Fichiers présents dans le dossier <code>media/</code> — triés par nom. Utilisez le filtre (sélection multiple) pour restreindre par type.</p>
+  </header>
+  <main>
+    <div class="controls">
+      <label style="display:block"><strong>Filtrer par type:</strong></label>
+      <select id="typeFilter" multiple></select>
+      <label style="display:block"><strong>Recherche:</strong></label>
+      <input id="q" type="search" placeholder="filtrer par nom..." />
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center"><a href="index.html" class="smalllink">Retour à l'index</a></div>
+    </div>
+
+    <div id="count" style="color:var(--muted);margin-bottom:8px"></div>
+    <div id="list" class="list"></div>
+  </main>
+
+  <script>
+    // Raw paths (actual files in media/). Display names remove the Windows " - Shortcut.lnk" suffix when present.
+    const rawPaths = [
+      "media/avienda fast V01/avienda fast V01 - 01 partie 2 variante agogo.png - Shortcut.lnk",
+      "media/avienda fast V01/avienda fast V01 - 02 partie 2.png - Shortcut.lnk",
+      "media/avienda fast V01/avienda fast V01.m4a - Shortcut.lnk",
+      "media/avienda V01/avienda fast V01 - 01 partie 2 variante agogo.png - Shortcut.lnk",
+      "media/avienda V01/avienda fast V01 - 02 partie 2.png - Shortcut.lnk",
+      "media/avienda V01/avienda fast V01.m4a - Shortcut.lnk",
+      "media/avienda V01/avienda slow V01 - 01.png - Shortcut.lnk",
+      "media/avienda V01/avienda slow V01 - 02 break.png - Shortcut.lnk",
+      "media/avienda V01/avienda slow V01 - 03 - partie 1.png - Shortcut.lnk",
+      "media/avienda V01/avienda slow V01.m4a - Shortcut.lnk",
+      "media/avienda-slow-V01/avienda slow V01 - 01.png - Shortcut.lnk",
+      "media/bonobo/Bonobo 0020 partie 1 surdo tambourim agogo.jpg - Shortcut.lnk",
+      "media/bonobo/bonobo 01 - appel.png - Shortcut.lnk",
+      "media/bonobo/bonobo 02 - fin de appel.png - Shortcut.lnk",
+      "media/bonobo/bonobo 03 - rythme 1.png - Shortcut.lnk",
+      "media/bonobo/bonobo 04 - rythme 2.png - Shortcut.lnk",
+      "media/bonobo/Bonobo.mp3 - Shortcut.lnk",
+      "media/fura dels baus/fura dels baus.m4a - Shortcut.lnk",
+      "media/fura dels baus/furia dels baus.jpg - Shortcut.lnk",
+      "media/rio banane/rio banane.jpg - Shortcut.lnk",
+      "media/salida/salida.jpg - Shortcut.lnk",
+      "media/tout le monde sur le pont/tout le monde est sur le pont.jpg - Shortcut.lnk"
+    ];
+
+    function cleanName(p){ return p.replace(/ - Shortcut\.lnk$/i, ''); }
+    function getExt(name){ const i = name.lastIndexOf('.'); return i>-1?name.slice(i+1).toLowerCase():'' }
+
+    const items = rawPaths.map(p=>{
+      const disp = cleanName(p);
+      const name = disp.split('/').pop();
+      const ext = getExt(name);
+      return { path: p, name, ext };
+    }).sort((a,b)=> a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+
+    // populate filter select with unique extensions (include common types even if not present)
+    const extSet = new Set(items.map(i=>i.ext).filter(Boolean));
+    ['mp3','m4a','png','jpg','pdf','mp4','webm'].forEach(e=>extSet.add(e));
+
+    const typeFilter = document.getElementById('typeFilter');
+    Array.from(extSet).sort().forEach(ext=>{
+      const opt = document.createElement('option'); opt.value = ext; opt.textContent = ext; typeFilter.appendChild(opt);
+    });
+
+    const listEl = document.getElementById('list');
+    const qInput = document.getElementById('q');
+    const countEl = document.getElementById('count');
+
+    function render(){
+      const selected = Array.from(typeFilter.selectedOptions).map(o=>o.value);
+      const q = (qInput.value||'').trim().toLowerCase();
+      const filtered = items.filter(it=>{
+        if(selected.length && !selected.includes(it.ext)) return false;
+        if(q && !it.name.toLowerCase().includes(q)) return false;
+        return true;
+      });
+
+      countEl.textContent = `${filtered.length} fichier(s)`;
+      listEl.innerHTML = '';
+
+      filtered.forEach(it=>{
+        const wrap = document.createElement('div'); wrap.className='item';
+        const ext = it.ext;
+        const thumbWrapper = document.createElement('div');
+        // images
+        if(['png','jpg','jpeg','gif','webp'].includes(ext)){
+          const img = document.createElement('img'); img.className='thumb'; img.src = encodeURI(it.path); img.alt = it.name; thumbWrapper.appendChild(img);
+        } else if(['mp4','webm'].includes(ext)){
+          const vid = document.createElement('video'); vid.className='thumb'; vid.src = encodeURI(it.path); vid.controls = true; thumbWrapper.appendChild(vid);
+        } else {
+          const placeholder = document.createElement('div'); placeholder.style.width='140px'; placeholder.style.height='90px'; placeholder.style.display='flex'; placeholder.style.alignItems='center'; placeholder.style.justifyContent='center'; placeholder.style.color='var(--muted)'; placeholder.textContent = ext || 'file'; thumbWrapper.appendChild(placeholder);
+        }
+
+        const meta = document.createElement('div'); meta.className='meta';
+        const h = document.createElement('h3'); h.textContent = it.name; meta.appendChild(h);
+        const p = document.createElement('p'); p.textContent = it.path; meta.appendChild(p);
+
+        // actions (play or link)
+        const actions = document.createElement('div');
+        if(['mp3','m4a','wav','ogg'].includes(ext)){
+          const audio = document.createElement('audio'); audio.controls = true; audio.src = encodeURI(it.path); actions.appendChild(audio);
+        } else if(['mp4','webm'].includes(ext)){
+          // video already in thumb for preview, also provide bigger video
+          const a = document.createElement('a'); a.href = it.path; a.className='smalllink'; a.textContent='Ouvrir / Télécharger'; a.target='_blank'; actions.appendChild(a);
+        } else {
+          const a = document.createElement('a'); a.href = it.path; a.className='smalllink'; a.textContent='Ouvrir / Télécharger'; a.target='_blank'; actions.appendChild(a);
+        }
+
+        meta.appendChild(actions);
+
+        wrap.appendChild(thumbWrapper);
+        wrap.appendChild(meta);
+        listEl.appendChild(wrap);
+      });
+    }
+
+    typeFilter.addEventListener('change', render);
+    qInput.addEventListener('input', render);
+
+    // initial render
+    render();
+  </script>
+</body>
+</html>

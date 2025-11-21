@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada • Morceau (v0.5)</title>
+<meta name="theme-color" content="#111" />
+<link rel="stylesheet" href="song.css" />
+<script>
+  window.SONG_DATA_OVERRIDE = {
+    slug: "Avienda Fast 6 nov",
+    title: "Avienda Fast 6 nov",
+    audio: "media/Avienda Fast 6 nov.mp3",
+    parts: [
+      { id: "test", label: "test", start: 0, end: 24, images: ["test1.png", "test2.png", "test3.png"] },
+      { id: "test", label: "test", start: 24, end: 48, images: ["test1.png", "test2.png", "test3.png"] }
+    ]
+  };
+</script>
+</head>
+<body id="app" data-theme="">
+<header>
+  <div class="bar" id="hdr">
+    <a class="iconbtn" href="index.html">← Morceaux</a>
+    <div class="title" id="songTitle">Morceau</div>
+    <span class="pill">v0.5</span>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
+    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
+  </div>
+</header>
+
+<div class="playerSticky">
+  <section class="playerCard" aria-labelledby="fullTrackTitle">
+    <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
+    <audio id="player" controls preload="metadata">
+      <source id="audioSrc" src="" />
+      Votre navigateur ne supporte pas la balise audio.
+    </audio>
+    <div id="audioDebug" class="audioDebug"></div>
+  </section>
+</div>
+
+<main>
+  <p class="note">
+    Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
+  </p>
+
+  <section aria-labelledby="partsTitle">
+    <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
+    <div id="sections" class="sections"></div>
+  </section>
+</main>
+
+<!-- Visionneuse plein écran -->
+<div id="fsOverlay" class="fsOverlay" aria-hidden="true">
+  <div class="fsInner" id="fsInner">
+    <button id="fsClose" class="fsClose" type="button">✕ Fermer</button>
+    <div class="fsImageWrap" id="fsImageWrap">
+      <img id="fsImage" src="" alt="Partition en plein écran">
+    </div>
+    <div class="fsMeta">
+      <div id="fsLabel" class="fsLabel"></div>
+      <div id="fsTime" class="fsTime"></div>
+      <div class="fsNavRow">
+        <button id="fsPrev" class="fsNavBtn left" type="button"></button>
+        <button id="fsNext" class="fsNavBtn right" type="button"></button>
+      </div>
+      <div class="fsControlsRow">
+        <button id="fsPlay" class="fsPlayBtn" type="button">▶ Lire à partir d’ici</button>
+        <button id="fsZoom" class="fsZoomBtn" type="button">🔍 Zoom</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="changelog" class="changelog">
+  <h4>Changelog</h4>
+  <ul class="small">
+    <li><strong>v0.5</strong> - Pages morceaux en HTML statique (plus de JSON), correction de certains noms de m?dias, ajout d''une playlist vid?o YouTube et de tests pour les tableaux.</li>
+    <li><strong>v0.4.4</strong> - Zoom clair (scale) avec d?filement, lecteur ? nouveau en haut (sticky), texte du lecteur masqu? en plein ?cran.</li>
+    <li><strong>v0.4.3</strong> - corrections image plein ?cran & espacement.</li>
+    <li><strong>v0.4.2</strong> - visionneuse plein ?cran initiale.</li>
+  </ul>
+</section>
+
+<script src="song.js"></script>
+</body>
+</html>
+
+
+
