@@ -21,15 +21,40 @@
   .grid{display:grid;gap:12px;grid-template-columns:1fr}
   @media(min-width:680px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr));} }
   a.card{display:flex;gap:12px;align-items:center;border:1px solid var(--border);background:var(--card);border-radius:14px;padding:12px;text-decoration:none;color:inherit}
-  a.card .thumb{width:330px;height:220px;flex:0 0 330px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);overflow:hidden}
+  /* default: compact thumbnail so cards fit small screens without zooming */
+  a.card .thumb{width:88px;height:64px;flex:0 0 88px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);overflow:hidden}
   a.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   a.card .thumb .emoji{font-size:28px}
+
+  /* large thumbnails on wide screens */
+  @media(min-width:900px){
+    a.card .thumb{width:330px;height:220px;flex:0 0 330px}
+    a.card .thumb .emoji{font-size:80px}
+  }
   a.card .meta{flex:1;min-width:0}
-  a.card .meta h2{margin:0 0 6px;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* let headlines wrap on small screens but clamp to two lines to avoid huge cards */
+  a.card .meta h2{margin:0 0 6px;font-size:1.05rem;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   a.card .meta .line2{margin:0;color:var(--accent);font-weight:600}
   a.card .meta .line3{margin:6px 0 0;color:#c0392b;font-weight:600}
   a.card .meta .muted{color:var(--muted);font-weight:400}
-  @media(max-width:520px){ a.card{flex-direction:row;gap:10px} }
+  /* mobile scaling tweaks */
+  @media(max-width:520px){ 
+    a.card{flex-direction:row;gap:10px;padding:8px}
+    a.card .thumb{width:64px;height:48px;flex:0 0 64px}
+    a.card .meta h2{font-size:1rem}
+    a.card .meta .line2{font-size:0.92rem}
+  }
+
+  /* smaller phones / very narrow screens */
+  @media(max-width:360px){
+    a.card{gap:8px;padding:6px}
+    a.card .thumb{width:56px;height:44px;flex:0 0 56px}
+    a.card .meta h2{font-size:0.95rem}
+    .grid{gap:8px}
+  }
+
+  /* help long strings (paths / code) break instead of forcing zoom/overflow */
+  a.card .meta code{white-space:normal;overflow-wrap:break-word;word-break:break-word}
 </style>
 </head>
 <body id="app" data-theme="">
@@ -43,7 +68,7 @@
 <main>
   <div class="grid">
     <a class="card" href="bonobo.html">
-      <div class="thumb"><span class="emoji">🥁</span></div>
+      <div class="thumb"><span class="emoji">🙉</span></div>
       <div class="meta">
         <h2>bonobo</h2>
         <div class="line2"></div>
@@ -89,9 +114,9 @@
     </a>
 
     <a class="card" href="fura-dels-baus.html">
-      <div class="thumb"><span class="emoji">🎭</span></div>
+      <div class="thumb"><span class="emoji">😡</span></div>
       <div class="meta">
-        <h2>fura dels baus</h2>
+        <h2>fura dels baus</h2> 
         <div class="line2">audio ok mais </div>
         <div class="line3">reste partitions, phrases, images à ajouter</div>
       </div>
@@ -106,7 +131,7 @@
     </a>
 
     <a class="card" href="choregraphie.html">
-      <div class="thumb"><span class="emoji">🎬</span></div>
+      <div class="thumb"><span class="emoji">💃🏿</span></div>
       <div class="meta">
         <h2>chorégraphies</h2>
         <div class="line2">Plans vidéo & légendes</div>
