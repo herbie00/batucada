@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- DEV REMINDER: Run `node update-rawpaths.js` after adding files to media/ -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tous les fichiers • Media</title>
+  <!-- 🛠️ DEV: After adding files to media/, run: node update-rawpaths.js -->
   <style>
     :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6 }
     @media (prefers-color-scheme: dark){ :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b } }
@@ -27,6 +29,8 @@
   <header>
     <h1>Tous les fichiers</h1>
     <p style="margin:6px 0 0;color:var(--muted)">Fichiers présents dans le dossier <code>media/</code> — triés par nom. Utilisez le filtre (sélection multiple) pour restreindre par type.</p>
+    <p style="margin:6px 0 0;color:var(--muted)">MESSAGE FOR DEV : UPDATE FILES. use the script.</p>
+
   </header>
   <main>
     <div class="controls">
