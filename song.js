@@ -151,8 +151,16 @@
     fsItems = [];
     parts.forEach((p,sectionIndex)=>{
       const imgs = Array.isArray(p.images) ? p.images : (p.images ? [p.images] : []);
+      const allowed = ['png','jpg','jpeg','gif','webp','svg'];
       imgs.forEach((src,imageIndex)=>{
-        fsItems.push({sectionIndex,imageIndex,src});
+        if(!src || typeof src !== 'string') return;
+        // strip query/fragment
+        const cleaned = src.split(/[?#]/)[0];
+        const ext = (cleaned.split('.').pop() || '').toLowerCase();
+        // only add common image types to the fullscreen viewer
+        if(allowed.includes(ext)){
+          fsItems.push({sectionIndex,imageIndex,src});
+        }
       });
     });
   }
