@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada • Morceau (v0.5)</title>
+<meta name="theme-color" content="#111" />
+<link rel="stylesheet" href="song.css" />
+<script>
+  window.SONG_DATA_OVERRIDE = {
+    slug: "avienda",
+    title: "Avienda Slow",
+    audio: "media/avienda-Slow-V01.mp3",
+    parts: [
+      { id: "avienda1", label: "à  faire", start: 0, end: 24, images: ["media/avienda slow color.png"] },
+      { id: "break1", label: "à  faire", start: 24, end: 32, images: ["media/avienda slow color.png"] }
+    ]
+
+  };
+</script>
+</head>
+<body id="app" data-theme="">
+<header>
+  <div class="bar" id="hdr">
+    <a class="iconbtn" href="index.html">← Morceaux</a>
+    <div class="title" id="songTitle">Morceau</div>
+    <span class="pill">v0.5</span>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
+    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
+  </div>
+</header>
+
+<div class="playerSticky">
+  <section class="playerCard" aria-labelledby="fullTrackTitle">
+    <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
+    <audio id="player" controls preload="metadata">
+      <source id="audioSrc" src="" />
+      Votre navigateur ne supporte pas la balise audio.
+    </audio>
+    <div id="audioDebug" class="audioDebug"></div>
+  </section>
+</div>
+
+<!--  Additional playable files / videos  -->
+<section id="extras" style="max-width:980px;margin:18px auto;padding:0 16px;">
+  <h3>enregistrements lives et autres</h3>
+  <p class="note">lives et phrases.</p>
+
+  <div style="display:grid;gap:10px;grid-template-columns:1fr;">
+    <!-- minimal stacked player: title on first line, player on second + skip controls -->
+    <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+      <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Avienda live.mp3</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <audio id="extra-player-4" controls preload="metadata" style="width:100%;">
+          <source src="media/Avienda live.mp3" type="audio/mp3" />
+          Votre navigateur ne supporte pas la balise audio.
+        </audio>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="extra-skip" data-target="extra-player-4" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+        <button class="extra-skip" data-target="extra-player-4" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<main>
+  <p class="note">
+    Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
+  </p>
+
+  <section aria-labelledby="partsTitle">
+    <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
+    <div id="sections" class="sections"></div>
+  </section>
+</main>
+
+<!-- Visionneuse plein écran -->
+<div id="fsOverlay" class="fsOverlay" aria-hidden="true">
+  <div class="fsInner" id="fsInner">
+    <button id="fsClose" class="fsClose" type="button">✕ Fermer</button>
+    <div class="fsImageWrap" id="fsImageWrap">
+      <img id="fsImage" src="" alt="Partition en plein écran">
+    </div>
+    <div class="fsMeta">
+      <div id="fsLabel" class="fsLabel"></div>
+      <div id="fsTime" class="fsTime"></div>
+      <div class="fsNavRow">
+        <button id="fsPrev" class="fsNavBtn left" type="button"></button>
+        <button id="fsNext" class="fsNavBtn right" type="button"></button>
+      </div>
+      <div class="fsControlsRow">
+        <button id="fsPlay" class="fsPlayBtn" type="button">▶ Lire à partir d’ici</button>
+        <button id="fsZoom" class="fsZoomBtn" type="button">🔍 Zoom</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="changelog" class="changelog">
+  <h4>Changelog</h4>
+  <ul class="small">
+    <li><strong>v0.5</strong> - Pages morceaux en HTML statique (plus de JSON), correction de certains noms de m?dias, ajout d''une playlist vid?o YouTube et de tests pour les tableaux.</li>
+    <li><strong>v0.4.4</strong> - Zoom clair (scale) avec d?filement, lecteur ? nouveau en haut (sticky), texte du lecteur masqu? en plein ?cran.</li>
+    <li><strong>v0.4.3</strong> - corrections image plein ?cran & espacement.</li>
+    <li><strong>v0.4.2</strong> - visionneuse plein ?cran initiale.</li>
+  </ul>
+</section>
+
+<script src="song.js"></script>
+</body>
+</html>
+
+<script src="song.js"></script>
+<script>
+  // attach -10/+10s controls for extra players
+  (function(){
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    document.querySelectorAll('.extra-skip').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const targetId = btn.dataset.target;
+        const offset = Number(btn.dataset.offset) || 0;
+        const p = document.getElementById(targetId);
+        if(!p) return;
+        try{
+          const cur = Number(p.currentTime) || 0;
+          const dur = Number(p.duration) || Infinity;
+          const next = clamp(cur + offset, 0, isFinite(dur) ? dur : cur + offset);
+          p.currentTime = next;
+        }catch(err){ /* ignore */ }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
