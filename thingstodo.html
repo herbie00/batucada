@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada • Things to do</title>
+<meta name="theme-color" content="#111" />
+<style>
+  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --accent-soft:#dbeafe; --border:#e6e6e6; --danger:#dc2626; }
+  @media(prefers-color-scheme: dark){
+    :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --accent-soft:#1e293b; --border:#24262b; --danger:#f87171; }
+  }
+  [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --accent-soft:#dbeafe; --border:#e6e6e6; --danger:#c0392b; }
+  [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --accent-soft:#14213d; --border:#24262b; --danger:#f87171; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;line-height:1.5}
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .bar{max-width:1000px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  .title{font-weight:800}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600;cursor:pointer}
+  main{max-width:1000px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px}
+  .card{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,0.05)}
+  h1{margin:0 0 6px;font-size:1.35rem}
+  h2{margin:0 0 12px;font-size:1.1rem}
+  .intro p{margin:0;color:var(--muted)}
+  form .field{display:flex;flex-direction:column;margin-bottom:12px}
+  label{font-weight:600;font-size:.9rem}
+  input[type="text"], textarea{margin-top:4px;padding:8px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:inherit;font-family:inherit}
+  textarea{min-height:110px;resize:vertical}
+  fieldset{border:1px solid var(--border);border-radius:14px;padding:12px;margin:0 0 12px}
+  legend{padding:0 6px;font-weight:700}
+  .chip-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .chip span{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--bg);font-size:.85rem}
+  .chip input:checked + span{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .form-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+  .btn-primary,.btn-secondary,.danger{border:none;border-radius:999px;padding:8px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-secondary{background:#fbbf24;color:#422006}
+  .danger{background:var(--danger);color:#fff}
+  .file-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .hint{font-size:.82rem;color:var(--muted);margin:4px 0 0}
+  .status{font-size:.85rem;color:var(--muted);margin:8px 0 0}
+  .status[data-state="ok"]{color:#15803d}
+  .status[data-state="error"]{color:var(--danger)}
+  .list-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;font-size:.85rem}
+  .filters label{font-weight:600;display:flex;flex-direction:column;gap:4px}
+  .filters select{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:inherit}
+  .notes{display:flex;flex-direction:column;gap:12px}
+  .note-card{position:relative;border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--bg)}
+  .note-head{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+  .note-head strong{font-size:1rem}
+  .note-head time{font-size:.8rem;color:var(--muted)}
+  .note-card p{margin:8px 0;color:var(--fg);white-space:pre-wrap}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .tag{font-size:.75rem;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+  .tag.cat{background:rgba(234,179,8,0.25);color:#92400e;border-color:#fbbf24}
+  .empty{margin:0;color:var(--muted);font-style:italic}
+  .note-delete{position:absolute;top:10px;right:10px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem}
+  .note-delete:hover{color:var(--danger)}
+  @media(max-width:600px){ .filters{flex-direction:column;align-items:flex-start} }
+</style>
+</head>
+<body id="page" data-theme="">
+<header>
+  <div class="bar">
+    <a class="iconbtn" href="index.html">← Retour</a>
+    <div class="title">Batucada — Things to do</div>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn" type="button">🌓 Thème</button>
+  </div>
+</header>
+<main>
+  <section class="card intro">
+    <h1>Idées, TODOs & astuces</h1>
+    <p>Ajoutez des notes, assignez-les à un ou plusieurs morceaux et exportez-les en JSON lisible sur téléphone ou ordinateur.</p>
+  </section>
+
+  <section class="card">
+    <h2>Ajouter une note</h2>
+    <form id="noteForm">
+      <div class="field">
+        <label for="noteTitle">Titre (optionnel)</label>
+        <input id="noteTitle" name="noteTitle" type="text" placeholder="Ex. Break final à tester" />
+      </div>
+      <div class="field">
+        <label for="noteText">Note détaillée</label>
+        <textarea id="noteText" name="noteText" required placeholder="Décrivez l'idée, la variation ou le TODO…"></textarea>
+      </div>
+      <fieldset>
+        <legend>Morceaux concernés</legend>
+        <div class="chip-grid" id="songOptions"></div>
+        <p class="hint">Cochez au moins un morceau (ou “Idée générale”).</p>
+      </fieldset>
+      <fieldset>
+        <legend>Catégories</legend>
+        <div class="chip-grid" id="categoryOptions"></div>
+      </fieldset>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Ajouter la note</button>
+        <button type="button" id="resetBtn" class="btn-secondary">Réinitialiser le formulaire</button>
+      </div>
+    </form>
+
+    <div class="file-actions">
+      <button type="button" id="filePickerBtn" class="btn-secondary">Lier / créer un fichier JSON</button>
+      <button type="button" id="exportBtn" class="btn-primary">Exporter (.json)</button>
+      <button type="button" id="copyBtn" class="btn-secondary">Copier le JSON</button>
+      <button type="button" id="clearAllBtn" class="danger">Tout effacer</button>
+    </div>
+    <p class="hint">Quand un fichier est lié (File System Access API), chaque sauvegarde y est écrite automatiquement. Sinon, utilisez Exporter/Copier pour obtenir un fichier lisible partout.</p>
+    <p id="statusLine" class="status">Prêt.</p>
+  </section>
+
+  <section class="card">
+    <div class="list-head">
+      <h2>Notes sauvegardées</h2>
+      <div class="filters">
+        <label>Morceau
+          <select id="filterSong">
+            <option value="">Tous</option>
+          </select>
+        </label>
+        <label>Catégorie
+          <select id="filterCategory">
+            <option value="">Toutes</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div id="notesContainer" class="notes"></div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const page=document.getElementById('page');
+  const themeBtn=document.getElementById('themeBtn');
+  function setTheme(m){ page.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
+  setTheme(localStorage.getItem('bat_theme')||"");
+  themeBtn.onclick=()=>{ const cur=page.getAttribute('data-theme')||""; setTheme(cur==="dark"?"light":cur==="light"?"":"dark"); };
+
+  const SONGS=[
+    {slug:'general',label:'Idée générale'},
+    {slug:'bonobo',label:'Bonobo'},
+    {slug:'tout-le-monde-sur-le-pont',label:'Tout le monde sur le pont'},
+    {slug:'avienda-slow',label:'Avienda Slow'},
+    {slug:'avienda-fast-6-nov',label:'Avienda Fast 6 nov'},
+    {slug:'avienda-slow-test',label:'Avienda Slow Test'},
+    {slug:'rio-banane',label:'Rio Banane'},
+    {slug:'fura-dels-baus',label:'Fura dels Baus'},
+    {slug:'choregraphie',label:'Chorégraphies'},
+    {slug:'tous-les-fichiers',label:'Tous les fichiers'},
+    {slug:'youtube',label:'Vidéos YouTube'},
+    {slug:'autre',label:'Autre fichier'}
+  ];
+  const CATEGORIES=[
+    {id:'new-phrase',label:'Nouvelle phrase'},
+    {id:'variation',label:'Variante / autre façon de jouer'},
+    {id:'hint',label:'Astuce / technique'},
+    {id:'arrangement',label:'Arrangements / structure'},
+    {id:'todo',label:'TODO / dev'},
+    {id:'other',label:'Autre'}
+  ];
+  const STORAGE_KEY='batucada.notes.v1';
+
+  const songOptions=document.getElementById('songOptions');
+  const categoryOptions=document.getElementById('categoryOptions');
+  const filterSong=document.getElementById('filterSong');
+  const filterCategory=document.getElementById('filterCategory');
+  const notesContainer=document.getElementById('notesContainer');
+  const statusLine=document.getElementById('statusLine');
+  const form=document.getElementById('noteForm');
+  const titleInput=document.getElementById('noteTitle');
+  const textInput=document.getElementById('noteText');
+  const resetBtn=document.getElementById('resetBtn');
+  const exportBtn=document.getElementById('exportBtn');
+  const copyBtn=document.getElementById('copyBtn');
+  const filePickerBtn=document.getElementById('filePickerBtn');
+  const clearAllBtn=document.getElementById('clearAllBtn');
+
+  let notes=loadNotes();
+  let fileHandle=null;
+
+  renderChipList(songOptions, SONGS, 'song');
+  renderChipList(categoryOptions, CATEGORIES, 'category');
+  populateSelect(filterSong, SONGS);
+  populateSelect(filterCategory, CATEGORIES);
+  renderNotes();
+
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const noteText=textInput.value.trim();
+    const selectedSongs=getCheckedValues(songOptions);
+    const selectedCategories=getCheckedValues(categoryOptions);
+    if(!noteText){ setStatus('Le champ note est vide.', 'error'); return; }
+    if(!selectedSongs.length){ setStatus('Sélectionnez au moins un morceau.', 'error'); return; }
+    const newNote={
+      id:(self.crypto&&crypto.randomUUID)?crypto.randomUUID():`note-${Date.now()}`,
+      title:titleInput.value.trim(),
+      text:noteText,
+      songs:selectedSongs,
+      categories:selectedCategories,
+      createdAt:new Date().toISOString()
+    };
+    notes=[newNote,...notes];
+    saveNotes();
+    renderNotes();
+    form.reset();
+    autoCheckGeneral();
+    setStatus('Note ajoutée.', 'ok');
+  });
+
+  resetBtn.addEventListener('click',()=>{
+    form.reset();
+    autoCheckGeneral();
+    setStatus('Formulaire réinitialisé.');
+  });
+
+  filterSong.addEventListener('change',renderNotes);
+  filterCategory.addEventListener('change',renderNotes);
+
+  notesContainer.addEventListener('click',(e)=>{
+    const btn=e.target.closest('[data-action="delete-note"]');
+    if(!btn) return;
+    const id=btn.dataset.id;
+    notes=notes.filter(n=>n.id!==id);
+    saveNotes();
+    renderNotes();
+    setStatus('Note supprimée.', 'ok');
+  });
+
+  exportBtn.addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify(buildExportPayload(),null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download='batucada-notes.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    setStatus('Fichier exporté.', 'ok');
+  });
+
+  copyBtn.addEventListener('click',async()=>{
+    try{
+      await navigator.clipboard.writeText(JSON.stringify(buildExportPayload(),null,2));
+      setStatus('JSON copié dans le presse-papiers.', 'ok');
+    }catch(err){
+      setStatus('Impossible de copier automatiquement.', 'error');
+    }
+  });
+
+  clearAllBtn.addEventListener('click',()=>{
+    if(!confirm('Supprimer toutes les notes ?')) return;
+    notes=[];
+    saveNotes();
+    renderNotes();
+    setStatus('Toutes les notes ont été effacées.', 'ok');
+  });
+
+  filePickerBtn.addEventListener('click',pickFileHandle);
+
+  function renderChipList(container,data,type){
+    container.innerHTML=data.map(item=>`
+      <label class="chip">
+        <input type="checkbox" value="${item.slug||item.id}" ${item.slug==='general'||type==='category'&&item.id==='todo'?'':' '}>
+        <span>${item.label}</span>
+      </label>
+    `).join('');
+    autoCheckGeneral();
+  }
+
+  function autoCheckGeneral(){
+    const general= songOptions.querySelector('input[value="general"]');
+    if(general) general.checked=true;
+  }
+
+  function populateSelect(selectEl,data){
+    data.forEach(item=>{
+      const opt=document.createElement('option');
+      opt.value=item.slug||item.id;
+      opt.textContent=item.label;
+      selectEl.appendChild(opt);
+    });
+  }
+
+  function getCheckedValues(container){
+    return Array.from(container.querySelectorAll('input:checked')).map(input=>input.value);
+  }
+
+  function loadNotes(){
+    try{
+      const raw=localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        const parsed=JSON.parse(raw);
+        if(Array.isArray(parsed)) return parsed;
+        if(Array.isArray(parsed.notes)) return parsed.notes;
+      }
+    }catch(err){}
+    return [];
+  }
+
+  function saveNotes(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    }catch(err){}
+    persistToLinkedFile();
+  }
+
+  function renderNotes(){
+    const filtered=notes.filter(note=>{
+      const songOk=!filterSong.value || note.songs.includes(filterSong.value);
+      const catOk=!filterCategory.value || note.categories.includes(filterCategory.value);
+      return songOk && catOk;
+    });
+    if(!filtered.length){
+      notesContainer.innerHTML='<p class="empty">Aucune note pour ce filtre.</p>';
+      return;
+    }
+    notesContainer.innerHTML=filtered.map(note=>`
+      <article class="note-card">
+        <button class="note-delete" type="button" data-action="delete-note" data-id="${note.id}" aria-label="Supprimer cette note">✕</button>
+        <div class="note-head">
+          <strong>${escapeHtml(note.title||note.text.slice(0,80))}</strong>
+          <time>${formatDate(note.createdAt)}</time>
+        </div>
+        <p>${escapeHtml(note.text)}</p>
+        <div class="tags">
+          ${note.songs.map(slug=>`<span class="tag song">${escapeHtml(getSongLabel(slug))}</span>`).join('')}
+          ${note.categories.map(cat=>`<span class="tag cat">${escapeHtml(getCategoryLabel(cat))}</span>`).join('')}
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function formatDate(iso){
+    const d=new Date(iso);
+    if(Number.isNaN(d.getTime())) return '—';
+    return d.toLocaleString('fr-FR',{dateStyle:'medium',timeStyle:'short'});
+  }
+
+  function getSongLabel(slug){
+    return (SONGS.find(s=>s.slug===slug)||{label:slug}).label;
+  }
+  function getCategoryLabel(id){
+    return (CATEGORIES.find(c=>c.id===id)||{label:id}).label;
+  }
+
+  function buildExportPayload(){
+    return {updatedAt:new Date().toISOString(), total:notes.length, notes};
+  }
+
+  function escapeHtml(str){
+    return (str||'').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function pickFileHandle(){
+    if(!window.showOpenFilePicker && !window.showSaveFilePicker){
+      setStatus('Ce navigateur ne supporte pas la sauvegarde directe dans un fichier.', 'error');
+      return;
+    }
+    try{
+      if(window.showOpenFilePicker){
+        const handles=await showOpenFilePicker({
+          multiple:false,
+          types:[{description:'Fichier JSON',accept:{'application/json':['.json']}}]
+        });
+        fileHandle=handles[0];
+      }else{
+        fileHandle=await showSaveFilePicker({
+          suggestedName:'batucada-notes.json',
+          types:[{description:'Fichier JSON',accept:{'application/json':['.json']}}]
+        });
+      }
+      await syncFromFileHandle();
+      await persistToLinkedFile();
+      setStatus('Fichier lié. Les prochaines notes y seront écrites.', 'ok');
+    }catch(err){
+      setStatus('Impossible de lier le fichier.', 'error');
+    }
+  }
+
+  async function syncFromFileHandle(){
+    if(!fileHandle) return;
+    try{
+      const file=await fileHandle.getFile();
+      const text=await file.text();
+      if(!text) return;
+      const parsed=JSON.parse(text);
+      if(Array.isArray(parsed)){
+        notes=parsed;
+      }else if(parsed && Array.isArray(parsed.notes)){
+        notes=parsed.notes;
+      }
+      saveNotes();
+      renderNotes();
+    }catch(err){
+      setStatus('Lecture du fichier impossible, format ignoré.', 'error');
+    }
+  }
+
+  async function persistToLinkedFile(){
+    if(!fileHandle || !fileHandle.createWritable) return;
+    try{
+      const perm = await ensurePermission();
+      if(!perm){ setStatus('Permission refusée pour écrire dans le fichier.', 'error'); return; }
+      const writable=await fileHandle.createWritable();
+      await writable.write(JSON.stringify(buildExportPayload(),null,2));
+      await writable.close();
+      setStatus('Fichier mis à jour.', 'ok');
+    }catch(err){
+      setStatus('Erreur lors de l’écriture du fichier.', 'error');
+    }
+  }
+
+  async function ensurePermission(){
+    if(!fileHandle) return false;
+    if(fileHandle.queryPermission){
+      const granted=await fileHandle.queryPermission({mode:'readwrite'});
+      if(granted==='granted') return true;
+      const requested=await fileHandle.requestPermission({mode:'readwrite'});
+      return requested==='granted';
+    }
+    return true;
+  }
+})();
+</script>
+</body>
+</html>
