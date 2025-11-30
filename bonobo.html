@@ -6,6 +6,17 @@
 <title>Batucada • Morceau (v0.5)</title>
 <meta name="theme-color" content="#111" />
 <link rel="stylesheet" href="song.css" />
+<style>
+  .tabNav{max-width:980px;margin:12px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+  .tabBtn{flex:1;min-width:140px;border:1px solid var(--border,#e6e6e6);background:var(--card,#f6f7f9);color:var(--fg,#111);padding:10px 12px;border-radius:999px;font-weight:600;cursor:pointer;transition:.2s}
+  .tabBtn.active{background:var(--accent,#2563eb);color:#fff;border-color:var(--accent,#2563eb)}
+  .tabContent{margin:16px auto;max-width:980px;padding:0 16px}
+  .tabContent[hidden]{display:none!important}
+  .imageGrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px}
+  .imageCard{border:1px solid var(--border,#e6e6e6);border-radius:12px;background:var(--card,#f6f7f9);padding:8px;display:flex;flex-direction:column;gap:6px}
+  .imageCard img{width:100%;height:140px;object-fit:cover;border-radius:8px;background:#000}
+  .imageCard span{font-size:.85rem;font-weight:600}
+</style>
 <script>
   window.SONG_DATA_OVERRIDE = {
     slug: "bonobo",
@@ -26,7 +37,7 @@
       { id: "snare", label: "Snare 1-2", start: 298.6, end: 320, images: ["media/bonobo 04 - rythme 2 - partitions.png"] },
       { id: "snare-chorus1", label: "Snare + Chorus Surdo 1-2", start: 320, end: 341.4, images: ["media/bonobo 03 - rythme 1 - partitions.png"] },
       { id: "snare-groove", label: "Snare + Groove CG et Tamb", start: 352, end: 362.7, images: ["media/bonobo 03 - rythme 1 - partitions.png"] },
-      { id: "snare-chorus2", label: "Snare + Chorus Surdo 3-4", start: 362.6, end: 384, images: ["media/bonobo 04 - rythme 2 - partitions.png"] },
+      { id: "snare-chorus2", label: "Snare + Chorus Surdo 3-4", start: 362.6, end: 384, images: ["media/bonobo 04 - rythme 2.png"] },
       { id: "snare-chorus-apito", label: "Snare + Chorus Surdo + Apito 1-2", start: 384, end: 405.4, images: ["media/bonobo 04 - rythme 2 - partitions.png"] }
     ]
   };
@@ -44,99 +55,123 @@
   </div>
 </header>
 
-<div class="playerSticky">
-  <section class="playerCard" aria-labelledby="fullTrackTitle">
-    <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
-    <audio id="player" controls preload="metadata">
-      <source id="audioSrc" src="" />
-      Votre navigateur ne supporte pas la balise audio.
-    </audio>
-    <div id="audioDebug" class="audioDebug"></div>
-  </section>
+<div class="tabNav" role="tablist" aria-label="Sections de la page">
+  <button class="tabBtn active" data-tab-btn="principal" role="tab" aria-selected="true" aria-controls="tab-principal">Principal (tout)</button>
+  <button class="tabBtn" data-tab-btn="audio" role="tab" aria-selected="false" aria-controls="tab-audio" tabindex="-1">Audio & partitions</button>
+  <button class="tabBtn" data-tab-btn="lives" role="tab" aria-selected="false" aria-controls="tab-lives" tabindex="-1">Fichiers lives</button>
+  <button class="tabBtn" data-tab-btn="notes" role="tab" aria-selected="false" aria-controls="tab-notes" tabindex="-1">Notes</button>
+  <button class="tabBtn" data-tab-btn="images" role="tab" aria-selected="false" aria-controls="tab-images" tabindex="-1">Images</button>
+  <button class="tabBtn" data-tab-btn="autres" role="tab" aria-selected="false" aria-controls="tab-autres" tabindex="-1">Autres</button>
 </div>
 
-<!--  Additional playable files / videos  -->
-<section id="extras" style="max-width:980px;margin:18px auto;padding:0 16px;">
-  <h3>enregistrements lives et autres</h3>
-  <p class="note">lives et phrases.</p>
-
-  <div style="display:grid;gap:10px;grid-template-columns:1fr;">
-    <!-- minimal stacked player: title on first line, player on second + skip controls -->
-    <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-      <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo full — live 2025-10-09.mp4</div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <video id="extra-player-1" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
-          <source src="media/bonobo full - live 2025-10-09.mp4" type="video/mp4" />
-          Votre navigateur ne supporte pas la balise vidéo.
-        </video>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <button class="extra-skip" data-target="extra-player-1" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
-        <button class="extra-skip" data-target="extra-player-1" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
-      </div>
-    </article>
-
-    <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-      <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo fin — live 2025-10-09.mp4</div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <video id="extra-player-2" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
-          <source src="media/bonobo fin - live 2025-10-09.mp4" type="video/mp4" />
-          Votre navigateur ne supporte pas la balise vidéo.
-        </video>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <button class="extra-skip" data-target="extra-player-2" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
-        <button class="extra-skip" data-target="extra-player-2" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
-      </div>
-    </article>
-
-    <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-      <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases.ogg</div>
-      <div style="display:flex;gap:8px;align-items:center;">
-          <source src="media/bonobo break de fin - live 2025-10-09.mp4" type="video/mp4" />
-          Votre navigateur ne supporte pas la balise vidéo.
-        </video>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <button class="extra-skip" data-target="extra-player-3" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
-        <button class="extra-skip" data-target="extra-player-3" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
-      </div>
-    </article>
-
-    <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-      <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases.ogg</div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <audio id="extra-player-4" controls preload="metadata" style="width:100%;">
-          <source src="media/bonobo phrases.ogg" type="audio/ogg" />
+<main>
+  <section class="tabContent" id="tab-principal-player" data-tabs="principal audio">
+    <div class="playerSticky">
+      <section class="playerCard" aria-labelledby="fullTrackTitle">
+        <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
+        <audio id="player" controls preload="metadata">
+          <source id="audioSrc" src="" />
           Votre navigateur ne supporte pas la balise audio.
         </audio>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <button class="extra-skip" data-target="extra-player-4" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
-        <button class="extra-skip" data-target="extra-player-4" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
-      </div>
-    </article>
-  </div>
-</section>
-
-<main>
-  <p class="note">
-    Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
-  </p>
-
-  <section aria-labelledby="partsTitle">
-    <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
-    <div id="sections" class="sections"></div>
+        <div id="audioDebug" class="audioDebug"></div>
+      </section>
+    </div>
   </section>
 
-  <section style="max-width:980px;margin:24px auto;padding:0 16px;">
+  <section class="tabContent" id="tab-audio" data-tabs="principal audio">
+    <p class="note">
+      Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
+    </p>
+
+    <section aria-labelledby="partsTitle">
+      <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
+      <div id="sections" class="sections"></div>
+    </section>
+  </section>
+
+  <section class="tabContent" id="tab-lives" data-tabs="principal lives">
+    <!--  Additional playable files / videos  -->
+    <section id="extras" style="max-width:980px;margin:18px auto;padding:0 16px;">
+      <h3>enregistrements lives et autres</h3>
+      <p class="note">lives et phrases.</p>
+
+      <div style="display:grid;gap:10px;grid-template-columns:1fr;">
+        <!-- minimal stacked player: title on first line, player on second + skip controls -->
+        <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo full — live 2025-10-09.mp4</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <video id="extra-player-1" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
+              <source src="media/bonobo full - live 2025-10-09.mp4" type="video/mp4" />
+              Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="extra-player-1" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="extra-player-1" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        </article>
+
+        <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo fin — live 2025-10-09.mp4</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <video id="extra-player-2" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
+              <source src="media/bonobo fin - live 2025-10-09.mp4" type="video/mp4" />
+              Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="extra-player-2" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="extra-player-2" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        </article>
+
+        <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases.ogg</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+              <source src="media/bonobo break de fin - live 2025-10-09.mp4" type="video/mp4" />
+              Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="extra-player-3" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="extra-player-3" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        </article>
+
+        <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases.ogg</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <audio id="extra-player-4" controls preload="metadata" style="width:100%;">
+              <source src="media/bonobo phrases.ogg" type="audio/ogg" />
+              Votre navigateur ne supporte pas la balise audio.
+            </audio>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="extra-player-4" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="extra-player-4" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <section class="tabContent" id="tab-notes" data-tabs="principal notes">
     <h3>Notes rapides</h3>
-    <textarea style="width:100%;min-height:140px;border:1px solid var(--border,#e6e6e6);border-radius:12px;padding:12px;font:inherit;line-height:1.5;white-space:pre-wrap;" rows="15">
+    <textarea rows="15" style="width:100%;min-height:140px;border:1px solid var(--border,#e6e6e6);border-radius:12px;padding:12px;font:inherit;line-height:1.5;white-space:pre-wrap;">
 2025-11-27-Thu
 Les répiniques suivent le meneur au début du morceau
+phrase répinique sur 2ème partie     
+<s>Ba tuc ba tu ca da</s> <b>Ca va très vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>
+légende :   <s>mentalement</s>   <b>joué</b>
+
     </textarea>
   </section>
-</main> 
+
+  <section class="tabContent" id="tab-images" data-tabs="principal images">
+    <h3>Images du morceau</h3>
+    <div id="imagesGallery" class="imageGrid"></div>
+  </section>
+</main>
 
 <!-- Visionneuse plein écran -->
 <div id="fsOverlay" class="fsOverlay" aria-hidden="true">
@@ -160,7 +195,7 @@ Les répiniques suivent le meneur au début du morceau
   </div>
 </div>
 
-<section id="changelog" class="changelog">
+<section id="changelog" class="changelog tabContent" data-tabs="principal autres">
   <h4>Changelog</h4>
   <ul class="small">
     <li><strong>v0.5</strong> - Pages morceaux en HTML statique (plus de JSON), correction de certains noms de m?dias, ajout d''une playlist vid?o YouTube et de tests pour les tableaux.</li>
@@ -172,7 +207,64 @@ Les répiniques suivent le meneur au début du morceau
 
 <script src="song.js"></script>
 <script>
-  // attach -10/+10s controls for extra players
+  (function(){
+    const TAB_KEY='bonobo.tab.v1';
+    const buttons=[...document.querySelectorAll('[data-tab-btn]')];
+    const sections=[...document.querySelectorAll('[data-tabs]')];
+    function activate(name){
+      buttons.forEach(btn=>{
+        const active=btn.dataset.tabBtn===name;
+        btn.classList.toggle('active',active);
+        btn.setAttribute('aria-selected',active?'true':'false');
+        btn.setAttribute('tabindex',active?'0':'-1');
+      });
+      sections.forEach(section=>{
+        const list=(section.dataset.tabs||'').split(/\s+/);
+        section.hidden=!list.includes(name);
+      });
+      try{localStorage.setItem(TAB_KEY,name);}catch{}
+    }
+    buttons.forEach(btn=>{
+      btn.addEventListener('click',()=>activate(btn.dataset.tabBtn));
+      btn.addEventListener('keydown',e=>{
+        if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight') return;
+        e.preventDefault();
+        const dir=e.key==='ArrowRight'?1:-1;
+        const idx=buttons.indexOf(btn);
+        const next=buttons[(idx+dir+buttons.length)%buttons.length];
+        next.focus();
+        activate(next.dataset.tabBtn);
+      });
+    });
+    activate(localStorage.getItem(TAB_KEY)||'principal');
+  })();
+
+  (function buildGallery(){
+    const gallery=document.getElementById('imagesGallery');
+    if(!gallery) return;
+    const data=(window.SONG_DATA_OVERRIDE&&Array.isArray(window.SONG_DATA_OVERRIDE.parts))?window.SONG_DATA_OVERRIDE.parts:[];
+    const seen=new Set();
+    const items=[];
+    data.forEach(part=>{
+      (part.images||[]).forEach(src=>{
+        if(!src || seen.has(src)) return;
+        seen.add(src);
+        items.push({src,label:part.label||'Image'});
+      });
+    });
+    if(!items.length){
+      gallery.innerHTML='<p class="note">Aucune image disponible.</p>';
+      return;
+    }
+    gallery.innerHTML=items.map(item=>`
+      <article class="imageCard">
+        <img src="${item.src}" alt="${item.label}">
+        <span>${item.label}</span>
+      </article>
+    `).join('');
+  })();
+
+  // attach -10/+10s controls...
   (function(){
     function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
     document.querySelectorAll('.extra-skip').forEach(btn=>{
