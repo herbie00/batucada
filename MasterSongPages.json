@@ -48,7 +48,7 @@
         {"id": "p8", "label": "agogo et tembourim reviennent ", "start": 112, "end": 129, "images": ["test1.png", "test2.png", "test3.png"]},
         {"id": "p9", "label": "break fin", "start": 129, "end": 129, "images": ["test1.png", "test2.png", "test3.png"]}
       ],
-      "notes": "Ajoutez ici vos idées ou remarques pour Avienda Fast 6 nov.",
+      "notes": "rien pour l'instant.",
       "lives": [
         {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3", "note": "Enregistrement live disponible."}
       ],
@@ -67,7 +67,7 @@
         {"id": "r1-tamb-apito", "label": "Avienda R1 + Tamb + Apito", "start": 56, "end": 64, "images": ["media/avienda slow color.png"]},
         {"id": "break2", "label": "Break", "start": 64, "end": 72, "images": ["media/avienda slow color.png"]}
       ],
-      "notes": "Ajoutez ici vos idées ou remarques pour Avienda Slow.",
+      "notes": "rien pour l'instant.",
       "lives": [
         {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3"}
       ],
@@ -81,7 +81,7 @@
         {"id": "avienda1", "label": "à  faire", "start": 0, "end": 24, "images": ["media/avienda slow color.png"]},
         {"id": "break1", "label": "à  faire", "start": 24, "end": 32, "images": ["media/avienda slow color.png"]}
       ],
-      "notes": "Ajoutez ici vos idées de travail sur Avienda Slow Test.",
+      "notes": ".",
       "lives": [
         {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3"}
       ],
@@ -107,7 +107,7 @@
         {"id": "id", "label": "label", "start": 0, "end": 8, "images": ["media/rio banane.png"], "text": "text"},
         {"id": "id-2", "label": "label", "start": 8, "end": 16, "images": ["media/rio banane.png"], "text": "text"}
       ],
-      "notes": "demander morceau Micka\"el",
+      "notes": "rien pou r'instant.",
       "lives": [],
       "instruments": []
     },

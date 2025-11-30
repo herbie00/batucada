@@ -2,7 +2,7 @@
   const DATA_URL = 'MasterSongPages.json';
   const slugFromQuery = () => {
     const params = new URLSearchParams(location.search);
-    return params.get('song') || params.get('slug');
+    return params.get('song') || params.get('slug') || params.get('s');
   };
   const getSlug = () => window.SONG_TEMPLATE_SLUG || slugFromQuery();
 
@@ -189,6 +189,7 @@
       attachExtraSkipHandlers();
       loadSongScript();
     }catch(err){
+      console.error('template load error', err);
       showError(err.message || 'Erreur inconnue.');
     }
   }
