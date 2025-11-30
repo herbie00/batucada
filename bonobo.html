@@ -59,6 +59,7 @@
   <button class="tabBtn active" data-tab-btn="principal" role="tab" aria-selected="true" aria-controls="tab-principal">Principal (tout)</button>
   <button class="tabBtn" data-tab-btn="audio" role="tab" aria-selected="false" aria-controls="tab-audio" tabindex="-1">Audio & partitions</button>
   <button class="tabBtn" data-tab-btn="lives" role="tab" aria-selected="false" aria-controls="tab-lives" tabindex="-1">Fichiers lives</button>
+  <button class="tabBtn" data-tab-btn="instruments" role="tab" aria-selected="false" aria-controls="tab-instruments" tabindex="-1">Instruments individuels</button>
   <button class="tabBtn" data-tab-btn="notes" role="tab" aria-selected="false" aria-controls="tab-notes" tabindex="-1">Notes</button>
   <button class="tabBtn" data-tab-btn="images" role="tab" aria-selected="false" aria-controls="tab-images" tabindex="-1">Images</button>
   <button class="tabBtn" data-tab-btn="autres" role="tab" aria-selected="false" aria-controls="tab-autres" tabindex="-1">Autres</button>
@@ -126,8 +127,9 @@
         </article>
 
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases.ogg</div>
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo break de fin — live 2025-10-09.mp4</div>
           <div style="display:flex;gap:8px;align-items:center;">
+            <video id="extra-player-3" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
               <source src="media/bonobo break de fin - live 2025-10-09.mp4" type="video/mp4" />
               Votre navigateur ne supporte pas la balise vidéo.
             </video>
@@ -149,6 +151,28 @@
           <div style="display:flex;gap:8px;align-items:center;">
             <button class="extra-skip" data-target="extra-player-4" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
             <button class="extra-skip" data-target="extra-player-4" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <section class="tabContent" id="tab-instruments" data-tabs="principal instruments">
+    <section style="max-width:980px;margin:18px auto;padding:0 16px;">
+      <h3>Instruments individuels</h3>
+      <p class="note">Extrait de phrases isolant la caisse claire / tambourim (livré en OGG).</p>
+      <div style="display:grid;gap:10px;grid-template-columns:1fr;">
+        <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases — snare/tambourim (2025-10-09)</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <audio id="instr-phrases" controls preload="metadata" style="width:100%;">
+              <source src="media/bonobo phrases.ogg" type="audio/ogg" />
+              Votre navigateur ne supporte pas la balise audio.
+            </audio>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="instr-phrases" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="instr-phrases" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
           </div>
         </article>
       </div>
