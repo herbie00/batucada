@@ -3,213 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.5)</title>
-<meta name="theme-color" content="#111" />
+<title>Batucada • Rio Banane (template)</title>
 <link rel="stylesheet" href="song.css" />
+<meta http-equiv="refresh" content="0;url=template.html?s=rio-banane" />
 <style>
-  .tabNav{max-width:980px;margin:12px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
-  .tabBtn{flex:1;min-width:140px;border:1px solid var(--border,#e6e6e6);background:var(--card,#f6f7f9);color:var(--fg,#111);padding:10px 12px;border-radius:999px;font-weight:600;cursor:pointer;transition:.2s}
-  .tabBtn.active{background:var(--accent,#2563eb);color:#fff;border-color:var(--accent,#2563eb)}
-  .tabContent{margin:16px auto;max-width:980px;padding:0 16px}
-  .tabContent[hidden]{display:none!important}
-  .imageGrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px}
-  .imageCard{border:1px solid var(--border,#e6e6e6);border-radius:12px;background:var(--card,#f6f7f9);padding:8px;display:flex;flex-direction:column;gap:6px}
-  .imageCard img{width:100%;height:140px;object-fit:cover;border-radius:8px;background:#000}
-  .imageCard span{font-size:.85rem;font-weight:600}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;background:#05060a;color:#f5f7fb;display:flex;min-height:100vh;align-items:center;justify-content:center}
+  .notice{max-width:480px;text-align:center;padding:18px;border-radius:12px;background:rgba(15,23,42,0.85);border:1px solid rgba(255,255,255,0.2)}
+  .notice a{color:#60a5fa}
 </style>
 <script>
-  window.SONG_DATA_OVERRIDE = {
-    slug: "rio-banane",
-    title: "rio banane",
-    audio: "media/Rio Banane24nov.mp3",
-    parts: [
-      { id: "id", label: "label", start: 0, end: 8, images: ["media/rio banane.png"], text: "text" },
-      { id: "id", label: "label", start: 8, end: 16, images: ["media/rio banane.png"], text: "text" }
-    ]
-  };
+  const target = 'template.html?s=rio-banane';
+  window.addEventListener('load',()=> window.location.replace(target));
 </script>
 </head>
-<body id="app" data-theme="">
-<header>
-  <div class="bar" id="hdr">
-    <a class="iconbtn" href="index.html">← Morceaux</a>
-    <div class="title" id="songTitle">Morceau</div>
-    <span class="pill">v0.5</span>
-    <div class="spacer"></div>
-    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
-    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
+<body>
+  <div class="notice">
+    <p>Redirection vers <a href="template.html?s=rio-banane">template.html?s=rio-banane</a>…</p>
+    <p>Si la redirection automatique échoue, cliquez ici.</p>
   </div>
-</header>
-
-<div class="tabNav" role="tablist" aria-label="Sections de la page">
-  <button class="tabBtn active" data-tab-btn="principal" role="tab" aria-selected="true" aria-controls="tab-principal">Principal (tout)</button>
-  <button class="tabBtn" data-tab-btn="audio" role="tab" aria-selected="false" aria-controls="tab-audio" tabindex="-1">Audio & partitions</button>
-  <button class="tabBtn" data-tab-btn="lives" role="tab" aria-selected="false" aria-controls="tab-lives" tabindex="-1">Fichiers lives</button>
-  <button class="tabBtn" data-tab-btn="instruments" role="tab" aria-selected="false" aria-controls="tab-instruments" tabindex="-1">Instruments individuels</button>
-  <button class="tabBtn" data-tab-btn="notes" role="tab" aria-selected="false" aria-controls="tab-notes" tabindex="-1">Notes</button>
-  <button class="tabBtn" data-tab-btn="images" role="tab" aria-selected="false" aria-controls="tab-images" tabindex="-1">Images</button>
-  <button class="tabBtn" data-tab-btn="autres" role="tab" aria-selected="false" aria-controls="tab-autres" tabindex="-1">Autres</button>
-</div>
-
-<main>
-  <section class="tabContent" data-tabs="principal audio">
-    <div class="playerSticky">
-      <section class="playerCard" aria-labelledby="fullTrackTitle">
-        <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
-        <audio id="player" controls preload="metadata">
-          <source id="audioSrc" src="" />
-          Votre navigateur ne supporte pas la balise audio.
-        </audio>
-        <div id="audioDebug" class="audioDebug"></div>
-      </section>
-    </div>
-  </section>
-
-  <section class="tabContent" id="tab-audio" data-tabs="principal audio">
-    <p class="note">
-      Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
-    </p>
-    <section aria-labelledby="partsTitle">
-      <h2 id="partsTitle" class="sr-only">Sections (partitions)</h2>
-      <div id="sections" class="sections"></div>
-    </section>
-  </section>
-
-  <section class="tabContent" id="tab-lives" data-tabs="principal lives">
-    <p class="note">Aucun enregistrement live supplémentaire pour le moment.</p>
-  </section>
-
-  <section class="tabContent" id="tab-instruments" data-tabs="principal instruments">
-    <section style="max-width:980px;margin:18px auto;padding:0 16px;">
-      <h3>Instruments individuels</h3>
-      <p class="note">Pas de fichiers individuels disponibles pour ce morceau.</p>
-    </section>
-  </section>
-
-  <section class="tabContent" id="tab-notes" data-tabs="principal notes">
-    <h3>Notes rapides</h3>
-    <textarea style="width:100%;border:1px solid var(--border,#e6e6e6);border-radius:12px;padding:12px;font:inherit;line-height:1.5;white-space:pre-wrap;" rows="8">
-demander morceau Micka"el
-    </textarea>
-  </section>
-
-  <section class="tabContent" id="tab-images" data-tabs="principal images">
-    <h3>Images du morceau</h3>
-    <div id="imagesGallery" class="imageGrid"></div>
-  </section>
-</main>
-
-<!-- Visionneuse plein écran -->
-<div id="fsOverlay" class="fsOverlay" aria-hidden="true">
-  <div class="fsInner" id="fsInner">
-    <button id="fsClose" class="fsClose" type="button">✕ Fermer</button>
-    <div class="fsImageWrap" id="fsImageWrap">
-      <img id="fsImage" src="" alt="Partition en plein écran">
-    </div>
-    <div class="fsMeta">
-      <div id="fsLabel" class="fsLabel"></div>
-      <div id="fsTime" class="fsTime"></div>
-      <div class="fsNavRow">
-        <button id="fsPrev" class="fsNavBtn left" type="button"></button>
-        <button id="fsNext" class="fsNavBtn right" type="button"></button>
-      </div>
-      <div class="fsControlsRow">
-        <button id="fsPlay" class="fsPlayBtn" type="button">▶ Lire à partir d’ici</button>
-        <button id="fsZoom" class="fsZoomBtn" type="button">🔍 Zoom</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<section id="changelog" class="changelog tabContent" data-tabs="principal autres">
-  <h4>Changelog</h4>
-  <ul class="small">
-    <li><strong>v0.5</strong> - Pages morceaux en HTML statique (plus de JSON), correction de certains noms de m?dias, ajout d''une playlist vid?o YouTube et de tests pour les tableaux.</li>
-    <li><strong>v0.4.4</strong> - Zoom clair (scale) avec d?filement, lecteur ? nouveau en haut (sticky), texte du lecteur masqu? en plein ?cran.</li>
-    <li><strong>v0.4.3</strong> - corrections image plein ?cran & espacement.</li>
-    <li><strong>v0.4.2</strong> - visionneuse plein ?cran initiale.</li>
-  </ul>
-</section>
-
-<script src="song.js"></script>
-<script>
-  (function(){
-    const TAB_KEY='rio-banane.tab.v1';
-    const buttons=[...document.querySelectorAll('[data-tab-btn]')];
-    const sections=[...document.querySelectorAll('[data-tabs]')];
-    function activate(name){
-      buttons.forEach(btn=>{
-        const active=btn.dataset.tabBtn===name;
-        btn.classList.toggle('active',active);
-        btn.setAttribute('aria-selected',active?'true':'false');
-        btn.setAttribute('tabindex',active?'0':'-1');
-      });
-      sections.forEach(section=>{
-        const list=(section.dataset.tabs||'').split(/\s+/);
-        section.hidden=!list.includes(name);
-      });
-      try{localStorage.setItem(TAB_KEY,name);}catch{}
-    }
-    buttons.forEach(btn=>{
-      btn.addEventListener('click',()=>activate(btn.dataset.tabBtn));
-      btn.addEventListener('keydown',e=>{
-        if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight') return;
-        e.preventDefault();
-        const dir=e.key==='ArrowRight'?1:-1;
-        const idx=buttons.indexOf(btn);
-        const next=buttons[(idx+dir+buttons.length)%buttons.length];
-        next.focus();
-        activate(next.dataset.tabBtn);
-      });
-    });
-    activate(localStorage.getItem(TAB_KEY)||'principal');
-  })();
-
-  (function buildGallery(){
-    const gallery=document.getElementById('imagesGallery');
-    if(!gallery) return;
-    const data=(window.SONG_DATA_OVERRIDE&&Array.isArray(window.SONG_DATA_OVERRIDE.parts))?window.SONG_DATA_OVERRIDE.parts:[];
-    const seen=new Set();
-    const items=[];
-    data.forEach(part=>{
-      (part.images||[]).forEach(src=>{
-        if(!src||seen.has(src)) return;
-        seen.add(src);
-        items.push({src,label:part.label||'Image'});
-      });
-    });
-    if(!items.length){
-      gallery.innerHTML='<p class="note">Aucune image disponible.</p>';
-      return;
-    }
-    gallery.innerHTML=items.map(item=>`
-      <article class="imageCard">
-        <img src="${item.src}" alt="${item.label}">
-        <span>${item.label}</span>
-      </article>
-    `).join('');
-  })();
-
-  (function(){
-    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-    document.querySelectorAll('.extra-skip').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const targetId=btn.dataset.target;
-        const offset=Number(btn.dataset.offset)||0;
-        const p=document.getElementById(targetId);
-        if(!p) return;
-        try{
-          const cur=Number(p.currentTime)||0;
-          const dur=Number(p.duration)||Infinity;
-          const next=clamp(cur+offset,0,isFinite(dur)?dur:cur+offset);
-          p.currentTime=next;
-        }catch(err){/* ignore */}
-      });
-    });
-  })();
-</script>
 </body>
 </html>
-
-
-
