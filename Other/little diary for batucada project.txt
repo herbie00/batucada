@@ -1,0 +1,5 @@
+little diary for batucada project
+2025-12-03
+12:45 or 12:46
+rebranch to main (vs code git)
+create this diary file to hqve something to sync
