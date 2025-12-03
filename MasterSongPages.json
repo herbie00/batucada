@@ -103,12 +103,20 @@
       "slug": "rio-banane",
       "title": "rio banane",
       "audio": "media/Rio Banane24nov.mp3",
-      "parts": [
+      "parts": [🅾️🥇✌️𝐈𝐈𝐈4️⃣
         {"id": "id", "label": "appel", "start": 0, "end": 10, "images": ["media/rio banane.png"], "text": "appel"},
         {"id": "id-2", "label": "---4️⃣\n   ===    4️⃣agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
         {"id": "id-3", "label": "🅾️--𝐈𝐈𝐈4️⃣\n   ===    🅾️snare  𝐈𝐈𝐈repinique  4️⃣agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
         {"id": "id-4", "label": "🅾️🥇-𝐈𝐈𝐈4️⃣\n   ===    🅾️snare 🥇tambourim 𝐈𝐈𝐈repinique  4️⃣agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-5", "label": "🅾️-✌️-4️⃣\n   ===    🅾️snare ✌️surdos 4️⃣agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
+        {"id": "id-5", "label": "🅾️-✌️-4️⃣\n   ===    🅾️snare ✌️surdos 4️⃣agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-6", "label": "🅾️----4️⃣\n   ===    🅾️snare 4️⃣agogo", "start": 60, "end": 70, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-7", "label": "----4️⃣ sifflet\n   ===    4️⃣agogo et sifflet", "start": 70, "end": 80, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-8", "label": "-🥇-𝐈𝐈𝐈4️⃣\n   ===    ", "start": 80, "end": 90, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-9", "label": "`a faire 🅾️🥇✌️𝐈𝐈𝐈4️⃣\n   ===    ", "start": 90, "end": 110, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-10", "label": "`a faire 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 90, "end": 110, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-11", "label": "`a faire 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 90, "end": 110, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-12", "label": "`a faire 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 90, "end": 110, "images": ["media/rio banane.png"], "text": ""},
+        {"id": "id-13", "label": "`a faire 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 90, "end": 110, "images": ["media/rio banane.png"], "text": ""}]
       "notes": "phrase sourdos \n chat souris chat \n phrase agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n identification des parties : reste`à faire le reste du morceau `partir de 1 min",
       "lives": [],
       "instruments": []
