@@ -108,7 +108,7 @@
         {"id": "id-2", "label": "4 agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
         {"id": "id-3", "label": "0 snare/n 3 repinique/n 4 agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
         {"id": "id-4", "label": "0 snare/n 1/ tambourim/n 3 repinique/n 4 agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-5", "label": "0 snare/n 2 surdos/n 4 agogo", "start": 50, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
+        {"id": "id-5", "label": "0 snare/n 2 surdos/n 4 agogo", "start": 50, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire\n phrase sourdos : chat souris chat\n"}],
       "notes": "phrase sourdos \n chat souris chat \n phrase agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n identification des parties : reste`à faire le reste du morceau `partir de 1 min",
       "lives": [],
       "instruments": []
