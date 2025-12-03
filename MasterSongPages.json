@@ -105,10 +105,10 @@
       "audio": "media/Rio Banane24nov.mp3",
       "parts": [
         {"id": "id", "label": "appel", "start": 0, "end": 10, "images": ["media/rio banane.png"], "text": "appel"},
-        {"id": "id-2", "label": "---➃\n       ➃agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-3", "label": "🅾️--3️⃣➃\n       🅾️snare  3️⃣repinique  ➃agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-4", "label": "🅾️❶-3️⃣➃\n       🅾️snare ❶tambourim 3️⃣repinique  ➃agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-5", "label": "🅾️-✌️-➃\n       🅾️snare ✌️surdos ➃agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
+        {"id": "id-2", "label": "---❹\n       ❹agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-3", "label": "🅾️--3️⃣❹\n       🅾️snare  3️⃣repinique  ❹agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-4", "label": "🅾️𝐈-3️⃣❹\n       🅾️snare 𝐈tambourim 3️⃣repinique  ❹agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-5", "label": "🅾️-✌️-❹\n       🅾️snare ✌️surdos ❹agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
       "notes": "phrase sourdos \n chat souris chat \n phrase agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n identification des parties : reste`à faire le reste du morceau `partir de 1 min",
       "lives": [],
       "instruments": []
