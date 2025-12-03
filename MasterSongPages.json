@@ -103,7 +103,7 @@
       "slug": "rio-banane",
       "title": "rio banane",
       "audio": "media/Rio Banane24nov.mp3",
-      "parts": [🅾️🥇✌️𝐈𝐈𝐈4️⃣
+      "parts": [
         {"id": "id", "label": "appel", "start": 0, "end": 10, "images": ["media/rio banane.png"], "text": "appel"},
         {"id": "id-2", "label": "---4️⃣\n   ===    4️⃣agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
         {"id": "id-3", "label": "🅾️--𝐈𝐈𝐈4️⃣\n   ===    🅾️snare  𝐈𝐈𝐈repinique  4️⃣agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
