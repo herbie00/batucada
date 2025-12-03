@@ -106,9 +106,14 @@
       "parts": [
         {"id": "id", "label": "appel", "start": 0, "end": 10, "images": ["media/rio banane.png"], "text": "appel"},
         {"id": "id-2", "label": "---4️⃣ agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-3", "label": "0️⃣--3️⃣4️⃣   0️⃣snare  3️⃣repinique  4️⃣agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-4", "label": "0️⃣1️⃣-3️⃣4️⃣  0️⃣snare 1️⃣tambourim 3️⃣repinique  4️⃣agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
-        {"id": "id-5", "label": "0️⃣-2️⃣-4️⃣  0️⃣snare 2️⃣surdos 4️⃣agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
+        {"id": "id-3", "label": "🅾️--3️⃣4️⃣   🅾️snare  3️⃣repinique  4️⃣agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-4", "label": "🅾️1️⃣-3️⃣❹  🅾️snare 1️⃣tambourim 3️⃣repinique  4️⃣agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-5", "label": "🅾️-✌️-4️⃣  🅾️snare 2️⃣surdos 4️⃣agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"},
+        {"id": "id", "label": "appel", "start": 0, "end": 10, "images": ["media/rio banane.png"], "text": "appel"},
+        {"id": "id-2", "label": "---❹ agogo", "start": 10, "end": 20, "images": ["media/rio banane.png"], "text": "cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-3", "label": "🅾️--3️⃣❹   🅾️snare  3️⃣repinique  ❹agogo", "start": 20, "end": 30, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-4", "label": "🅾️1️⃣-3️⃣❹  🅾️snare 1️⃣tambourim 3️⃣repinique  ❹agogo", "start": 30, "end": 50, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire"},
+        {"id": "id-5", "label": "🅾️-✌️-❹  🅾️snare ✌️surdos ❹agogo", "start": 50, "end": 60, "images": ["media/rio banane.png"], "text": "phrase agogo : cho-co a-na-nas pomme pomme poire poire/n phrase sourdos : chat souris chat/n"}],
       "notes": "phrase sourdos \n chat souris chat \n phrase agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n identification des parties : reste`à faire le reste du morceau `partir de 1 min",
       "lives": [],
       "instruments": []
