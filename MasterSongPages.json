@@ -3,11 +3,11 @@
 		{
 			"slug": "bonobo",
 			"title": "bonobo",
-			"audio": "media/bonobo.mp3",
+			"audio": "media/bonobo-ogg.ogg",
 			"parts": [
 				{
 					"id": "appel1",
-					"label": "🅾️𝐈𝐈𝐈✌️   === Appel   🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  remove",
+					"label": "🅾️𝐈𝐈𝐈✌️   === Appel   ",
 					"start": 0,
 					"end": 22,
 					"images": [
@@ -34,7 +34,7 @@
 				},
 				{
 					"id": "appel-tamb-fin",
-					"label": "🅾️🥇✌️𝐈𝐈𝐈  === Appel fin appel  🅾️🥇✌️𝐈𝐈𝐈4️⃣ remove",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈  === Appel fin appel",
 					"start": 75,
 					"end": 86,
 					"images": [
@@ -88,7 +88,7 @@
 				},
 				{
 					"id": "surdo-snare-agogo-rep",
-					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  remove     stopped here 215 ok",
+					"label": "🅾️✌️𝐈𝐈𝐈4️⃣   ===  repinique nouveau rythme",
 					"start": 215,
 					"end": 256,
 					"images": [
@@ -97,7 +97,7 @@
 				},
 				{
 					"id": "surdo-snare-agogo-rep-tamb",
-					"label": "Surdo + Snare + Agogo + Rep + Tamb 1-4",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  ",
 					"start": 256,
 					"end": 298.7,
 					"images": [
@@ -106,7 +106,7 @@
 				},
 				{
 					"id": "snare",
-					"label": "Snare 1-2",
+					"label": "🅾️",
 					"start": 298.6,
 					"end": 320,
 					"images": [
@@ -115,7 +115,7 @@
 				},
 				{
 					"id": "snare-chorus1",
-					"label": "Snare + Chorus Surdo 1-2",
+					"label": "🅾️✌️ maracasse?",
 					"start": 320,
 					"end": 341.4,
 					"images": [
