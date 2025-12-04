@@ -1,168 +1,709 @@
 {
-  "songs": [
-    {
-      "slug": "bonobo",
-      "title": "bonobo",
-      "audio": "media/bonobo.mp3",
-      "parts": [
-        {"id": "appel1", "label": "Appel surdo rep", "start": 0, "end": 21.4, "images": ["media/bonobo 01 - appel - partitions.png"]},
-        {"id": "appel-tamb", "label": "Appel + Tamb 1-2", "start": 21.3, "end": 42.7, "images": ["media/bonobo 01 - appel - partitions.png"]},
-        {"id": "appel-tamb-agogo", "label": "Appel + Tamb + Agogo 1-3", "start": 42.6, "end": 74.7, "images": ["media/bonobo 01 - appel - partitions.png"]},
-        {"id": "appel-tamb-fin", "label": "Appel + Tamb + Fin de l'appel", "start": 74.6, "end": 85.4, "images": ["media/bonobo 02 - fin de appel.png"]},
-        {"id": "surdo-agogo1", "label": "Surdo + Chocalo ou Basque + Agogo 1", "start": 85.3, "end": 106.7, "images": ["media/bonobo 03 - rythme 1.png"]},
-        {"id": "surdo-snare1", "label": "Surdo + Snare 1", "start": 106.6, "end": 128, "images": ["media/bonobo 0020 partie 1 surdo tambourim agogo - partitions.jpg"]},
-        {"id": "surdo-agogo2", "label": "Surdo + Chocalo ou Basque + Agogo 2-3", "start": 128, "end": 149.4, "images": ["media/bonobo 04 - rythme 1.png"]},
-        {"id": "surdo-snare2", "label": "Surdo + Snare 2", "start": 149.3, "end": 160, "images": ["media/bonobo 04 - rythme 2.png"]},
-        {"id": "surdo-snare-agogo", "label": "Surdo + Snare + Agogo 1-5", "start": 160, "end": 213.7, "images": ["media/bonobo 04 - rythme 2.png"]},
-        {"id": "surdo-snare-agogo-rep", "label": "Surdo + Snare + Agogo + Rep 1-4", "start": 213.6, "end": 256, "images": ["media/bonobo 04 - rythme 2 - partitions.png"]},
-        {"id": "surdo-snare-agogo-rep-tamb", "label": "Surdo + Snare + Agogo + Rep + Tamb 1-4", "start": 256, "end": 298.7, "images": ["media/bonobo 04 - rythme 2 - partitions.png"]},
-        {"id": "snare", "label": "Snare 1-2", "start": 298.6, "end": 320, "images": ["media/bonobo 04 - rythme 2 - partitions.png"]},
-        {"id": "snare-chorus1", "label": "Snare + Chorus Surdo 1-2", "start": 320, "end": 341.4, "images": ["media/bonobo 03 - rythme 1 - partitions.png"]},
-        {"id": "snare-groove", "label": "Snare + Groove CG et Tamb", "start": 352, "end": 362.7, "images": ["media/bonobo 03 - rythme 1 - partitions.png"]},
-        {"id": "snare-chorus2", "label": "Snare + Chorus Surdo 3-4", "start": 362.6, "end": 384, "images": ["media/bonobo 04 - rythme 2.png"]},
-        {"id": "snare-chorus-apito", "label": "Snare + Chorus Surdo + Apito 1-2", "start": 384, "end": 405.4, "images": ["media/bonobo 04 - rythme 2 - partitions.png"]}
-      ],
-      "notes": "2025-11-27-Thu\nLes répiniques suivent le meneur au début du morceau\nphrase répinique sur 2ème partie     \n<s>Ba tuc ba tu ca da</s> <b>Ca va très vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>\nlégende :   <s>mentalement</s>   <b>joué</b>\n",
-      "lives": [
-        {"title": "bonobo full — live 2025-10-09.mp4", "type": "video", "src": "media/bonobo full - live 2025-10-09.mp4"},
-        {"title": "bonobo fin — live 2025-10-09.mp4", "type": "video", "src": "media/bonobo fin - live 2025-10-09.mp4"},
-        {"title": "bonobo break de fin — live 2025-10-09.mp4", "type": "video", "src": "media/bonobo break de fin - live 2025-10-09.mp4"},
-        {"title": "bonobo phrases.ogg", "type": "audio", "src": "media/bonobo phrases.ogg"}
-      ],
-      "instruments": [
-        {"title": "bonobo phrases — snare/tambourim (2025-10-09)", "type": "audio", "src": "media/bonobo phrases.ogg", "note": "Extrait de phrases isolant la caisse claire / tambourim (livré en OGG)."}
-      ]
-    },
-    {
-      "slug": "avienda-fast-6-nov",
-      "title": "Avienda Fast 6 nov",
-      "audio": "media/Avienda Fast 6 nov.mp3",
-      "parts": [
-        {"id": "p1", "label": "intro", "start": 0, "end": 18, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p2", "label": "rep rentrent", "start": 18, "end": 33, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p3", "label": "surdo + rep + tamb", "start": 33, "end": 50, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p4", "label": "surdo + rep + tamb + agogo", "start": 49, "end": 66, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p5", "label": "solo agogogo, surdo 1er tps", "start": 66, "end": 80, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p6", "label": "caisse claire revient", "start": 82, "end": 98, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p7", "label": "grosse caisee tous les temps, plus caisse claire, plus agogo, seulement surdo et repinik", "start": 98, "end": 114, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p8", "label": "agogo et tembourim reviennent ", "start": 112, "end": 129, "images": ["test1.png", "test2.png", "test3.png"]},
-        {"id": "p9", "label": "break fin", "start": 129, "end": 129, "images": ["test1.png", "test2.png", "test3.png"]}
-      ],
-      "notes": "rien pour l'instant.",
-      "lives": [
-        {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3", "note": "Enregistrement live disponible."}
-      ],
-      "instruments": []
-    },
-    {
-      "slug": "avienda-slow",
-      "title": "Avienda Slow",
-      "audio": "media/avienda-Slow-V01.mp3",
-      "parts": [
-        {"id": "avienda1", "label": "Avienda Surdo Rep Tamb 1-3", "start": 0, "end": 24, "images": ["media/avienda slow V01 - 01.png"]},
-        {"id": "break1", "label": "Break debut", "start": 24, "end": 32, "images": ["media/avienda slow V01 - 02 break.png"]},
-        {"id": "r1", "label": "Avienda R1", "start": 32, "end": 40, "images": ["media/avienda slow V01 - 03 - partie 1.png"]},
-        {"id": "r1-agogo", "label": "Avienda R1 + Agogo", "start": 40, "end": 48, "images": ["media/avienda slow color.png"]},
-        {"id": "r1-tamb", "label": "Avienda R1 + Tamb", "start": 48, "end": 56, "images": ["media/avienda slow color.png"]},
-        {"id": "r1-tamb-apito", "label": "Avienda R1 + Tamb + Apito", "start": 56, "end": 64, "images": ["media/avienda slow color.png"]},
-        {"id": "break2", "label": "Break", "start": 64, "end": 72, "images": ["media/avienda slow color.png"]}
-      ],
-      "notes": "rien pour l'instant.",
-      "lives": [
-        {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3"}
-      ],
-      "instruments": []
-    },
-    {
-      "slug": "avienda-slow-test",
-      "title": "Avienda Slow Test",
-      "audio": "media/avienda-Slow-V01.mp3",
-      "parts": [
-        {"id": "avienda1", "label": "à  faire", "start": 0, "end": 24, "images": ["media/avienda slow color.png"]},
-        {"id": "break1", "label": "à  faire", "start": 24, "end": 32, "images": ["media/avienda slow color.png"]}
-      ],
-      "notes": ".",
-      "lives": [
-        {"title": "Avienda live.mp3", "type": "audio", "src": "media/Avienda live.mp3"}
-      ],
-      "instruments": []
-    },
-    {
-      "slug": "fura-dels-baus",
-      "title": "fura dels baus",
-      "audio": "media/fura dels baus.m4a",
-      "parts": [
-        {"id": "id", "label": "label", "start": 0, "end": 8, "images": ["media/fura dels baus.png"], "text": "text"},
-        {"id": "id-2", "label": "label", "start": 8, "end": 16, "images": ["media/fura dels baus.png"], "text": "text"}
-      ],
-      "notes": "2025-11-27-Thu\nLa phrase des répiniaueques est :\n debout sur mes 2 jambes.  le ''sur''' est enlevé et ''mes''' est accentué \n",
-      "lives": [],
-      "instruments": []
-    },
-    {
-      "slug": "rio-banane",
-      "title": "rio banane",
-      "audio": "media/Rio Banane24nov.mp3",
-      "parts": [
-        {"id": "id", "label": "appel  __________  l'egende = 🅾️snare 🥇tambourim ✌️surdos 𝐈𝐈𝐈repinique  4️⃣agogo", "start": 0, "end": 10, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-2", "label": "---4️⃣   === solo agogo   ", "start": 10, "end": 20, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-3", "label": "🅾️--𝐈𝐈𝐈4️⃣   ===    ", "start": 20, "end": 30, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-4", "label": "🅾️🥇-𝐈𝐈𝐈4️⃣   ===    ", "start": 30, "end": 50, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-5", "label": "🅾️-✌️-4️⃣   ===    ", "start": 50, "end": 60, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-6", "label": "🅾️----4️⃣   ===    ", "start": 60, "end": 70, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-7", "label": "----4️⃣    === solo agogo  ", "start": 70, "end": 80, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-8", "label": "🅾️🥇-𝐈𝐈𝐈4️⃣    ===    ", "start": 80, "end": 100, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-9", "label": " -🥇---  === solo tambourim  ", "start": 100, "end": 110, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-10", "label": " 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 110, "end": 120, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-11", "label": "🥇✌️𝐈𝐈𝐈-   ===  tamb et repi repondent aux surdos et sorte maracasse a fin ", "start": 120, "end": 130, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-12", "label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 130, "end": 140, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-13", "label": "-🥇-𝐈𝐈𝐈-   ===  solo tambourim et repinique  ", "start": 140, "end": 150, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-14", "label": "-🥇✌️𝐈𝐈𝐈4️⃣   ===    ", "start": 150, "end": 160, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-15", "label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===   ", "start": 160, "end": 170, "images": ["media/rio banane partitions phrases.jpg"], "text": ""},
-        {"id": "id-16", "label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  break de fin  ", "start": 170, "end": 180, "images": ["media/rio banane partitions phrases.jpg"], "text": ""}],
-      "notes": "Prases sur 8 mesures\n 1. 🥇tambourim \n je sais com-pter au moins jus-que 4 1 2 3 4 \n 2. ✌️sourdos \n chat sou-ris (x4)\n 3.𝐈𝐈𝐈repinique \n pam pa lam pam pam pa lam pam (x2) 4.4️⃣agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n\n l'egende =   🅾️snare   🥇tambourim   ✌️surdos   𝐈𝐈𝐈repinique   4️⃣agogo",
-      "lives": [],
-      "instruments": []
-    },
-    {
-      "slug": "tout-le-monde-sur-le-pont",
-      "title": "tout le monde sur le pont",
-      "audio": "media/Tout le monde sur le pont 23nov.mp3",
-      "parts": [
-        {"id": "id", "label": "label", "start": 0, "end": 8, "images": ["media/tout le monde sur le pont.png"], "text": "text"},
-        {"id": "id-2", "label": "label", "start": 8, "end": 16, "images": ["media/tout le monde sur le pont.png"], "text": "text"}
-      ],
-      "notes": "2025-11-27-Thu\nMaintenant les Répiniques et les tambourines font le même rythme\n- Ça va très vite et encore plus vite \n- Ready to samba OK \n-> quand le morceau est plutôt lent on fait \"\n  ça va très vite et encore plus vite\"  (parce que c'est plus simple à faire)\n-> Quand le morceau commence à accélérer et et qu'il serait compliqué de faire le rythme ça va très vite et encore plus vite on passe à \n  \"ready to samba OK!\"\n",
-      "lives": [
-        {"title": "Tout le monde sur le pont - audio", "type": "link", "href": "media/Tout le monde sur le pont 23nov.mp3", "linkLabel": "Télécharger l'audio", "note": "Enregistrement 2023-11."},
-        {"title": "Tout le monde sur le pont - partition", "type": "link", "href": "media/Tout le monde sur le pont 23nov.pdf", "linkLabel": "Télécharger la partition", "note": "Partition complète."}
-      ],
-      "instruments": [
-        {"title": "Surdo solo — TLMSPont-2", "type": "audio", "src": "media/TLMSLPont test q 202511141524 TLMSPont-2 surdo.mp3"},
-        {"title": "Snare solo — TLMSPont-3", "type": "audio", "src": "media/TLMSLPont test q 202511141524 TLMSPont-3 snare.mp3"},
-        {"title": "Agogo solo — TLMSPont-4", "type": "audio", "src": "media/TLMSLPont test q 202511141524 TLMSPont-4 agogo.mp3"},
-        {"title": "Tambourim solo — TLMSPont-5", "type": "audio", "src": "media/TLMSLPont test q 202511141524 TLMSPont-5 tambourim ca va tres vite et encore plus vite.mp3"},
-        {"title": "Repinique solo — TLMSPont-6", "type": "audio", "src": "media/TLMSLPont test q 202511141524 TLMSPont-6 repinique ready to samba ok.mp3"},
-        {"title": "ts instruments — TLMSPont-tt", "type": "audio", "src": "media/TLMSLPont test q 202511141524 ts instruments .mp3"}
-      ]
-    }
-  ],
-  "changelog": [
-    {
-      "version": "v0.5",
-      "text": "Pages morceaux en HTML statique (plus de JSON), correction de certains noms de médias, ajout d'une playlist vidéo YouTube et de tests pour les tableaux."
-    },
-    {
-      "version": "v0.4.4",
-      "text": "Zoom clair (scale) avec défilement, lecteur à nouveau en haut (sticky), texte du lecteur masqué en plein écran."
-    },
-    {
-      "version": "v0.4.3",
-      "text": "Corrections image plein écran et espacement."
-    },
-    {
-      "version": "v0.4.2",
-      "text": "Visionneuse plein écran initiale."
-    }
-  ]
+	"songs": [
+		{
+			"slug": "bonobo",
+			"title": "bonobo",
+			"audio": "media/bonobo.mp3",
+			"parts": [
+				{
+					"id": "appel1",
+					"label": "🅾️𝐈𝐈𝐈✌️   === Appel   🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  remove",
+					"start": 0,
+					"end": 22,
+					"images": [
+						"media/bonobo 01 - appel - partitions.png"
+					]
+				},
+				{
+					"id": "appel2",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈   === Appel",
+					"start": 21,
+					"end": 43,
+					"images": [
+						"media/bonobo 01 - appel - partitions.png"
+					]
+				},
+				{
+					"id": "appel3",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈 cloche  === Appel",
+					"start": 43,
+					"end": 75,
+					"images": [
+						"media/bonobo 01 - appel - partitions.png"
+					]
+				},
+				{
+					"id": "appel-tamb-fin",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈  === Appel fin appel  🅾️🥇✌️𝐈𝐈𝐈4️⃣ remove",
+					"start": 75,
+					"end": 86,
+					"images": [
+						"media/bonobo 02 - fin de appel.png"
+					]
+				},
+				{
+					"id": "surdo-agogo1",
+					"label": "✌️4️⃣maracasse? ===  ",
+					"start": 85.3,
+					"end": 107,
+					"images": [
+						"media/bonobo 03 - rythme 1.png"
+					]
+				},
+				{
+					"id": "surdo-snare1",
+					"label": "🅾️✌️   ===  ",
+					"start": 106,
+					"end": 128,
+					"images": [
+						"media/bonobo 0020 partie 1 surdo tambourim agogo - partitions.jpg"
+					]
+				},
+				{
+					"id": "surdo-agogo2",
+					"label": "🅾️✌️4️⃣marcasse?   ===  ",
+					"start": 128,
+					"end": 150,
+					"images": [
+						"media/bonobo 04 - rythme 1.png"
+					]
+				},
+				{
+					"id": "surdo-snare2",
+					"label": "🅾️✌️   ===  ",
+					"start": 149,
+					"end": 171,
+					"images": [
+						"media/bonobo 04 - rythme 2.png"
+					]
+				},
+				{
+					"id": "surdo-snare-agogo",
+					"label": "🅾️✌️4️⃣   ===  agogo rythme 2?",
+					"start": 171,
+					"end": 216,
+					"images": [
+						"media/bonobo 04 - rythme 2.png"
+					]
+				},
+				{
+					"id": "surdo-snare-agogo-rep",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  remove     stopped here 215 ok",
+					"start": 215,
+					"end": 256,
+					"images": [
+						"media/bonobo 04 - rythme 2 - partitions.png"
+					]
+				},
+				{
+					"id": "surdo-snare-agogo-rep-tamb",
+					"label": "Surdo + Snare + Agogo + Rep + Tamb 1-4",
+					"start": 256,
+					"end": 298.7,
+					"images": [
+						"media/bonobo 04 - rythme 2 - partitions.png"
+					]
+				},
+				{
+					"id": "snare",
+					"label": "Snare 1-2",
+					"start": 298.6,
+					"end": 320,
+					"images": [
+						"media/bonobo 04 - rythme 2 - partitions.png"
+					]
+				},
+				{
+					"id": "snare-chorus1",
+					"label": "Snare + Chorus Surdo 1-2",
+					"start": 320,
+					"end": 341.4,
+					"images": [
+						"media/bonobo 03 - rythme 1 - partitions.png"
+					]
+				},
+				{
+					"id": "snare-groove",
+					"label": "Snare + Groove CG et Tamb",
+					"start": 352,
+					"end": 362.7,
+					"images": [
+						"media/bonobo 03 - rythme 1 - partitions.png"
+					]
+				},
+				{
+					"id": "snare-chorus2",
+					"label": "Snare + Chorus Surdo 3-4",
+					"start": 362.6,
+					"end": 384,
+					"images": [
+						"media/bonobo 04 - rythme 2.png"
+					]
+				},
+				{
+					"id": "snare-chorus-apito",
+					"label": "Snare + Chorus Surdo + Apito 1-2",
+					"start": 384,
+					"end": 405.4,
+					"images": [
+						"media/bonobo 04 - rythme 2 - partitions.png"
+					]
+				}
+			],
+			"notes": "2025-11-27-Thu\nLes répiniques suivent le meneur au début du morceau\nphrase répinique sur 2ème partie     \n<s>Ba tuc ba tu ca da</s> <b>Ca va très vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>\nlégende :   <s>mentalement</s>   <b>joué</b>\n",
+			"lives": [
+				{
+					"title": "bonobo full — live 2025-10-09.mp4",
+					"type": "video",
+					"src": "media/bonobo full - live 2025-10-09.mp4"
+				},
+				{
+					"title": "bonobo fin — live 2025-10-09.mp4",
+					"type": "video",
+					"src": "media/bonobo fin - live 2025-10-09.mp4"
+				},
+				{
+					"title": "bonobo break de fin — live 2025-10-09.mp4",
+					"type": "video",
+					"src": "media/bonobo break de fin - live 2025-10-09.mp4"
+				},
+				{
+					"title": "bonobo phrases.ogg",
+					"type": "audio",
+					"src": "media/bonobo phrases.ogg"
+				}
+			],
+			"instruments": [
+				{
+					"title": "bonobo phrases — snare/tambourim (2025-10-09)",
+					"type": "audio",
+					"src": "media/bonobo phrases.ogg",
+					"note": "Extrait de phrases isolant la caisse claire / tambourim (livré en OGG)."
+				}
+			]
+		},
+		{
+			"slug": "avienda-fast-6-nov",
+			"title": "Avienda Fast 6 nov",
+			"audio": "media/Avienda Fast 6 nov.mp3",
+			"parts": [
+				{
+					"id": "p1",
+					"label": "intro",
+					"start": 0,
+					"end": 18,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p2",
+					"label": "rep rentrent",
+					"start": 18,
+					"end": 33,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p3",
+					"label": "surdo + rep + tamb",
+					"start": 33,
+					"end": 50,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p4",
+					"label": "surdo + rep + tamb + agogo",
+					"start": 49,
+					"end": 66,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p5",
+					"label": "solo agogogo, surdo 1er tps",
+					"start": 66,
+					"end": 80,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p6",
+					"label": "caisse claire revient",
+					"start": 82,
+					"end": 98,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p7",
+					"label": "grosse caisee tous les temps, plus caisse claire, plus agogo, seulement surdo et repinik",
+					"start": 98,
+					"end": 114,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p8",
+					"label": "agogo et tembourim reviennent ",
+					"start": 112,
+					"end": 129,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				},
+				{
+					"id": "p9",
+					"label": "break fin",
+					"start": 129,
+					"end": 129,
+					"images": [
+						"test1.png",
+						"test2.png",
+						"test3.png"
+					]
+				}
+			],
+			"notes": "rien pour l'instant.",
+			"lives": [
+				{
+					"title": "Avienda live.mp3",
+					"type": "audio",
+					"src": "media/Avienda live.mp3",
+					"note": "Enregistrement live disponible."
+				}
+			],
+			"instruments": []
+		},
+		{
+			"slug": "avienda-slow",
+			"title": "Avienda Slow",
+			"audio": "media/avienda-Slow-V01.mp3",
+			"parts": [
+				{
+					"id": "avienda1",
+					"label": "Avienda Surdo Rep Tamb 1-3",
+					"start": 0,
+					"end": 24,
+					"images": [
+						"media/avienda slow V01 - 01.png"
+					]
+				},
+				{
+					"id": "break1",
+					"label": "Break debut",
+					"start": 24,
+					"end": 32,
+					"images": [
+						"media/avienda slow V01 - 02 break.png"
+					]
+				},
+				{
+					"id": "r1",
+					"label": "Avienda R1",
+					"start": 32,
+					"end": 40,
+					"images": [
+						"media/avienda slow V01 - 03 - partie 1.png"
+					]
+				},
+				{
+					"id": "r1-agogo",
+					"label": "Avienda R1 + Agogo",
+					"start": 40,
+					"end": 48,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				},
+				{
+					"id": "r1-tamb",
+					"label": "Avienda R1 + Tamb",
+					"start": 48,
+					"end": 56,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				},
+				{
+					"id": "r1-tamb-apito",
+					"label": "Avienda R1 + Tamb + Apito",
+					"start": 56,
+					"end": 64,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				},
+				{
+					"id": "break2",
+					"label": "Break",
+					"start": 64,
+					"end": 72,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				}
+			],
+			"notes": "rien pour l'instant.",
+			"lives": [
+				{
+					"title": "Avienda live.mp3",
+					"type": "audio",
+					"src": "media/Avienda live.mp3"
+				}
+			],
+			"instruments": []
+		},
+		{
+			"slug": "avienda-slow-test",
+			"title": "Avienda Slow Test",
+			"audio": "media/avienda-Slow-V01.mp3",
+			"parts": [
+				{
+					"id": "avienda1",
+					"label": "à  faire",
+					"start": 0,
+					"end": 24,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				},
+				{
+					"id": "break1",
+					"label": "à  faire",
+					"start": 24,
+					"end": 32,
+					"images": [
+						"media/avienda slow color.png"
+					]
+				}
+			],
+			"notes": ".",
+			"lives": [
+				{
+					"title": "Avienda live.mp3",
+					"type": "audio",
+					"src": "media/Avienda live.mp3"
+				}
+			],
+			"instruments": []
+		},
+		{
+			"slug": "fura-dels-baus",
+			"title": "fura dels baus",
+			"audio": "media/fura dels baus.m4a",
+			"parts": [
+				{
+					"id": "id",
+					"label": "label",
+					"start": 0,
+					"end": 8,
+					"images": [
+						"media/fura dels baus.png"
+					],
+					"text": "text"
+				},
+				{
+					"id": "id-2",
+					"label": "label",
+					"start": 8,
+					"end": 16,
+					"images": [
+						"media/fura dels baus.png"
+					],
+					"text": "text"
+				}
+			],
+			"notes": "2025-11-27-Thu\nLa phrase des répiniaueques est :\n debout sur mes 2 jambes.  le ''sur''' est enlevé et ''mes''' est accentué \n",
+			"lives": [],
+			"instruments": []
+		},
+		{
+			"slug": "rio-banane",
+			"title": "rio banane",
+			"audio": "media/Rio Banane24nov.mp3",
+			"parts": [
+				{
+					"id": "id",
+					"label": "appel  __________  l'egende = 🅾️snare 🥇tambourim ✌️surdos 𝐈𝐈𝐈repinique  4️⃣agogo",
+					"start": 0,
+					"end": 10,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-2",
+					"label": "---4️⃣   === solo agogo   ",
+					"start": 10,
+					"end": 20,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-3",
+					"label": "🅾️--𝐈𝐈𝐈4️⃣   ===    ",
+					"start": 20,
+					"end": 30,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-4",
+					"label": "🅾️🥇-𝐈𝐈𝐈4️⃣   ===    ",
+					"start": 30,
+					"end": 50,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-5",
+					"label": "🅾️-✌️-4️⃣   ===    ",
+					"start": 50,
+					"end": 60,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-6",
+					"label": "🅾️----4️⃣   ===    ",
+					"start": 60,
+					"end": 70,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-7",
+					"label": "----4️⃣    === solo agogo  ",
+					"start": 70,
+					"end": 80,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-8",
+					"label": "🅾️🥇-𝐈𝐈𝐈4️⃣    ===    ",
+					"start": 80,
+					"end": 100,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-9",
+					"label": " -🥇---  === solo tambourim  ",
+					"start": 100,
+					"end": 110,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-10",
+					"label": " 🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ",
+					"start": 110,
+					"end": 120,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-11",
+					"label": "🥇✌️𝐈𝐈𝐈-   ===  tamb et repi repondent aux surdos et sorte maracasse a fin ",
+					"start": 120,
+					"end": 130,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-12",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===    ",
+					"start": 130,
+					"end": 140,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-13",
+					"label": "-🥇-𝐈𝐈𝐈-   ===  solo tambourim et repinique  ",
+					"start": 140,
+					"end": 150,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-14",
+					"label": "-🥇✌️𝐈𝐈𝐈4️⃣   ===    ",
+					"start": 150,
+					"end": 160,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-15",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===   ",
+					"start": 160,
+					"end": 170,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				},
+				{
+					"id": "id-16",
+					"label": "🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  break de fin  ",
+					"start": 170,
+					"end": 180,
+					"images": [
+						"media/rio banane partitions phrases.jpg"
+					],
+					"text": ""
+				}
+			],
+			"notes": "Prases sur 8 mesures\n 1. 🥇tambourim \n je sais com-pter au moins jus-que 4 1 2 3 4 \n 2. ✌️sourdos \n chat sou-ris (x4)\n 3.𝐈𝐈𝐈repinique \n pam pa lam pam pam pa lam pam (x2) 4.4️⃣agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n\n l'egende =   🅾️snare   🥇tambourim   ✌️surdos   𝐈𝐈𝐈repinique   4️⃣agogo",
+			"lives": [],
+			"instruments": []
+		},
+		{
+			"slug": "tout-le-monde-sur-le-pont",
+			"title": "tout le monde sur le pont",
+			"audio": "media/Tout le monde sur le pont 23nov.mp3",
+			"parts": [
+				{
+					"id": "id",
+					"label": "label",
+					"start": 0,
+					"end": 8,
+					"images": [
+						"media/tout le monde sur le pont.png"
+					],
+					"text": "text"
+				},
+				{
+					"id": "id-2",
+					"label": "label",
+					"start": 8,
+					"end": 16,
+					"images": [
+						"media/tout le monde sur le pont.png"
+					],
+					"text": "text"
+				}
+			],
+			"notes": "2025-11-27-Thu\nMaintenant les Répiniques et les tambourines font le même rythme\n- Ça va très vite et encore plus vite \n- Ready to samba OK \n-> quand le morceau est plutôt lent on fait \"\n  ça va très vite et encore plus vite\"  (parce que c'est plus simple à faire)\n-> Quand le morceau commence à accélérer et et qu'il serait compliqué de faire le rythme ça va très vite et encore plus vite on passe à \n  \"ready to samba OK!\"\n",
+			"lives": [
+				{
+					"title": "Tout le monde sur le pont - audio",
+					"type": "link",
+					"href": "media/Tout le monde sur le pont 23nov.mp3",
+					"linkLabel": "Télécharger l'audio",
+					"note": "Enregistrement 2023-11."
+				},
+				{
+					"title": "Tout le monde sur le pont - partition",
+					"type": "link",
+					"href": "media/Tout le monde sur le pont 23nov.pdf",
+					"linkLabel": "Télécharger la partition",
+					"note": "Partition complète."
+				}
+			],
+			"instruments": [
+				{
+					"title": "Surdo solo — TLMSPont-2",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 TLMSPont-2 surdo.mp3"
+				},
+				{
+					"title": "Snare solo — TLMSPont-3",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 TLMSPont-3 snare.mp3"
+				},
+				{
+					"title": "Agogo solo — TLMSPont-4",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 TLMSPont-4 agogo.mp3"
+				},
+				{
+					"title": "Tambourim solo — TLMSPont-5",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 TLMSPont-5 tambourim ca va tres vite et encore plus vite.mp3"
+				},
+				{
+					"title": "Repinique solo — TLMSPont-6",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 TLMSPont-6 repinique ready to samba ok.mp3"
+				},
+				{
+					"title": "ts instruments — TLMSPont-tt",
+					"type": "audio",
+					"src": "media/TLMSLPont test q 202511141524 ts instruments .mp3"
+				}
+			]
+		}
+	],
+	"changelog": [
+		{
+			"version": "v0.5",
+			"text": "Pages morceaux en HTML statique (plus de JSON), correction de certains noms de médias, ajout d'une playlist vidéo YouTube et de tests pour les tableaux."
+		},
+		{
+			"version": "v0.4.4",
+			"text": "Zoom clair (scale) avec défilement, lecteur à nouveau en haut (sticky), texte du lecteur masqué en plein écran."
+		},
+		{
+			"version": "v0.4.3",
+			"text": "Corrections image plein écran et espacement."
+		},
+		{
+			"version": "v0.4.2",
+			"text": "Visionneuse plein écran initiale."
+		}
+	]
 }
