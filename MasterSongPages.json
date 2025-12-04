@@ -690,6 +690,10 @@
 	],
 	"changelog": [
 		{
+			"version": "v0.6",
+			"text": "utilisation en presse papier        🅾️🥇✌️𝐈𝐈𝐈4️⃣   ===  remove "
+		},
+    {
 			"version": "v0.5",
 			"text": "Pages morceaux en HTML statique (plus de JSON), correction de certains noms de médias, ajout d'une playlist vidéo YouTube et de tests pour les tableaux."
 		},
