@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.5)</title>
+<title>Batucada â€¢ Morceau (v0.5)</title>
 <meta name="theme-color" content="#111" />
 <link rel="stylesheet" href="song.css" />
 <style>
@@ -46,12 +46,12 @@
 <body id="app" data-theme="">
 <header>
   <div class="bar" id="hdr">
-    <a class="iconbtn" href="index.html">← Morceaux</a>
+    <a class="iconbtn" href="index.html">â† Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
     <span class="pill">v0.5</span>
     <div class="spacer"></div>
-    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
-    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
+    <button id="themeBtn" class="iconbtn">ðŸŒ“ ThÃ¨me</button>
+    <button id="changelogBtn" class="iconbtn">ðŸ“ Changelog</button>
   </div>
 </header>
 
@@ -65,23 +65,20 @@
   <button class="tabBtn" data-tab-btn="autres" role="tab" aria-selected="false" aria-controls="tab-autres" tabindex="-1">Autres</button>
 </div>
 
-<main>
-  <section class="tabContent" id="tab-principal-player" data-tabs="principal audio">
-    <div class="playerSticky">
-      <section class="playerCard" aria-labelledby="fullTrackTitle">
-        <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
-        <audio id="player" controls preload="metadata">
-          <source id="audioSrc" src="" />
-          Votre navigateur ne supporte pas la balise audio.
-        </audio>
-        <div id="audioDebug" class="audioDebug"></div>
-      </section>
-    </div>
+<div class="playerSticky">
+  <section class="playerCard" aria-labelledby="fullTrackTitle">
+    <h2 id="fullTrackTitle">A%coutez le morceau en entier</h2>
+    <audio id="player" controls preload="metadata">
+      <source id="audioSrc" src="" />
+      Votre navigateur ne supporte pas la balise audio.
+    </audio>
+    <div id="audioDebug" class="audioDebug"></div>
   </section>
-
-  <section class="tabContent" id="tab-audio" data-tabs="principal audio">
+</div>
+<main>
+<section class="tabContent" id="tab-audio" data-tabs="principal audio">
     <p class="note">
-      Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
+      Touchez â–¶ ou le titre dâ€™une section pour y sauter. Touchez une image pour lâ€™ouvrir en plein Ã©cran.
     </p>
 
     <section aria-labelledby="partsTitle">
@@ -99,11 +96,11 @@
       <div style="display:grid;gap:10px;grid-template-columns:1fr;">
         <!-- minimal stacked player: title on first line, player on second + skip controls -->
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo full — live 2025-10-09.mp4</div>
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo full â€” live 2025-10-09.mp4</div>
           <div style="display:flex;gap:8px;align-items:center;">
             <video id="extra-player-1" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
               <source src="media/bonobo full - live 2025-10-09.mp4" type="video/mp4" />
-              Votre navigateur ne supporte pas la balise vidéo.
+              Votre navigateur ne supporte pas la balise vidÃ©o.
             </video>
           </div>
           <div style="display:flex;gap:8px;align-items:center;">
@@ -113,11 +110,11 @@
         </article>
 
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo fin — live 2025-10-09.mp4</div>
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo fin â€” live 2025-10-09.mp4</div>
           <div style="display:flex;gap:8px;align-items:center;">
             <video id="extra-player-2" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
               <source src="media/bonobo fin - live 2025-10-09.mp4" type="video/mp4" />
-              Votre navigateur ne supporte pas la balise vidéo.
+              Votre navigateur ne supporte pas la balise vidÃ©o.
             </video>
           </div>
           <div style="display:flex;gap:8px;align-items:center;">
@@ -127,11 +124,11 @@
         </article>
 
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo break de fin — live 2025-10-09.mp4</div>
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo break de fin â€” live 2025-10-09.mp4</div>
           <div style="display:flex;gap:8px;align-items:center;">
             <video id="extra-player-3" controls preload="metadata" style="width:100%;height:auto;max-height:220px;object-fit:contain;background:#000">
               <source src="media/bonobo break de fin - live 2025-10-09.mp4" type="video/mp4" />
-              Votre navigateur ne supporte pas la balise vidéo.
+              Votre navigateur ne supporte pas la balise vidÃ©o.
             </video>
           </div>
           <div style="display:flex;gap:8px;align-items:center;">
@@ -160,10 +157,10 @@
   <section class="tabContent" id="tab-instruments" data-tabs="principal instruments">
     <section style="max-width:980px;margin:18px auto;padding:0 16px;">
       <h3>Instruments individuels</h3>
-      <p class="note">Extrait de phrases isolant la caisse claire / tambourim (livré en OGG).</p>
+      <p class="note">Extrait de phrases isolant la caisse claire / tambourim (livrÃ© en OGG).</p>
       <div style="display:grid;gap:10px;grid-template-columns:1fr;">
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
-          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases — snare/tambourim (2025-10-09)</div>
+          <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">bonobo phrases â€” snare/tambourim (2025-10-09)</div>
           <div style="display:flex;gap:8px;align-items:center;">
             <audio id="instr-phrases" controls preload="metadata" style="width:100%;">
               <source src="media/bonobo phrases.ogg" type="audio/ogg" />
@@ -183,10 +180,10 @@
     <h3>Notes rapides</h3>
     <textarea rows="15" style="width:100%;min-height:140px;border:1px solid var(--border,#e6e6e6);border-radius:12px;padding:12px;font:inherit;line-height:1.5;white-space:pre-wrap;">
 2025-11-27-Thu
-Les répiniques suivent le meneur au début du morceau
-phrase répinique sur 2ème partie     
-<s>Ba tuc ba tu ca da</s> <b>Ca va très vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>
-légende :   <s>mentalement</s>   <b>joué</b>
+Les rÃ©piniques suivent le meneur au dÃ©but du morceau
+phrase rÃ©pinique sur 2Ã¨me partie     
+<s>Ba tuc ba tu ca da</s> <b>Ca va trÃ¨s vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>
+lÃ©gende :   <s>mentalement</s>   <b>jouÃ©</b>
 
     </textarea>
   </section>
@@ -197,12 +194,12 @@ légende :   <s>mentalement</s>   <b>joué</b>
   </section>
 </main>
 
-<!-- Visionneuse plein écran -->
+<!-- Visionneuse plein Ã©cran -->
 <div id="fsOverlay" class="fsOverlay" aria-hidden="true">
   <div class="fsInner" id="fsInner">
-    <button id="fsClose" class="fsClose" type="button">✕ Fermer</button>
+    <button id="fsClose" class="fsClose" type="button">âœ• Fermer</button>
     <div class="fsImageWrap" id="fsImageWrap">
-      <img id="fsImage" src="" alt="Partition en plein écran">
+      <img id="fsImage" src="" alt="Partition en plein Ã©cran">
     </div>
     <div class="fsMeta">
       <div id="fsLabel" class="fsLabel"></div>
@@ -212,8 +209,8 @@ légende :   <s>mentalement</s>   <b>joué</b>
         <button id="fsNext" class="fsNavBtn right" type="button"></button>
       </div>
       <div class="fsControlsRow">
-        <button id="fsPlay" class="fsPlayBtn" type="button">▶ Lire à partir d’ici</button>
-        <button id="fsZoom" class="fsZoomBtn" type="button">🔍 Zoom</button>
+        <button id="fsPlay" class="fsPlayBtn" type="button">â–¶ Lire Ã  partir dâ€™ici</button>
+        <button id="fsZoom" class="fsZoomBtn" type="button">ðŸ” Zoom</button>
       </div>
     </div>
   </div>
@@ -309,6 +306,10 @@ légende :   <s>mentalement</s>   <b>joué</b>
 </script>
 </body>
 </html>
+
+
+
+
 
 
 

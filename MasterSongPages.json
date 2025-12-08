@@ -1,4 +1,4 @@
-{
+﻿{
 	"songs": [
 		{
 			"slug": "bonobo",
@@ -7,12 +7,13 @@
 			"parts": [
 				{
 					"id": "appel1",
-					"label": "🅾️𝐈𝐈𝐈✌️   === Appel   ",
+					"label": "🅾️✌️   === Appel   ",
 					"start": 0,
 					"end": 22,
 					"images": [
 						"media/bonobo 01 - appel - partitions.png"
-					]
+					],
+					"text": "caisse claire et surdos. Phrase? "
 				},
 				{
 					"id": "appel2",

@@ -61,15 +61,35 @@
   const audioSrc = el('#audioSrc');
   const audioDebug = el('#audioDebug');
   const songTitle = el('#songTitle');
+  const playerCard = document.querySelector('.playerCard');
+  const controlsWrap = document.createElement('div');
+  controlsWrap.className = 'playerControls';
+  const sectionInfoEl = document.createElement('div');
+  sectionInfoEl.className = 'sectionInfo';
+  if(playerCard){
+    playerCard.appendChild(controlsWrap);
+    playerCard.appendChild(sectionInfoEl);
+  }
 
   let loopRAF=null;
+  let currentPartIndex = -1;
+
+  function clampTime(val, max){
+    const safeMax = Number.isFinite(max) ? max : Infinity;
+    let v = Number(val);
+    if(!Number.isFinite(v)) v = 0;
+    if(v < 0) v = 0;
+    if(v > safeMax) v = safeMax;
+    return v;
+  }
   function clearLoop(){ if(loopRAF) cancelAnimationFrame(loopRAF); loopRAF=null; player.loop=false; }
 
-  function playSegment(start,end){
+  function playSegment(start,end,index){
     clearLoop();
     let s = start !== undefined && start !== "" ? Number(start) : 0;
     let e = end   !== undefined && end   !== "" ? Number(end)   : NaN;
     if(!Number.isFinite(s)) s = 0;
+    if(Number.isFinite(index)) currentPartIndex = index;
 
     if(player.readyState === 0){ player.load(); }
 
@@ -103,6 +123,104 @@
   function formatTime(sec){
     if(!Number.isFinite(sec)) return "—";
     return sec.toFixed(1).replace('.', ',');
+  }
+
+  function refreshNavButtons(){
+    const prevBtn = controlsWrap.querySelector('[data-role="prev"]');
+    const nextBtn = controlsWrap.querySelector('[data-role="next"]');
+    const hasParts = parts && parts.length>0;
+    const atStart = currentPartIndex<=0;
+    const atEnd = currentPartIndex>=parts.length-1;
+    if(prevBtn) prevBtn.disabled = !hasParts || atStart;
+    if(nextBtn) nextBtn.disabled = !hasParts || atEnd;
+  }
+
+  function renderSectionInfo(){
+    if(!sectionInfoEl) return;
+    if(!parts || !parts.length){
+      sectionInfoEl.innerHTML = '<p class="note" style="margin:0;">Aucune section disponible.</p>';
+      refreshNavButtons();
+      return;
+    }
+    const idx = currentPartIndex>=0 ? currentPartIndex : 0;
+    const part = parts[idx];
+    if(!part){
+      sectionInfoEl.innerHTML = '<p class="note" style="margin:0;">Sélectionnez une section.</p>';
+      refreshNavButtons();
+      return;
+    }
+    currentPartIndex = idx;
+    const startTxt = formatTime(part.start);
+    const endTxt = Number.isFinite(part.end) ? formatTime(part.end) : '';
+    const images = Array.isArray(part.images) ? part.images : (part.images ? [part.images] : []);
+    const text = part.text || '';
+    const imagesHtml = images.length ? `
+      <div class="sectionImages">
+        ${images.map((src,i)=>`<img src="${src}" alt="${part.label||'Image'}" data-sec="${idx}" data-img="${i}">`).join('')}
+      </div>
+    ` : '<p class="note" style="margin:0;">Aucune image pour cette section.</p>';
+
+    sectionInfoEl.innerHTML = `
+      <h3>${part.label || 'Section'}</h3>
+      <p class="meta">Repère : ${startTxt} s${endTxt ? ` — ${endTxt} s` : ''}</p>
+      ${text ? `<p class="sectionText">${text}</p>` : ''}
+      ${imagesHtml}
+    `;
+    sectionInfoEl.querySelectorAll('img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        const sec = Number(img.dataset.sec)||0;
+        const im = Number(img.dataset.img)||0;
+        openFullscreenFor(sec, im);
+      });
+    });
+    refreshNavButtons();
+  }
+
+  function setCurrentPart(idx){
+    if(!parts || !parts.length){
+      currentPartIndex = -1;
+      renderSectionInfo();
+      return;
+    }
+    const next = Math.max(0, Math.min(idx, parts.length-1));
+    currentPartIndex = next;
+    renderSectionInfo();
+  }
+
+  function goToSection(idx){
+    if(!parts || !parts.length) return;
+    const next = Math.max(0, Math.min(idx, parts.length-1));
+    const part = parts[next];
+    setCurrentPart(next);
+    playSegment(part.start, part.end, next);
+  }
+
+  function buildPlayerControls(){
+    if(!controlsWrap) return;
+    controlsWrap.innerHTML = `
+      <div class="skipGroup">
+        <button class="btn" data-offset="-10">-10s</button>
+        <button class="btn" data-offset="-5">-5s</button>
+        <button class="btn" data-offset="5">+5s</button>
+        <button class="btn" data-offset="10">+10s</button>
+      </div>
+      <div class="skipGroup">
+        <button class="btn" data-role="prev">Section précédente</button>
+        <button class="btn" data-role="next">Section suivante</button>
+      </div>
+    `;
+    controlsWrap.querySelectorAll('[data-offset]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const offset = Number(btn.dataset.offset)||0;
+        const dur = Number(player.duration);
+        player.currentTime = clampTime(player.currentTime + offset, dur);
+      });
+    });
+    const prevBtn = controlsWrap.querySelector('[data-role="prev"]');
+    const nextBtn = controlsWrap.querySelector('[data-role="next"]');
+    if(prevBtn) prevBtn.addEventListener('click', ()=> goToSection(currentPartIndex-1));
+    if(nextBtn) nextBtn.addEventListener('click', ()=> goToSection(currentPartIndex+1));
+    refreshNavButtons();
   }
 
   async function loadSongData(){
@@ -270,7 +388,7 @@
     if(!item) return;
     const part = parts[item.sectionIndex];
     if(!part) return;
-    playSegment(part.start, part.end);
+    playSegment(part.start, part.end, item.sectionIndex);
   });
   fsZoom.addEventListener('click', ()=>{
     fsZoomed = !fsZoomed;
@@ -325,6 +443,7 @@
       const art=document.createElement('article');
       art.className='part';
       art.setAttribute('tabindex','0');
+      art.dataset.index = idx;
       if(p.start !== undefined) art.dataset.start = p.start;
       if(p.end   !== undefined) art.dataset.end   = p.end;
 
@@ -352,7 +471,7 @@
         <div class="meta"><span class="dot"></span> Repère : ${startTxt} s${endTxt}</div>
       `;
 
-      const doPlay = ()=> playSegment(p.start, p.end);
+      const doPlay = ()=>{ setCurrentPart(idx); playSegment(p.start, p.end, idx); };
       art.querySelector('.playbtn').addEventListener('click', doPlay);
       art.querySelector('h3').addEventListener('click', doPlay);
 
@@ -372,13 +491,17 @@
     });
 
     buildFsItems();
+    buildPlayerControls();
+    setCurrentPart(0);
 
     sectionsWrap.addEventListener('click', (e)=>{
       let t=e.target;
       while(t && t!==sectionsWrap){
         if(t.classList && t.classList.contains('part')){
           const ds=t.dataset;
-          playSegment(ds.start, ds.end);
+          const idx = Number(ds.index);
+          setCurrentPart(Number.isFinite(idx)?idx:0);
+          playSegment(ds.start, ds.end, idx);
           return;
         }
         t=t.parentElement;
@@ -392,7 +515,9 @@
         if(t.classList && t.classList.contains('part')){
           e.preventDefault();
           const ds=t.dataset;
-          playSegment(ds.start, ds.end);
+          const idx = Number(ds.index);
+          setCurrentPart(Number.isFinite(idx)?idx:0);
+          playSegment(ds.start, ds.end, idx);
           return;
         }
         t=t.parentElement;
@@ -401,10 +526,3 @@
   }
 
   init();
-
-
-
-
-
-
-
