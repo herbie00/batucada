@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada – Les tutos</title>
+<meta name="theme-color" content="#111" />
+<style>
+  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  }
+  [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  .title{font-weight:800}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600;text-decoration:none}
+  main{max-width:980px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:20px}
+  .legend{border:1px solid var(--border);background:var(--card);border-radius:14px;padding:14px;font-size:0.95rem;color:var(--muted)}
+  .videos{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:780px){ .videos{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  .video-card{border:1px solid var(--border);border-radius:16px;background:var(--card);padding:12px;display:flex;flex-direction:column;gap:10px}
+  .video-title{font-size:1.05rem;font-weight:700;margin:0;border:1px dashed var(--accent);padding:8px;border-radius:10px;background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .video-legend{font-size:0.9rem;color:var(--muted);border:1px dashed var(--border);border-radius:10px;padding:8px;min-height:52px}
+  .video-wrapper{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border)}
+  .video-wrapper video,
+  .video-wrapper iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+  footer{margin:30px auto 10px;text-align:center;font-size:0.85rem;color:var(--muted)}
+</style>
+</head>
+<body id="page" data-theme="">
+<header>
+  <div class="bar">
+    <a class="iconbtn" href="index.html">← Retour</a>
+    <div class="title">Chorégraphies</div>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn" type="button">Changer de thème</button>
+  </div>
+</header>
+<main>
+
+    <section class="videos" aria-label="Vidéos tuto">
+    <article class="video-card">
+      <div class="video-title" aria-label="Titre de la vidéo 1">Tuto la virade</div>
+      <div class="video-wrapper" aria-label="Emplacement vidéo 1 (à remplacer)">Let's talk about the player. I wanted to show the number of seconds, not the minutes and seconds. Either that or showing on the parts the when we say repair and it is written it is written in seconds for now. So have it not in seconds but in minutes and seconds. Tell me what you think. Tell me what is the least amount of work. I guess it is on the player. Actually, if I can have on the player the seconds and minutes plus seconds, that would be the best.
+        <video src=""media/Tuto la virade - SD 480p.mov"4" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="video-legend" aria-label="Légende ou notes pour la vidéo 1"> 
+        <pre style="white-space:pre-wrap;margin:0;font-family:inherit;font-size:inherit;color:inherit;background:transparent;border:0;padding:0;">
+        notes à ajouter plus tard peut-être
+        </pre>
+        </div>
+    </article>
+
+  <section class="videos" aria-label="Vidéos de chorégraphies">
+    <article class="video-card">
+      <div class="video-title" aria-label="Titre de la vidéo 1">Avienda slow chor'egraphie</div>
+      <div class="video-wrapper" aria-label="Emplacement vidéo 1 (à remplacer)">
+        <video src="media/Chor%C3%A9%20avienda%20slow.mp4" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="video-legend" aria-label="Légende ou notes pour la vidéo 1"> 
+        <pre style="white-space:pre-wrap;margin:0;font-family:inherit;font-size:inherit;color:inherit;background:transparent;border:0;padding:0;">
+        pas de choré tant que le meneur n'a pas fait le signe. 
+        Quand le meneur fait le signe (Tourne la baguette). On fait le pas.
+           Les sourdos : tournent baguettes 
+           pour les tambourines, les répiniques et les agogo. Ce sont les pieds qui bougent. Il faut bien accentuer le dernier pas. On "écrase"
+        </pre>
+        </div>
+    </article>
+
+    <article class="video-card">
+      <div class="video-title" aria-label="Titre de la vidéo 1">Tout le monde sur le pont chorégraphie</div>
+      <div class="video-wrapper" aria-label="Emplacement vidéo 1 (à remplacer)">
+        <video src="media\Choré tout le monde sur le pont.mp4" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="video-legend" aria-label="Légende ou notes pour la vidéo 1"> 
+        <pre style="white-space:pre-wrap;margin:0;font-family:inherit;font-size:inherit;color:inherit;background:transparent;border:0;padding:0;">
+       Tout le monde se regarde
+        retour en place
+        Tout le monde se regarde
+        Retour en place
+        On fait bouger les baguettes en l'air
+        Baguette en l'air à gauche
+        Baguette en l'air à droite et on se penche vers le mmeneur
+        </pre>
+        </div>
+    </article>
+  </section>
+</main>
+
+
+<script>
+  const page=document.getElementById('page');
+  const btn=document.getElementById('themeBtn');
+  function setTheme(m){ page.setAttribute('data-theme', m); try{localStorage.setItem('bat_theme', m);}catch{} }
+  setTheme(localStorage.getItem('bat_theme')||"");
+  btn.onclick=()=>{
+    const cur=page.getAttribute('data-theme')||"";
+    setTheme(cur==="dark"?"light":cur==="light"?"":"dark");
+  };
+</script>
+</body>
+</html>
+

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Batucada • Morceau (v0.5)</title>
+<title>Batucada â€¢ Morceau (v0.5)</title>
 <meta name="theme-color" content="#111" />
 <link rel="stylesheet" href="song.css" />
 <style>
@@ -32,12 +32,12 @@
 <body id="app" data-theme="">
 <header>
   <div class="bar" id="hdr">
-    <a class="iconbtn" href="index.html">← Morceaux</a>
+    <a class="iconbtn" href="index.html">â† Morceaux</a>
     <div class="title" id="songTitle">Morceau</div>
     <span class="pill">v0.5</span>
     <div class="spacer"></div>
-    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
-    <button id="changelogBtn" class="iconbtn">📝 Changelog</button>
+    <button id="themeBtn" class="iconbtn">ðŸŒ“ ThÃ¨me</button>
+    <button id="changelogBtn" class="iconbtn">ðŸ“ Changelog</button>
   </div>
 </header>
 
@@ -51,23 +51,20 @@
   <button class="tabBtn" data-tab-btn="autres" role="tab" aria-selected="false" aria-controls="tab-autres" tabindex="-1">Autres</button>
 </div>
 
-<main>
-  <section class="tabContent" data-tabs="principal audio">
-    <div class="playerSticky">
-      <section class="playerCard" aria-labelledby="fullTrackTitle">
-        <h2 id="fullTrackTitle">Écoutez le morceau en entier</h2>
-        <audio id="player" controls preload="metadata">
-          <source id="audioSrc" src="" />
-          Votre navigateur ne supporte pas la balise audio.
-        </audio>
-        <div id="audioDebug" class="audioDebug"></div>
-      </section>
-    </div>
+<div class="playerSticky">
+  <section class="playerCard" aria-labelledby="fullTrackTitle">
+    <h2 id="fullTrackTitle">A%coutez le morceau en entier</h2>
+    <audio id="player" controls preload="metadata">
+      <source id="audioSrc" src="" />
+      Votre navigateur ne supporte pas la balise audio.
+    </audio>
+    <div id="audioDebug" class="audioDebug"></div>
   </section>
-
-  <section class="tabContent" id="tab-audio" data-tabs="principal audio">
+</div>
+<main>
+<section class="tabContent" id="tab-audio" data-tabs="principal audio">
     <p class="note">
-      Touchez ▶ ou le titre d’une section pour y sauter. Touchez une image pour l’ouvrir en plein écran.
+      Touchez â–¶ ou le titre dâ€™une section pour y sauter. Touchez une image pour lâ€™ouvrir en plein Ã©cran.
     </p>
 
     <section aria-labelledby="partsTitle">
@@ -97,7 +94,7 @@
   <section class="tabContent" id="tab-instruments" data-tabs="principal instruments">
     <section id="instrExtras" style="max-width:980px;margin:18px auto;padding:0 16px;">
       <h3>Instruments individuels</h3>
-      <p class="note">Illustrations sonores des parties solo pour les répiniques, snaires, agogo, tambourim et repinique.</p>
+      <p class="note">Illustrations sonores des parties solo pour les rÃ©piniques, snaires, agogo, tambourim et repinique.</p>
       <div style="display:grid;gap:10px;grid-template-columns:1fr;">
         <article style="border:1px solid #e6e6e6;background:var(--card);padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:6px;">
           <div style="color:var(--fg);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Surdo solo &mdash; TLMSPont-2</div>
@@ -173,12 +170,12 @@
     <h3>Notes rapides</h3>
     <textarea style="width:100%;border:1px solid var(--border,#e6e6e6);border-radius:12px;padding:12px;font:inherit;line-height:1.5;white-space:pre-wrap;" rows="15">
 2025-11-27-Thu
-Maintenant les Répiniques et les tambourines font le même rythme
-- Ça va très vite et encore plus vite 
+Maintenant les RÃ©piniques et les tambourines font le mÃªme rythme
+- Ã‡a va trÃ¨s vite et encore plus vite 
 - Ready to samba OK 
--> quand le morceau est plutôt lent on fait "
-  ça va très vite et encore plus vite"  (parce que c'est plus simple à faire)
--> Quand le morceau commence à accélérer et et qu'il serait compliqué de faire le rythme ça va très vite et encore plus vite on passe à 
+-> quand le morceau est plutÃ´t lent on fait "
+  Ã§a va trÃ¨s vite et encore plus vite"  (parce que c'est plus simple Ã  faire)
+-> Quand le morceau commence Ã  accÃ©lÃ©rer et et qu'il serait compliquÃ© de faire le rythme Ã§a va trÃ¨s vite et encore plus vite on passe Ã  
   "ready to samba OK!"
     </textarea>
   </section>  
@@ -189,12 +186,12 @@ Maintenant les Répiniques et les tambourines font le même rythme
   </section>
 </main>
 
-<!-- Visionneuse plein écran -->
+<!-- Visionneuse plein Ã©cran -->
 <div id="fsOverlay" class="fsOverlay" aria-hidden="true">
   <div class="fsInner" id="fsInner">
-    <button id="fsClose" class="fsClose" type="button">✕ Fermer</button>
+    <button id="fsClose" class="fsClose" type="button">âœ• Fermer</button>
     <div class="fsImageWrap" id="fsImageWrap">
-      <img id="fsImage" src="" alt="Partition en plein écran">
+      <img id="fsImage" src="" alt="Partition en plein Ã©cran">
     </div>
     <div class="fsMeta">
       <div id="fsLabel" class="fsLabel"></div>
@@ -204,8 +201,8 @@ Maintenant les Répiniques et les tambourines font le même rythme
         <button id="fsNext" class="fsNavBtn right" type="button"></button>
       </div>
       <div class="fsControlsRow">
-        <button id="fsPlay" class="fsPlayBtn" type="button">▶ Lire à partir d’ici</button>
-        <button id="fsZoom" class="fsZoomBtn" type="button">🔍 Zoom</button>
+        <button id="fsPlay" class="fsPlayBtn" type="button">â–¶ Lire Ã  partir dâ€™ici</button>
+        <button id="fsZoom" class="fsZoomBtn" type="button">ðŸ” Zoom</button>
       </div>
     </div>
   </div>
@@ -282,6 +279,8 @@ Maintenant les Répiniques et les tambourines font le même rythme
 </script>
 </body>
 </html>
+
+
 
 
 
