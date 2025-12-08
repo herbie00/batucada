@@ -62,14 +62,24 @@
   const audioDebug = el('#audioDebug');
   const songTitle = el('#songTitle');
   const playerCard = document.querySelector('.playerCard');
+  const timeDisplay = document.createElement('div');
+  timeDisplay.className = 'timeDisplay';
   const controlsWrap = document.createElement('div');
   controlsWrap.className = 'playerControls';
   const sectionInfoEl = document.createElement('div');
   sectionInfoEl.className = 'sectionInfo';
   if(playerCard){
+    playerCard.appendChild(timeDisplay);
     playerCard.appendChild(controlsWrap);
     playerCard.appendChild(sectionInfoEl);
   }
+
+  player.addEventListener('loadedmetadata', updateTimeDisplay);
+  player.addEventListener('timeupdate', updateTimeDisplay);
+  player.addEventListener('durationchange', updateTimeDisplay);
+  player.addEventListener('play', updateTimeDisplay);
+  player.addEventListener('pause', updateTimeDisplay);
+  updateTimeDisplay();
 
   let loopRAF=null;
   let currentPartIndex = -1;
@@ -95,6 +105,7 @@
 
     player.pause();
     player.currentTime = Math.max(0,s);
+    updateTimeDisplay();
 
     const p = player.play();
     if(p && p.catch){ p.catch(()=>{}); }
@@ -125,14 +136,53 @@
     return sec.toFixed(1).replace('.', ',');
   }
 
+  function formatClock(sec){
+    if(!Number.isFinite(sec) || sec<0) return '--:--';
+    const minutes = Math.floor(sec/60);
+    const seconds = Math.floor(sec%60);
+    return `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+  }
+
+  function updateTimeDisplay(){
+    if(!timeDisplay || !timeDisplay.isConnected) return;
+    const cur = Number(player.currentTime);
+    const dur = Number(player.duration);
+    const curSec = Number.isFinite(cur) ? cur.toFixed(1) : '--';
+    const durSec = Number.isFinite(dur) ? dur.toFixed(1) : '--';
+    const curClock = Number.isFinite(cur) ? formatClock(cur) : '--:--';
+    const durClock = Number.isFinite(dur) ? formatClock(dur) : '--:--';
+    timeDisplay.innerHTML = `<strong>Temps :</strong> ${curSec} s (${curClock}) / ${durSec} s (${durClock})`;
+  }
+
   function refreshNavButtons(){
     const prevBtn = controlsWrap.querySelector('[data-role="prev"]');
     const nextBtn = controlsWrap.querySelector('[data-role="next"]');
     const hasParts = parts && parts.length>0;
     const atStart = currentPartIndex<=0;
     const atEnd = currentPartIndex>=parts.length-1;
-    if(prevBtn) prevBtn.disabled = !hasParts || atStart;
-    if(nextBtn) nextBtn.disabled = !hasParts || atEnd;
+    const prevPart = hasParts && !atStart ? parts[currentPartIndex-1] : null;
+    const nextPart = hasParts && !atEnd ? parts[currentPartIndex+1] : null;
+    const prevLabel = 'Section precedente';
+    const nextLabel = 'Section suivante';
+    if(prevBtn){
+      prevBtn.disabled = !hasParts || atStart;
+      const prevTxt = prevPart ? formatButtonRange(prevPart) : '';
+      prevBtn.textContent = prevTxt ? `${prevLabel} ${prevTxt}` : prevLabel;
+    }
+    if(nextBtn){
+      nextBtn.disabled = !hasParts || atEnd;
+      const nextTxt = nextPart ? formatButtonRange(nextPart) : '';
+      nextBtn.textContent = nextTxt ? `${nextLabel} ${nextTxt}` : nextLabel;
+    }
+  }
+
+  function formatButtonRange(part){
+    if(!part) return '';
+    const start = Number(part.start);
+    const end = Number(part.end);
+    const startTxt = Number.isFinite(start) ? Math.round(start) : '--';
+    const endTxt = Number.isFinite(end) ? Math.round(end) : '';
+    return endTxt ? `${startTxt}s - ${endTxt}s` : `${startTxt}s`;
   }
 
   function renderSectionInfo(){
@@ -214,6 +264,7 @@
         const offset = Number(btn.dataset.offset)||0;
         const dur = Number(player.duration);
         player.currentTime = clampTime(player.currentTime + offset, dur);
+        updateTimeDisplay();
       });
     });
     const prevBtn = controlsWrap.querySelector('[data-role="prev"]');
