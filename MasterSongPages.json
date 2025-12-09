@@ -193,10 +193,7 @@
 					"label": "intro",
 					"start": 0,
 					"end": 18,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -204,10 +201,7 @@
 					"label": "rep rentrent",
 					"start": 18,
 					"end": 33,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -215,10 +209,7 @@
 					"label": "surdo + rep + tamb",
 					"start": 33,
 					"end": 50,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -226,10 +217,7 @@
 					"label": "surdo + rep + tamb + agogo",
 					"start": 49,
 					"end": 66,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -237,10 +225,7 @@
 					"label": "solo agogogo, surdo 1er tps",
 					"start": 66,
 					"end": 80,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -248,10 +233,7 @@
 					"label": "caisse claire revient",
 					"start": 82,
 					"end": 98,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -259,10 +241,7 @@
 					"label": "grosse caisee tous les temps, plus caisse claire, plus agogo, seulement surdo et repinik",
 					"start": 98,
 					"end": 114,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				},
 				{
@@ -270,10 +249,7 @@
 					"label": "agogo et tembourim reviennent ",
 					"start": 112,
 					"end": 129,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [					
 					]
 				},
 				{
@@ -281,10 +257,7 @@
 					"label": "break fin",
 					"start": 129,
 					"end": 129,
-					"images": [
-						"test1.png",
-						"test2.png",
-						"test3.png"
+					"images": [						
 					]
 				}
 			],
