@@ -154,18 +154,33 @@
 			"notes": "2025-11-27-Thu\nLes répiniques suivent le meneur au début du morceau\nphrase répinique sur 2ème partie     \n<s>Ba tuc ba tu ca da</s> <b>Ca va très vite</b> <b>tr's vite</b> <s>et encore</s> <b>plus vite</b>\nlégende :   <s>mentalement</s>   <b>joué</b>\n",
 			"lives": [
 				{
+					"title": "répet 4 déc bonobo 01.ogg",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 01.ogg"
+				},
+				{
+					"title": "répet 4 déc bonobo 02.ogg",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 02.ogg"
+				},
+				{
+					"title": "répet 4 déc bonobo 03.ogg",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 03.ogg"
+				},
+				{
 					"title": "bonobo full — live 2025-10-09.mp4",
-					"type": "video",
+					"type": "audio",
 					"src": "media/bonobo full - live 2025-10-09.mp4"
 				},
 				{
 					"title": "bonobo fin — live 2025-10-09.mp4",
-					"type": "video",
+					"type": "audio",
 					"src": "media/bonobo fin - live 2025-10-09.mp4"
 				},
 				{
 					"title": "bonobo break de fin — live 2025-10-09.mp4",
-					"type": "video",
+					"type": "audio",
 					"src": "media/bonobo break de fin - live 2025-10-09.mp4"
 				},
 				{
@@ -660,6 +675,83 @@
 					"src": "media/TLMSLPont test q 202511141524 ts instruments .mp3"
 				}
 			]
+		},
+		{
+			"slug": "saintnicolas-1",
+			"title": "Saint Nicolas – Version 1",
+			"audio": "media/saintnicolas-1.ogg",
+			"parts": [
+				{ "id": "s1-1", "label": "Intro",   "start": 0,  "end": 10, "images": [], "text": "" },
+				{ "id": "s1-2", "label": "Couplet", "start": 10, "end": 40, "images": [], "text": "" },
+				{ "id": "s1-3", "label": "Refrain", "start": 40, "end": 70, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 1"
+		},
+		{
+			"slug": "saintnicolas-2",
+			"title": "Saint Nicolas – Version 2",
+			"audio": "media/saintnicolas-2.ogg",
+			"parts": [
+				{ "id": "s2-1", "label": "Intro",   "start": 0,  "end": 12, "images": [], "text": "" },
+				{ "id": "s2-2", "label": "Couplet", "start": 12, "end": 45, "images": [], "text": "" },
+				{ "id": "s2-3", "label": "Refrain", "start": 45, "end": 75, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 2"
+		},
+		{
+			"slug": "saintnicolas-3",
+			"title": "Saint Nicolas – Version 3",
+			"audio": "media/saintnicolas-3.ogg",
+			"parts": [
+				{ "id": "s3-1", "label": "Intro",   "start": 0,  "end": 8,  "images": [], "text": "" },
+				{ "id": "s3-2", "label": "Couplet", "start": 8,  "end": 42, "images": [], "text": "" },
+				{ "id": "s3-3", "label": "Refrain", "start": 42, "end": 72, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 3"
+		},
+		{
+			"slug": "saintnicolas-4",
+			"title": "Saint Nicolas – Version 4",
+			"audio": "media/saintnicolas-4.ogg",
+			"parts": [
+				{ "id": "s4-1", "label": "Intro",   "start": 0,  "end": 11, "images": [], "text": "" },
+				{ "id": "s4-2", "label": "Couplet", "start": 11, "end": 44, "images": [], "text": "" },
+				{ "id": "s4-3", "label": "Refrain", "start": 44, "end": 74, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 4"
+		},
+		{
+			"slug": "saintnicolas-5",
+			"title": "Saint Nicolas – Version 5",
+			"audio": "media/saintnicolas-5.ogg",
+			"parts": [
+				{ "id": "s5-1", "label": "Intro",   "start": 0,  "end": 9,  "images": [], "text": "" },
+				{ "id": "s5-2", "label": "Couplet", "start": 9,  "end": 43, "images": [], "text": "" },
+				{ "id": "s5-3", "label": "Refrain", "start": 43, "end": 73, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 5"
+		},
+		{
+			"slug": "saintnicolas-6",
+			"title": "Saint Nicolas – Version 6",
+			"audio": "media/saintnicolas-6.ogg",
+			"parts": [
+				{ "id": "s6-1", "label": "Intro",   "start": 0,  "end": 10, "images": [], "text": "" },
+				{ "id": "s6-2", "label": "Couplet", "start": 10, "end": 42, "images": [], "text": "" },
+				{ "id": "s6-3", "label": "Refrain", "start": 42, "end": 72, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 6"
+		},
+		{
+			"slug": "saintnicolas-7",
+			"title": "Saint Nicolas – Version 7",
+			"audio": "media/saintnicolas-7.ogg",
+			"parts": [
+				{ "id": "s7-1", "label": "Intro",   "start": 0,  "end": 11, "images": [], "text": "" },
+				{ "id": "s7-2", "label": "Couplet", "start": 11, "end": 46, "images": [], "text": "" },
+				{ "id": "s7-3", "label": "Refrain", "start": 46, "end": 76, "images": [], "text": "" }
+			],
+			"notes": "Saint Nicolas version 7"
 		}
 	],
 	"changelog": [
