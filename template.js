@@ -71,8 +71,47 @@
 
   function setupTabs(slug){
     const TAB_KEY = `batucada.tab.${slug || 'song'}`;
+    const STICKY_KEY = `batucada.playerSticky.${slug || 'song'}`;
     const buttons = [...document.querySelectorAll('[data-tab-btn]')];
     const sections = [...document.querySelectorAll('[data-tabs]')];
+    const playerSticky = document.querySelector('.playerSticky');
+    const playerCard = document.querySelector('.playerCard');
+    
+    // Get saved sticky preference (default: true for principal, false for others)
+    let stickyEnabled = localStorage.getItem(STICKY_KEY) !== 'false';
+    
+    // Create sticky toggle button inside playerCard instead of playerSticky
+    if(playerCard){
+      const stickyToggle = document.createElement('button');
+      stickyToggle.className = 'stickyToggle';
+      stickyToggle.innerHTML = '📌 Épingler';
+      stickyToggle.setAttribute('aria-label', 'Épingler/détacher le lecteur');
+      stickyToggle.setAttribute('title', 'Maintenir le lecteur en haut de la page');
+      playerCard.appendChild(stickyToggle);
+      
+      function updateStickyState(forceSticky){
+        const shouldStick = forceSticky !== undefined ? forceSticky : stickyEnabled;
+        if(shouldStick){
+          playerSticky.style.position = 'sticky';
+          stickyToggle.innerHTML = '📌 Lecteur épinglé';
+          stickyToggle.classList.add('active');
+        } else {
+          playerSticky.style.position = 'static';
+          stickyToggle.innerHTML = '📌 Épingler le lecteur';
+          stickyToggle.classList.remove('active');
+        }
+      }
+      
+      stickyToggle.addEventListener('click', ()=>{
+        stickyEnabled = !stickyEnabled;
+        try{ localStorage.setItem(STICKY_KEY, stickyEnabled ? 'true' : 'false'); }catch{}
+        updateStickyState(stickyEnabled);
+      });
+      
+      // Initialize sticky state
+      updateStickyState(stickyEnabled);
+    }
+    
     function activate(name){
       buttons.forEach(btn=>{
         const active = btn.dataset.tabBtn===name;
@@ -86,6 +125,7 @@
       });
       try{ localStorage.setItem(TAB_KEY, name); }catch{}
     }
+    
     buttons.forEach(btn=>{
       btn.addEventListener('click', ()=> activate(btn.dataset.tabBtn));
       btn.addEventListener('keydown', e=>{
