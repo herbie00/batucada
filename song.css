@@ -50,18 +50,12 @@
   .timeDisplay{
     margin:6px 0 0;
     font-size:.82rem;
-    font-weight:700;
+    font-weight:500;
     display:flex;
-    gap:8px;
+    gap:6px;
     align-items:center;
   }
-  .timeDisplay strong{font-size:.85rem;}
-  .playerControls{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:6px;
-  }
+
   .playerControls .btn{
     border:1px solid var(--border);
     background:var(--card);
@@ -77,11 +71,11 @@
   .playerControls .btn:disabled{opacity:0.5;cursor:default;}
   .playerControls .skipGroup{
     display:flex;
-    gap:6px;
+    gap:2px;
     flex-wrap:wrap;
   }
   .playerControls .skipGroup .btn{
-    min-width:64px;
+    min-width:px;
     text-align:center;
   }
   .playerControls .btn[data-role]{
@@ -122,8 +116,8 @@
     gap:8px;
   }
   .sectionImages img{
-    width:120px;
-    height:90px;
+    width:100%;
+    height:auto;
     object-fit:cover;
     border-radius:8px;
     border:1px solid var(--border);
@@ -132,7 +126,7 @@
   }
   .audioDebug{
     margin-top:2px;
-    font-size:.75rem;
+    font-size:.4rem;
     color:var(--muted);
   }
   .audioDebug a{color:var(--accent);text-decoration:none;}
@@ -249,6 +243,7 @@
     justify-content:flex-start;  /* image ancrée à gauche */
     padding:10px 2px 0;
     overflow:auto;
+    
   }
   .fsImageWrap img{
     max-width:100%;

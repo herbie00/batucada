@@ -1,4 +1,3 @@
-
   const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
   const logBtn=document.getElementById('changelogBtn');
@@ -147,11 +146,12 @@
     if(!timeDisplay || !timeDisplay.isConnected) return;
     const cur = Number(player.currentTime);
     const dur = Number(player.duration);
-    const curSec = Number.isFinite(cur) ? cur.toFixed(1) : '--';
-    const durSec = Number.isFinite(dur) ? dur.toFixed(1) : '--';
+    const curSec = Number.isFinite(cur) ? cur.toFixed(0) : '--';
+    const durSec = Number.isFinite(dur) ? dur.toFixed(0) : '--';
     const curClock = Number.isFinite(cur) ? formatClock(cur) : '--:--';
     const durClock = Number.isFinite(dur) ? formatClock(dur) : '--:--';
-    timeDisplay.innerHTML = `<strong>Temps :</strong> ${curSec} s (${curClock}) / ${durSec} s (${durClock})`;
+    timeDisplay.innerHTML = `
+    ${curSec}s / ${durSec}s`;
   }
 
   function refreshNavButtons(){
