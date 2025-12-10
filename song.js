@@ -1,4 +1,4 @@
-const app=document.getElementById('app');
+  const app=document.getElementById('app');
   const themeBtn=document.getElementById('themeBtn');
   const logBtn=document.getElementById('changelogBtn');
   const logPanel=document.getElementById('changelog');
@@ -326,7 +326,6 @@ const app=document.getElementById('app');
         // strip query/fragment
         const cleaned = src.split(/[?#]/)[0];
         const ext = (cleaned.split('.').pop() || '').toLowerCase();
-        // only add
         // only add common image types to the fullscreen viewer
         if(allowed.includes(ext)){
           fsItems.push({sectionIndex,imageIndex,src});
