@@ -1,5 +1,65 @@
 ﻿{
 	"songs": [
+				{
+			"slug": "saintnicolas",
+			"title": "saintnicolas",
+			"audio": "dummy",
+			"parts": [
+				{
+					"id": "dummy",
+					"label": "Pas d'enregistrement studio, allez dans l'onglet Fichier Lives pour écouter les enregistrements de répétitions.",
+					"start": 0,
+					"end":0,
+					"images": [						
+					]
+				}
+			],
+			"notes": "dummy",
+			"lives": [
+				{
+					"title": "01 avienda slow rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
+				},
+				{
+					"title": "02 avienda fast rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg"
+				},
+				{
+					"title": "03 bonobo 01 rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 01.ogg"
+				},
+				{
+					"title": "03 bonobo 02 rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 02.ogg"
+				},
+				{
+					"title": "03 bonobo 03 rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 03.ogg"
+				},
+				{
+					"title": "04 salida rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-04 salida.ogg"
+				},
+				{
+					"title": "05 tout le monde sur le pont rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg"
+				},
+				{
+					"title": "06 rio banane rep 4 dec",
+					"type": "audio",
+					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg"
+				}
+			],
+			"instruments": [
+			]
+		},
 		{
 			"slug": "bonobo",
 			"title": "bonobo",
