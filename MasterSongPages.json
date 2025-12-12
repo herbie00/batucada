@@ -22,14 +22,29 @@
 					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
 				},
 				{
+					"title": "01 avienda slow rep 11 dec 01",
+					"type": "audio",
+					"src": "media/01 avienda slow-saint nic repet 11dec.ogg"
+				},
+				{
 					"title": "02 avienda fast rep 4 dec",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg"
 				},
 				{
+					"title": "02 avienda fast rep 11 dec 01",
+					"type": "audio",
+					"src": "media/02 avienda fast-saint nic repet 11dec.ogg"
+				},
+				{
 					"title": "03 bonobo 01 rep 4 dec",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-03 bonobo 01.ogg"
+				},
+				{
+					"title": "03 bonobo 01 rep 11 dec 01",
+					"type": "audio",
+					"src": "media/03 bonobo-saint nic repet 11dec.ogg"
 				},
 				{
 					"title": "03 bonobo 02 rep 4 dec",
@@ -47,14 +62,29 @@
 					"src": "media/2025-12-04-rep st nic 2-04 salida.ogg"
 				},
 				{
+					"title": "04 salida rep 11 dec 01",
+					"type": "audio",
+					"src": "media/04 salida-saint nic repet 11dec.ogg"
+				},
+				{
 					"title": "05 tout le monde sur le pont rep 4 dec",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg"
 				},
 				{
+					"title": "05 tout le monde sur le pont rep 11 dec 01",
+					"type": "audio",
+					"src": "media/05 tout le monde sur le pont-saint nic repet 11dec.ogg"
+				},
+				{
 					"title": "06 rio banane rep 4 dec",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg"
+				},
+				{
+					"title": "06 rio banane rep 11 dec 01",
+					"type": "audio",
+					"src": "media/06 rio banane-saint nic repet 11dec.ogg"
 				}
 			],
 			"instruments": [
