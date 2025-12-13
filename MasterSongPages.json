@@ -17,72 +17,72 @@
 			"notes": "dummy",
 			"lives": [
 				{
-					"title": "01 avienda slow rep 4 dec",
+					"title": "01 avienda slow <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
 				},
 				{
-					"title": "01 avienda slow rep 11 dec 01",
+					"title": "01 avienda slow 01 <span style=\"color:#D55E00\">répèt du 11 dec </span>",
 					"type": "audio",
 					"src": "media/01 avienda slow-saint nic repet 11dec.ogg"
 				},
 				{
-					"title": "02 avienda fast rep 4 dec",
+					"title": "02 avienda fast <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg"
 				},
 				{
-					"title": "02 avienda fast rep 11 dec 01",
+					"title": "02 avienda fast <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
 					"src": "media/02 avienda fast-saint nic repet 11dec.ogg"
 				},
 				{
-					"title": "03 bonobo 01 rep 4 dec",
+					"title": "03 bonobo 01 <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-03 bonobo 01.ogg"
 				},
 				{
-					"title": "03 bonobo 01 rep 11 dec 01",
-					"type": "audio",
-					"src": "media/03 bonobo-saint nic repet 11dec.ogg"
-				},
-				{
-					"title": "03 bonobo 02 rep 4 dec",
+					"title": "03 bonobo 02 <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-03 bonobo 02.ogg"
 				},
 				{
-					"title": "03 bonobo 03 rep 4 dec",
+					"title": "03 bonobo 03 <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-03 bonobo 03.ogg"
 				},
 				{
-					"title": "04 salida rep 4 dec",
+					"title": "03 bonobo 01 <span style=\"color:#D55E00\">répèt du 11 dec</span>",
+					"type": "audio",
+					"src": "media/03 bonobo-saint nic repet 11dec.ogg"
+				},
+				{
+					"title": "04 salida <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-04 salida.ogg"
 				},
 				{
-					"title": "04 salida rep 11 dec 01",
+					"title": "04 salida <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
 					"src": "media/04 salida-saint nic repet 11dec.ogg"
 				},
 				{
-					"title": "05 tout le monde sur le pont rep 4 dec",
+					"title": "05 tout le monde sur le pont <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg"
 				},
 				{
-					"title": "05 tout le monde sur le pont rep 11 dec 01",
+					"title": "05 tout le monde sur le pont <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
 					"src": "media/05 tout le monde sur le pont-saint nic repet 11dec.ogg"
 				},
 				{
-					"title": "06 rio banane rep 4 dec",
+					"title": "06 rio banane <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg"
 				},
 				{
-					"title": "06 rio banane rep 11 dec 01",
+					"title": "06 rio banane rep <span style=\"color:#D55E00\">11 dec</span 01",
 					"type": "audio",
 					"src": "media/06 rio banane-saint nic repet 11dec.ogg"
 				}
@@ -369,7 +369,7 @@
 			"notes": "rien pour l'instant.",
 			"lives": [
 				{
-					"title": "rep 4 dec avienda fast",
+					"title": "rep <span style=\"color:#56B4E9\">4 dec</span avienda fast",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg",
 					"note": "Enregistrement live disponible."
@@ -455,7 +455,7 @@
 			"notes": "rien pour l'instant.",
 			"lives": [
 				{
-					"title": "rep 4 dec avienda slow",
+					"title": "rep <span style=\"color:#56B4E9\">4 dec</span avienda slow",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
 				},
@@ -494,7 +494,7 @@
 			"notes": ".",
 			"lives": [
 				{
-					"title": "rep 4 dec avienda slow",
+					"title": "rep <span style=\"color:#56B4E9\">4 dec</span avienda slow",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
 				},
@@ -705,7 +705,7 @@
 			"notes": "Prases sur 8 mesures\n 1. 🥇tambourim \n je sais com-pter au moins jus-que 4 1 2 3 4 \n 2. ✌️sourdos \n chat sou-ris (x4)\n 3.𝐈𝐈𝐈repinique \n pam pa lam pam pam pa lam pam (x2) 4.4️⃣agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n\n l'egende =   🅾️snare   🥇tambourim   ✌️surdos   𝐈𝐈𝐈repinique   4️⃣agogo",
 			"lives": [
 				{
-					"title": "rep 4 dec rio banane",
+					"title": "rep <span style=\"color:#56B4E9\">4 dec</span rio banane",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-05 rio banane.ogg",
 					"note": "Enregistrement live disponible."
@@ -742,7 +742,7 @@
 			"notes": "2025-11-27-Thu\nMaintenant les Répiniques et les tambourines font le même rythme\n- Ça va très vite et encore plus vite \n- Ready to samba OK \n-> quand le morceau est plutôt lent on fait \"\n  ça va très vite et encore plus vite\"  (parce que c'est plus simple à faire)\n-> Quand le morceau commence à accélérer et et qu'il serait compliqué de faire le rythme ça va très vite et encore plus vite on passe à \n  \"ready to samba OK!\"\n",
 			"lives": [
 				{
-					"title": "rep 4 dec tout le monde sur le pont",
+					"title": "rep <span style=\"color:#56B4E9\">4 dec</span tout le monde sur le pont",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg",
 					"note": "Enregistrement live disponible."
