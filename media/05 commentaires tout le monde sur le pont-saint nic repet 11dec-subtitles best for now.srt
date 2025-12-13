@@ -1,0 +1,33 @@
+sous-titres auto    model parameters : whisper large turbo v3 q5 with timestamp for each word 150 characters
+
+1
+00:00:00,000 --> 00:00:07,420
+Ça c'est un petit changement qu'on avait fait. On fait le "samba très vite" encore plus vite quand c'est lent. Les répétitions et les tambourines
+
+2
+00:00:07,420 --> 00:00:08,000
+le font.
+
+3
+00:00:08,000 --> 00:00:13,000
+Parce que sinon si vous faites le "ready to samba" et "samba très vite" on n'est pas calé, on n'y arrive pas mais c'est pas grave.
+
+4
+00:00:13,000 --> 00:00:18,000
+Donc vous faites le "samba très vite", vous faites le "samba très vite". Donc vous êtes ensemble.
+
+5
+00:00:18,000 --> 00:00:27,000
+Quand je fais trois c'est "ready to samba" ok. Quatre fois les instruments, après c'est quatre fois, enfin quatre fois ou huit fois avec le chant.
+
+6
+00:00:27,000 --> 00:00:32,000
+Et le "ok" vous ne le jouez plus parce que tout le monde dit "ok" parce qu'on n'entend plus les répétitions.
+
+7
+00:00:32,000 --> 00:00:36,000
+Après quand on reprend vous êtes tout le temps "ready to samba" parce qu'on aura accéléré.
+
+8
+00:00:36,000 --> 00:00:39,000
+Je croyais que c'était après l'accélération.

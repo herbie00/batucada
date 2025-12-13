@@ -13,62 +13,98 @@
     }
   }
 
+  async function loadTextFile(url){
+    try{
+      const res = await fetch(url, { cache: 'no-cache' });
+      if(!res.ok) throw new Error(res.statusText);
+      return await res.text();
+    }catch(err){
+      return `⚠️ Impossible de charger ${url} (${err.message || err})`;
+    }
+  }
+
   function buildCards(items, slug, caption, fallbackMessage){
     if(!Array.isArray(items) || !items.length){
-      return `<p class="note">${fallbackMessage}</p>`;
+      return Promise.resolve(`<p class="note">${fallbackMessage}</p>`);
     }
-    const cards = items.map((item, index)=>{
-      const playerId = `${slug}-${caption}-${index}`;
-      let mediaMarkup = '';
-      if(item.type === 'audio' || item.type === 'video'){
-        const tag = item.type;
-        const mime = item.mime || (tag === 'audio' ? 'audio/mpeg' : 'video/mp4');
-        const extraStyle = tag === 'video'? 'style="height:auto;max-height:220px;object-fit:contain;background:#000"' : '';
-        mediaMarkup = `
-          <${tag} id="${playerId}" controls preload="metadata" ${extraStyle}>
-            <source src="${item.src}" type="${mime}" />
-            Votre navigateur ne supporte pas la balise ${tag}.
-          </${tag}>
+    const tasks = items.map(async (item)=>{
+      const files = [];
+      if(item.notesFile) files.push(item.notesFile);
+      if(Array.isArray(item.notesFiles)) files.push(...item.notesFiles);
+      const unique = [...new Set(files.filter(Boolean))];
+      const fileContents = await Promise.all(unique.map(async f=>({
+        path: f,
+        text: await loadTextFile(f)
+      })));
+      return {...item, fileContents};
+    });
+
+    return Promise.all(tasks).then(resolved=>{
+      const cards = resolved.map((item, index)=>{
+        const playerId = `${slug}-${caption}-${index}`;
+        let mediaMarkup = '';
+        if(item.type === 'audio' || item.type === 'video'){
+          const tag = item.type;
+          const mime = item.mime || (tag === 'audio' ? 'audio/mpeg' : 'video/mp4');
+          const extraStyle = tag === 'video'? 'style="height:auto;max-height:220px;object-fit:contain;background:#000"' : '';
+          mediaMarkup = `
+            <${tag} id="${playerId}" controls preload="metadata" ${extraStyle}>
+              <source src="${item.src}" type="${mime}" />
+              Votre navigateur ne supporte pas la balise ${tag}.
+            </${tag}>
+          `;
+        } else if(item.type === 'link'){
+          mediaMarkup = `
+            <a class="extra-link" href="${item.href}" download target="_blank" rel="noreferrer">
+              ${item.linkLabel || 'Télécharger'}
+            </a>
+          `;
+        }
+        const noteLine = item.note ? `<p class="note" style="margin:0;">${item.note}</p>` : '';
+        const notesLine = item.notes ? `<p class="note" style="margin:6px 0 0;font-size:.85rem;color:var(--muted);white-space:pre-wrap;">${item.notes}</p>` : '';
+        const filesBlock = (item.fileContents||[]).map(fc=>`
+          <details class="note file-note">
+            <summary>${fc.path}</summary>
+            <pre>${fc.text.replace(/</g,'&lt;')}</pre>
+          </details>
+        `).join('');
+
+        const hasPlayer = item.type === 'audio' || item.type === 'video';
+        const controls = hasPlayer ? `
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="extra-skip" data-target="${playerId}" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
+            <button class="extra-skip" data-target="${playerId}" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
+          </div>
+        ` : '';
+
+        return `
+          <article class="extra-card">
+            <div class="title">${item.title}</div>
+            <div>${mediaMarkup}</div>
+            ${noteLine}
+            ${controls}
+            ${notesLine}
+            ${filesBlock}
+          </article>
         `;
-      } else if(item.type === 'link'){
-        mediaMarkup = `
-          <a class="extra-link" href="${item.href}" download target="_blank" rel="noreferrer">
-            ${item.linkLabel || 'Télécharger'}
-          </a>
-        `;
-      }
-      const noteLine = item.note ? `<p class="note" style="margin:0;">${item.note}</p>` : '';
-      const notesLine = item.notes ? `<p class="note" style="margin:6px 0 0;font-size:.85rem;color:var(--muted);">${item.notes}</p>` : '';
-      const hasPlayer = item.type === 'audio' || item.type === 'video';
-      const controls = hasPlayer ? `
-        <div style="display:flex;gap:8px;align-items:center;">
-          <button class="extra-skip" data-target="${playerId}" data-offset="-10" aria-label="Reculer 10 secondes">-10s</button>
-          <button class="extra-skip" data-target="${playerId}" data-offset="10" aria-label="Avancer 10 secondes">+10s</button>
-        </div>
-      ` : '';
-      return `
-        <article class="extra-card">
-          <div class="title">${item.title}</div>
-          <div>${mediaMarkup}</div>
-          ${noteLine}
-          ${controls}
-          ${notesLine}
-        </article>
-      `;
-    }).join('');
-    return `<div class="extra-grid">${cards}</div>`;
+      }).join('');
+      return `<div class="extra-grid">${cards}</div>`;
+    });
   }
 
   function renderLives(items, slug){
     const container = document.getElementById('livesContainer');
     if(!container){ return; }
-    container.innerHTML = buildCards(items, slug || 'lives', 'lives', 'Aucun enregistrement live supplémentaire pour le moment.');
+    buildCards(items, slug || 'lives', 'lives', 'Aucun enregistrement live supplémentaire pour le moment.')
+      .then(html => { container.innerHTML = html; attachExtraSkipHandlers(); })
+      .catch(()=>{ container.innerHTML = '<p class="note">Erreur de rendu.</p>'; });
   }
-
   function renderInstruments(items, slug){
     const container = document.getElementById('instrumentsContainer');
     if(!container){ return; }
-    container.innerHTML = buildCards(items, slug || 'instr', 'instruments', 'Pas encore de pistes individuelles disponibles pour ce morceau.');
+    buildCards(items, slug || 'instr', 'instruments', 'Pas encore de pistes individuelles disponibles pour ce morceau.')
+      .then(html => { container.innerHTML = html; attachExtraSkipHandlers(); })
+      .catch(()=>{ container.innerHTML = '<p class="note">Erreur de rendu.</p>'; });
   }
 
   function setupTabs(slug){

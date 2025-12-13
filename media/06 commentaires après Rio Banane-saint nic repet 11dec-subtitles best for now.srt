@@ -1,4 +1,5 @@
-1
+sous-titres auto   	model parameters : whisper large turbo v3 q5 with speakers identification (best for now for this file) bc word timestamps gives shitty results. Bug?
+
 00:00:08,000 --> 00:00:24,000
 Speaker 1: Pourquoi pas ? Vous savez que c'est la forme ? Oui, d'accord. Qu'est-ce que ça fait dans le monde ? J'avais envie de terminer comme ça. Peut-être une fois, on aurait vraiment un vrai silence. Deux bouteilles d'orals du coup.
 

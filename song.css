@@ -384,4 +384,15 @@
     color: #fff;
     border-color: var(--accent);
   }
+  .file-note summary{cursor:pointer;font-weight:600;}
+.file-note pre{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px;
+  margin:6px 0 0;
+  white-space:pre-wrap;
+  font-size:.85rem;
+  line-height:1.4;
+}
 

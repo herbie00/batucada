@@ -1,0 +1,85 @@
+sous-titres auto    model parameters : whisper large turbo v3 q5 with timestamp for each word 150 characters
+
+1
+00:00:00,000 --> 00:00:05,540
+Donc là, on reprendra. Donc là, il y a l'arrivée du Saint-Nicolas.
+
+2
+00:00:07,040 --> 00:00:09,880
+Il y avait avec Romain Fahé. Ça ne dure pas longtemps.
+
+3
+00:00:10,820 --> 00:00:15,620
+Cinq minutes et après, on redémarre avec deux mots sur un mot, avec la chorégraphie.
+
+4
+00:00:15,880 --> 00:00:18,560
+Vous vous rappelez de la chorégraphie ?
+
+5
+00:00:18,560 --> 00:00:23,540
+Alors, pour ceux qui ne s'en rappellent pas, on l'a dit.
+
+6
+00:00:23,540 --> 00:00:25,000
+On s'appelle la caca.
+
+7
+00:00:28,660 --> 00:00:31,760
+Surtout, n'oubliez pas quand je fais...
+
+8
+00:00:31,760 --> 00:00:33,440
+Vous, vous avez tous les baguettes en l'air.
+
+9
+00:00:33,680 --> 00:00:34,100
+On répond.
+
+10
+00:00:35,420 --> 00:00:36,840
+C'est ça qui marche bien.
+
+11
+00:00:37,900 --> 00:00:39,640
+OK ?
+
+12
+00:00:39,640 --> 00:00:40,660
+Et après...
+
+13
+00:00:40,660 --> 00:00:42,900
+Vous êtes là.
+
+14
+00:00:43,440 --> 00:00:47,200
+Après, vous êtes la caca, la caca et la...
+
+15
+00:00:47,200 --> 00:00:49,440
+Et il n'y a que les sons au cinéma.
+
+16
+00:00:49,860 --> 00:00:51,360
+Vous êtes d'accord ?
+
+17
+00:00:57,320 --> 00:00:59,240
+Ça va très vite quand c'est lent.
+
+18
+00:01:00,480 --> 00:01:00,820
+Et...
+
+19
+00:01:00,820 --> 00:01:02,080
+Attention !
+
+20
+00:01:02,080 --> 00:01:02,600
+C'est bon ?
+
+21
+00:01:02,600 --> 00:01:04,080
+C'est vrai, on double...
