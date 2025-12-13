@@ -62,8 +62,9 @@
 				{
 					"title": "03 commentaires bonobo <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
-					"src": "media/03 commentaires bonobo-saint nic repet 11dec.ogg",
-					"notes": ""
+					"src": "media/03 commentaires sur bonobo et retravail-saint nic repet 11dec.ogg",
+					"notes": "",
+					"notesFile": "media/03 commentaires sur bonobo et retravail-saint nic repet 11dec-subtitles best for now.srt"
 				},
 				{
 					"title": "04 salida <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
@@ -78,6 +79,20 @@
 					"notes": ""
 				},
 				{
+					"title": "04 commentaires sur salida <span style=\"color:#D55E00\">répèt du 11 dec</span>",
+					"type": "audio",
+					"src": "media/04 commentaires salida-saint nic repet 11dec.ogg",
+					"notes": "",
+					"notesFile": "media/04 commentaires salida-saint nic repet 11dec-subtitles best for now.srt"
+				},
+				{
+					"title": "04 commentaires après salida <span style=\"color:#D55E00\">répèt du 11 dec</span>",
+					"type": "audio",
+					"src": "media/04 commentaires apres salida-saint nic repet 11dec.ogg",
+					"notes": "",
+					"notesFile": "media/04 commentaires apres salida-saint nic repet 11dec-subtitles best for now.srt"
+				},
+				{
 					"title": "05 tout le monde sur le pont <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg",
@@ -90,16 +105,30 @@
 					"notes": ""
 				},
 				{
+					"title": "05 commentaires tout le monde sur le pont <span style=\"color:#D55E00\">répèt du 11 dec</span>",
+					"type": "audio",
+					"src": "media/05 commentaires tout le monde sur le pont-saint nic repet 11dec.ogg",
+					"notes": "",
+					"notesFile": "media/05 commentaires tout le monde sur le pont-saint nic repet 11dec-subtitles best for now.srt"
+				},
+				{
 					"title": "06 rio banane <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
 					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg",
 					"notes": ""
 				},
 				{
-					"title": "06 rio banane rep <span style=\"color:#D55E00\">11 dec</span 01",
+					"title": "06 rio banane <span style=\"color:#D55E00\">répèt du 11 dec</span 01",
 					"type": "audio",
 					"src": "media/06 rio banane-saint nic repet 11dec.ogg",
 					"notes": ""
+				},
+				{
+					"title": "06 commentaires après Rio Banane <span style=\"color:#D55E00\">répèt du 11 dec</span 01",
+					"type": "audio",
+					"src": "media/06 commentaires après Rio Banane-saint nic repet 11dec.ogg",
+					"notes": "",
+					"notesFile": "media/06 commentaires après Rio Banane-saint nic repet 11dec-subtitles best for now.srt"
 				}
 			],
 			"instruments": [
