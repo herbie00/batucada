@@ -38,6 +38,7 @@
         `;
       }
       const noteLine = item.note ? `<p class="note" style="margin:0;">${item.note}</p>` : '';
+      const notesLine = item.notes ? `<p class="note" style="margin:6px 0 0;font-size:.85rem;color:var(--muted);">${item.notes}</p>` : '';
       const hasPlayer = item.type === 'audio' || item.type === 'video';
       const controls = hasPlayer ? `
         <div style="display:flex;gap:8px;align-items:center;">
@@ -51,6 +52,7 @@
           <div>${mediaMarkup}</div>
           ${noteLine}
           ${controls}
+          ${notesLine}
         </article>
       `;
     }).join('');

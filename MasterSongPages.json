@@ -19,72 +19,87 @@
 				{
 					"title": "01 avienda slow <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg"
+					"src": "media/2025-12-04-rep st nic 2-01 avienda slow.ogg",
+					"notes": ""
 				},
 				{
 					"title": "01 avienda slow 01 <span style=\"color:#D55E00\">répèt du 11 dec </span>",
 					"type": "audio",
-					"src": "media/01 avienda slow-saint nic repet 11dec.ogg"
+					"src": "media/01 avienda slow-saint nic repet 11dec.ogg",
+					"notes": ""
 				},
 				{
 					"title": "02 avienda fast <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg"
+					"src": "media/2025-12-04-rep st nic 2-02 avienda fast.ogg",
+					"notes": ""
 				},
 				{
 					"title": "02 avienda fast <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
-					"src": "media/02 avienda fast-saint nic repet 11dec.ogg"
+					"src": "media/02 avienda fast-saint nic repet 11dec.ogg",
+					"notes": ""
 				},
-				{
-					"title": "03 bonobo 01 <span style=\"color:#D55E00\">répèt du 11 dec</span>",
-					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-03 bonobo 01.ogg"
-				},
+
 				{
 					"title": "03 bonobo 02 <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-03 bonobo 02.ogg"
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 02.ogg",
+					"notes": ""
 				},
 				{
 					"title": "03 bonobo 03 <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-03 bonobo 03.ogg"
+					"src": "media/2025-12-04-rep st nic 2-03 bonobo 03.ogg",
+					"notes": ""
 				},
 				{
 					"title": "03 bonobo 01 <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
-					"src": "media/03 bonobo-saint nic repet 11dec.ogg"
+					"src": "media/03 bonobo-saint nic repet 11dec.ogg",
+					"notes": ""
+				},
+				{
+					"title": "03 commentaires bonobo <span style=\"color:#D55E00\">répèt du 11 dec</span>",
+					"type": "audio",
+					"src": "media/03 commentaires bonobo-saint nic repet 11dec.ogg",
+					"notes": ""
 				},
 				{
 					"title": "04 salida <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-04 salida.ogg"
+					"src": "media/2025-12-04-rep st nic 2-04 salida.ogg",
+					"notes": ""
 				},
 				{
 					"title": "04 salida <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
-					"src": "media/04 salida-saint nic repet 11dec.ogg"
+					"src": "media/04 salida-saint nic repet 11dec.ogg",
+					"notes": ""
 				},
 				{
 					"title": "05 tout le monde sur le pont <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg"
+					"src": "media/2025-12-04-rep st nic 2-05 tout le monde sur le pont.ogg",
+					"notes": ""
 				},
 				{
 					"title": "05 tout le monde sur le pont <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
-					"src": "media/05 tout le monde sur le pont-saint nic repet 11dec.ogg"
+					"src": "media/05 tout le monde sur le pont-saint nic repet 11dec.ogg",
+					"notes": ""
 				},
 				{
 					"title": "06 rio banane <span style=\"color:#56B4E9\">répèt du 4 dec</span>",
 					"type": "audio",
-					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg"
+					"src": "media/2025-12-04-rep st nic 2-06 rio banane.ogg",
+					"notes": ""
 				},
 				{
 					"title": "06 rio banane rep <span style=\"color:#D55E00\">11 dec</span 01",
 					"type": "audio",
-					"src": "media/06 rio banane-saint nic repet 11dec.ogg"
+					"src": "media/06 rio banane-saint nic repet 11dec.ogg",
+					"notes": ""
 				}
 			],
 			"instruments": [
