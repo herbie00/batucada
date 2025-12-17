@@ -57,7 +57,7 @@
 					"title": "03 bonobo 01 <span style=\"color:#D55E00\">répèt du 11 dec</span>",
 					"type": "audio",
 					"src": "media/03 bonobo-saint nic repet 11dec.ogg",
-					"notes": ""
+					"notes": "appel caisse claire et surdos x3 puis repiniques remplacent la caisse claire"
 				},
 				{
 					"title": "03 commentaires bonobo <br> isolation groove grosse caisse tmbourines <br><span style=\"color:#D55E00\">répèt du 11 dec</span>",
@@ -855,7 +855,7 @@
 			"audio": "media/saintnicolas-2.ogg",
 			"parts": [
 				{ "id": "s2-1", "label": "Intro",   "start": 0,  "end": 12, "images": [], "text": "" },
-				{ "id": "s2-2", "label": "Couplet", "start": 12, "end": 45, "images": [], "text": "" },
+				{ "id": "s2label": "Couplet", "start": 12, "end": 45, "images": [], "text": "" },
 				{ "id": "s2-3", "label": "Refrain", "start": 45, "end": 75, "images": [], "text": "" }
 			],
 			"notes": "Saint Nicolas version 2"
