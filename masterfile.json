@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-17T18:50:56.434755",
+  "generatedAt": "2025-12-17T20:39:37.612859",
   "files": [
     {
       "id": "01-avienda-slow-saint-nic-repet-11dec",
@@ -8,7 +8,7 @@
       "path": "media/01 avienda slow-saint nic repet 11dec.ogg",
       "extension": "ogg",
       "type": "audio",
-      "notes": "repet du 11dec 2025 pour la saint-nicolas du 14 dec 2025",
+      "notes": "",
       "added": "2025-12-11T21:38:23.926231",
       "subtitles": [],
       "image": "",
@@ -580,7 +580,7 @@
       "display_name": "06 commentaires après Rio Banane saint nic repet 11dec",
       "path": "media/06 commentaires après Rio Banane-saint nic repet 11dec.json",
       "extension": "json",
-      "type": "file",
+      "type": "document",
       "notes": "",
       "added": "2025-12-12T09:48:28.212950",
       "subtitles": [
@@ -989,6 +989,37 @@
         "rep",
         "saint",
         "surdos"
+      ]
+    },
+    {
+      "id": "2025-12-11 repet pour saint-nic. videos sourdos par Sandrine. compressed mais tjrs trop gros.mp4s",
+      "name": "2025-12-11 repet pour saint-nic. videos sourdos par Sandrine. compressed mais tjrs trop gros",
+      "display_name": "2025-12-11 repet pour saint-nic. videos sourdos par Sandrine. compressed mais tjrs trop gros",
+      "path": "media/2025-12-11 repet pour saint-nic. videos sourdos par Sandrine. compressed mais tjrs trop gros.mp4",
+      "extension": "mp4",
+      "type": "video",
+      "notes": "",
+      "added": "2025-12-17T19:20:28",
+      "subtitles": [],
+      "image": "",
+      "tags": [
+        "11",
+        "12",
+        "2025",
+        "a",
+        "bc",
+        "compresser",
+        "gros",
+        "mp4",
+        "nic.",
+        "par",
+        "pour",
+        "repet",
+        "saint",
+        "sandrine.",
+        "sourdos",
+        "trop",
+        "videos"
       ]
     },
     {

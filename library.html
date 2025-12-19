@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Batucada • Bibliothèque</title>
+<meta name="theme-color" content="#111" />
+<style>
+  :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; } }
+  [data-theme="light"]{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f7f9; --accent:#2563eb; --border:#e6e6e6; }
+  [data-theme="dark"]{ --bg:#0c0c0f; --fg:#f5f7fb; --muted:#9aa0a6; --card:#15161a; --accent:#60a5fa; --border:#24262b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+  header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);backdrop-filter:blur(6px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+  .bar{max-width:980px;margin:0 auto;padding:10px;display:flex;gap:10px;align-items:center}
+  .title{font-weight:800}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 10px;font-weight:600;cursor:pointer}
+  main{max-width:980px;margin:0 auto;padding:16px}
+  .player-sticky{position:sticky;top:calc(56px + 4px);z-index:18;margin:4px auto;max-width:980px}
+  .player-sticky.unpinned{position:static}
+  .player-panel{display:flex;flex-direction:column;gap:12px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--card);position:relative}
+  .sticky-toggle{position:absolute;top:8px;right:8px;border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:8px;padding:4px 8px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s ease;z-index:1}
+  .sticky-toggle:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px)}
+  .sticky-toggle.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  video,audio{width:100%;border-radius:16px;border:1px solid var(--border);background:#000}
+  audio{background:var(--card)}
+  .media-container{position:relative}
+  .control-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .control-row .iconbtn{padding:10px 14px}
+  .current-title{font-size:0.95rem;font-weight:600;color:var(--accent);flex:1}
+  .subtitle-picker{border-radius:10px;border:1px solid var(--border);padding:6px 10px;background:var(--card);color:var(--fg);font-size:0.85rem}
+  .media-meta{display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+  .media-meta .notes{font-size:0.9rem;color:var(--muted);white-space:pre-wrap}
+  .media-images{display:flex;gap:8px;overflow-x:auto;padding:4px 0}
+  .media-images img{max-width:200px;border-radius:8px;border:1px solid var(--border);cursor:pointer}
+  .filter-row{margin:24px 0 12px;display:flex;gap:10px;flex-wrap:wrap}
+  .filter-row input,.filter-row select{flex:1;min-width:200px;border-radius:12px;border:1px solid var(--border);padding:10px 12px;background:var(--card);color:var(--fg);font-size:1rem}
+  .type-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .type-btn{border:1px solid var(--border);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 14px;font-size:0.85rem;cursor:pointer;font-weight:500}
+  .type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .grid{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:680px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr));} }
+  button.card{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--border);background:var(--card);border-radius:14px;padding:12px;text-decoration:none;color:inherit;font:inherit;text-align:left;cursor:pointer;width:100%;transition:border-color 0.2s}
+  button.card:hover{border-color:var(--accent)}
+  button.card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .thumb{width:88px;height:64px;flex:0 0 88px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent);overflow:hidden;font-size:1.8rem}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  @media(min-width:900px){
+    .thumb{width:140px;height:110px;flex:0 0 140px;font-size:2.5rem}
+  }
+  .meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+  .meta h2{margin:0;font-size:1.05rem;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:700}
+  .line2,.line3{margin:0;font-size:0.9rem;color:var(--muted)}
+  .line3{font-weight:500}
+  .line4{display:flex;flex-wrap:wrap;gap:8px;font-size:0.8rem;color:var(--muted);align-items:center}
+  .line4 code{background:var(--bg);border-radius:6px;padding:2px 6px;font-size:0.75rem}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:0.75rem;background:var(--bg)}
+  mark{background:var(--accent);color:#fff;border-radius:4px;padding:0 3px}
+  .empty-state{padding:32px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--muted)}
+  .sr-only{position:absolute;left:-9999px}
+</style>
+</head>
+<body id="app" data-theme="">
+<header>
+  <div class="bar">
+    <div class="title">Batucada — Bibliothèque</div>
+    <div class="spacer"></div>
+    <button id="themeBtn" class="iconbtn">🌓 Thème</button>
+  </div>
+</header>
+<main>
+  <div class="player-sticky" id="playerSticky">
+    <section class="player-panel">
+      <button id="stickyToggle" class="sticky-toggle active">📌 Lecteur épinglé</button>
+      <div class="media-container">
+        <video id="videoPlayer" controls playsinline preload="metadata" style="display:none">
+          <source src="" />
+        </video>
+        <audio id="audioPlayer" controls preload="metadata" style="display:none">
+          <source src="" />
+        </audio>
+      </div>
+      <div class="control-row">
+        <button id="rewindBtn" class="iconbtn" type="button">⏪ -10s</button>
+        <button id="forwardBtn" class="iconbtn" type="button">+10s ⏩</button>
+        <button id="fullscreenBtn" class="iconbtn" type="button">⛶ Plein écran</button>
+        <span class="current-title" id="currentTitle">Sélectionnez un fichier</span>
+        <select id="subtitlePicker" class="subtitle-picker" style="display:none">
+          <option value="">Pas de sous-titres</option>
+        </select>
+      </div>
+      <div class="media-meta" id="mediaMeta" style="display:none">
+        <div class="notes" id="mediaNotes"></div>
+        <div class="media-images" id="mediaImages"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="filter-row">
+    <label class="sr-only" for="filterInput">Filtrer</label>
+    <input id="filterInput" placeholder="Filtrer par titre, tags, extension, notes..." />
+    <label class="sr-only" for="sortSelect">Trier</label>
+    <select id="sortSelect">
+      <option value="dateDesc">Date (récentes)</option>
+      <option value="dateAsc">Date (anciennes)</option>
+      <option value="nameAsc">Nom A → Z</option>
+      <option value="nameDesc">Nom Z → A</option>
+    </select>
+  </section>
+
+  <div class="type-filters" id="typeFilters"></div>
+
+  <div id="resultCount" class="line3" style="margin:12px 0">Chargement...</div>
+  <section class="grid" id="gallery"></section>
+</main>
+
+<script>
+  const app=document.getElementById('app');
+  const themeBtn=document.getElementById('themeBtn');
+  function setTheme(mode){ app.setAttribute('data-theme', mode); try{ localStorage.setItem('bat_theme', mode); }catch{} }
+  setTheme(localStorage.getItem('bat_theme')||"");
+  themeBtn.onclick=()=>{ const cur=app.getAttribute('data-theme')||""; setTheme(cur==="dark"?"light":cur==="light"?"":"dark"); };
+
+  const videoPlayer=document.getElementById('videoPlayer');
+  const audioPlayer=document.getElementById('audioPlayer');
+  const gallery=document.getElementById('gallery');
+  const currentTitle=document.getElementById('currentTitle');
+  const filterInput=document.getElementById('filterInput');
+  const sortSelect=document.getElementById('sortSelect');
+  const resultCount=document.getElementById('resultCount');
+  const rewindBtn=document.getElementById('rewindBtn');
+  const forwardBtn=document.getElementById('forwardBtn');
+  const fullscreenBtn=document.getElementById('fullscreenBtn');
+  const mediaMeta=document.getElementById('mediaMeta');
+  const mediaNotes=document.getElementById('mediaNotes');
+  const mediaImages=document.getElementById('mediaImages');
+  const subtitlePicker=document.getElementById('subtitlePicker');
+  const typeFiltersEl=document.getElementById('typeFilters');
+  const playerSticky=document.getElementById('playerSticky');
+  const stickyToggle=document.getElementById('stickyToggle');
+
+  let allFiles=[];
+  let activePlayer=null;
+  let activeTypeFilters=new Set();
+
+  const typeIcons={video:'🎬',audio:'🎵',image:'🖼️',subtitle:'📄',document:'📝',file:'📎'};
+
+  // Sticky toggle
+  const STICKY_KEY='batucada.library.playerSticky';
+  let stickyEnabled=localStorage.getItem(STICKY_KEY)!=='false';
+  function updateStickyState(){
+    if(stickyEnabled){
+      playerSticky.classList.remove('unpinned');
+      stickyToggle.innerHTML='📌 Lecteur épinglé';
+      stickyToggle.classList.add('active');
+    }else{
+      playerSticky.classList.add('unpinned');
+      stickyToggle.innerHTML='📌 Épingler le lecteur';
+      stickyToggle.classList.remove('active');
+    }
+  }
+  stickyToggle.onclick=()=>{
+    stickyEnabled=!stickyEnabled;
+    try{localStorage.setItem(STICKY_KEY,stickyEnabled?'true':'false');}catch{}
+    updateStickyState();
+  };
+  updateStickyState();
+
+  function escapeHtml(str){ return (str||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
+  function escapeRegExp(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function highlight(text, query){
+    const escaped=escapeHtml(text||'');
+    if(!query) return escaped;
+    const regex=new RegExp(`(${escapeRegExp(query)})`,'gi');
+    return escaped.replace(regex,'<mark>$1</mark>');
+  }
+  function matches(file, term){
+    if(!term) return true;
+    const combined=[file.display_name, file.notes, file.tags.join(' '), file.extension, file.path].join(' ').toLowerCase();
+    return combined.includes(term);
+  }
+  function sortFiles(list, mode){
+    return [...list].sort((a,b)=>{
+      const dateA=new Date(a.added);
+      const dateB=new Date(b.added);
+      switch(mode){
+        case 'dateAsc': return dateA-dateB;
+        case 'dateDesc': return dateB-dateA;
+        case 'nameAsc': return a.display_name.localeCompare(b.display_name,'fr',{sensitivity:'base'});
+        case 'nameDesc': return b.display_name.localeCompare(a.display_name,'fr',{sensitivity:'base'});
+        default: return dateB-dateA;
+      }
+    });
+  }
+
+  function loadMedia(file){
+    if(!file) return;
+    videoPlayer.style.display='none';
+    audioPlayer.style.display='none';
+    videoPlayer.pause();
+    audioPlayer.pause();
+    
+    // Try video first, fallback to audio
+    const tryVideo=file.type==='video'||file.extension==='mp4'||file.extension==='mov';
+    
+    if(tryVideo){
+      activePlayer=videoPlayer;
+      const source=videoPlayer.querySelector('source');
+      source.src=file.path;
+      videoPlayer.load();
+      videoPlayer.style.display='block';
+      
+      // If video fails to load (audio-only MP4), try audio
+      videoPlayer.addEventListener('error',function fallback(){
+        videoPlayer.removeEventListener('error',fallback);
+        if(videoPlayer.error){
+          videoPlayer.style.display='none';
+          activePlayer=audioPlayer;
+          const audioSource=audioPlayer.querySelector('source');
+          audioSource.src=file.path;
+          audioPlayer.load();
+          audioPlayer.style.display='block';
+        }
+      },{once:true});
+    }else if(file.type==='audio'){
+      activePlayer=audioPlayer;
+      const source=audioPlayer.querySelector('source');
+      source.src=file.path;
+      audioPlayer.load();
+      audioPlayer.style.display='block';
+    }else{
+      currentTitle.textContent=`${file.display_name} (non-média)`;
+      mediaMeta.style.display='none';
+      activePlayer=null;
+      return;
+    }
+
+    activePlayer.dataset.activeId=file.id;
+    currentTitle.textContent=`▶ ${file.display_name}`;
+
+    // Subtitles
+    const existingTracks=activePlayer.querySelectorAll('track');
+    existingTracks.forEach(t=>t.remove());
+    subtitlePicker.style.display='none';
+    if(file.subtitles && file.subtitles.length>0){
+      subtitlePicker.innerHTML='<option value="">Pas de sous-titres</option>';
+      file.subtitles.forEach((subPath,idx)=>{
+        const track=document.createElement('track');
+        track.kind='subtitles';
+        track.label=`Sous-titres ${idx+1}`;
+        track.srclang='fr';
+        track.src=subPath;
+        if(idx===0) track.default=true;
+        activePlayer.appendChild(track);
+        const opt=document.createElement('option');
+        opt.value=idx;
+        opt.textContent=`Sous-titres ${idx+1}`;
+        subtitlePicker.appendChild(opt);
+      });
+      subtitlePicker.style.display='inline-block';
+      subtitlePicker.value='0';
+    }
+
+    // Notes & Images
+    if(file.notes || file.image){
+      mediaMeta.style.display='block';
+      mediaNotes.textContent=file.notes||'';
+      if(file.image){
+        mediaImages.innerHTML=`<img src="${escapeHtml(file.image)}" alt="Image associée" onclick="window.open(this.src,'_blank')">`;
+      }else{
+        mediaImages.innerHTML='';
+      }
+    }else{
+      mediaMeta.style.display='none';
+    }
+  }
+
+  function renderGallery(){
+    const queryRaw=filterInput.value.trim();
+    const query=queryRaw.toLowerCase();
+    let visible=allFiles.filter(f=>matches(f,query));
+    if(activeTypeFilters.size>0){
+      visible=visible.filter(f=>activeTypeFilters.has(f.type));
+    }
+    visible=sortFiles(visible,sortSelect.value);
+    resultCount.textContent=`${visible.length} fichier${visible.length>1?'s':''}`;
+    if(!visible.length){
+      gallery.innerHTML='<div class="empty-state">Aucun fichier ne correspond à ce filtre.</div>';
+      return;
+    }
+    const cards=visible.map(file=>{
+      const icon=typeIcons[file.type]||typeIcons.file;
+      const thumbHtml=file.image?`<img src="${file.image}" alt="${escapeHtml(file.display_name)}">`:`<span>${icon}</span>`;
+      return `
+        <button class="card" type="button" data-file-id="${file.id}">
+          <div class="thumb">${thumbHtml}</div>
+          <div class="meta">
+            <h2>${highlight(file.display_name, queryRaw)}</h2>
+            <p class="line2">${highlight(file.notes||'Aucune note', queryRaw)}</p>
+            <div class="line4">
+              <span>${file.type}</span>
+              <span>${file.extension}</span>
+              <span>${highlight(file.added.slice(0,10), queryRaw)}</span>
+              <code>${highlight(file.path, queryRaw)}</code>
+            </div>
+            <div class="tag-row">
+              ${file.tags.map(tag=>`<span class="tag">${highlight(tag, queryRaw)}</span>`).join('')}
+            </div>
+          </div>
+        </button>`;
+    }).join('');
+    gallery.innerHTML=cards;
+    gallery.querySelectorAll('button.card').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const next=allFiles.find(f=>f.id===btn.dataset.fileId);
+        if(next) loadMedia(next);
+      });
+    });
+  }
+
+  function renderTypeFilters(){
+    const types=new Set(allFiles.map(f=>f.type));
+    const buttons=Array.from(types).sort().map(type=>{
+      const icon=typeIcons[type]||typeIcons.file;
+      return `<button class="type-btn" data-type="${type}">${icon} ${type}</button>`;
+    }).join('');
+    typeFiltersEl.innerHTML=buttons;
+    typeFiltersEl.querySelectorAll('.type-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const type=btn.dataset.type;
+        if(activeTypeFilters.has(type)){
+          activeTypeFilters.delete(type);
+          btn.classList.remove('active');
+        }else{
+          activeTypeFilters.add(type);
+          btn.classList.add('active');
+        }
+        renderGallery();
+      });
+    });
+  }
+
+  filterInput.addEventListener('input',renderGallery);
+  sortSelect.addEventListener('change',renderGallery);
+
+  rewindBtn.addEventListener('click',()=>{
+    if(!activePlayer) return;
+    activePlayer.currentTime=Math.max(0,activePlayer.currentTime-10);
+  });
+  forwardBtn.addEventListener('click',()=>{
+    if(!activePlayer) return;
+    const target=activePlayer.currentTime+10;
+    activePlayer.currentTime=Math.min(target,Number.isFinite(activePlayer.duration)?activePlayer.duration:target);
+  });
+
+  fullscreenBtn.addEventListener('click',()=>{
+    if(!activePlayer) return;
+    if(activePlayer.requestFullscreen){
+      activePlayer.requestFullscreen();
+    }else if(activePlayer.webkitRequestFullscreen){
+      activePlayer.webkitRequestFullscreen();
+    }else if(activePlayer.msRequestFullscreen){
+      activePlayer.msRequestFullscreen();
+    }
+  });
+
+  subtitlePicker.addEventListener('change',()=>{
+    if(!activePlayer) return;
+    const tracks=activePlayer.querySelectorAll('track');
+    tracks.forEach((t,i)=>{ t.mode=i==subtitlePicker.value?'showing':'hidden'; });
+  });
+
+  async function init(){
+    try{
+      const res=await fetch('masterfile.json',{cache:'no-store'});
+      if(!res.ok) throw new Error(res.statusText);
+      const data=await res.json();
+      allFiles=Array.isArray(data.files)?data.files:[];
+    }catch(error){
+      console.error('Erreur chargement masterfile.json',error);
+      allFiles=[];
+    }
+    renderTypeFilters();
+    renderGallery();
+    if(allFiles.length>0){
+      const firstMedia=allFiles.find(f=>f.type==='video'||f.type==='audio'||f.extension==='mp4'||f.extension==='mov');
+      if(firstMedia) loadMedia(firstMedia);
+    }
+  }
+  init();
+</script>
+</body>
+</html>
