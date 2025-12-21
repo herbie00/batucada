@@ -42,6 +42,26 @@ def map_type(ext):
         return 'image'
     return 'file'
 
+def load_existing_masterfile():
+    """Load existing masterfile.json to preserve user data"""
+    if not OUTPUT_FILE.exists():
+        return {}
+    
+    try:
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        existing = {}
+        for file_entry in data.get('files', []):
+            filename = file_entry.get('name', '').lower()
+            if filename:
+                existing[filename] = file_entry
+        
+        return existing
+    except Exception as e:
+        print(f"Warning: Could not load existing masterfile.json: {e}")
+        return {}
+
 def load_master_song_metadata():
     """Load comments and notes from MasterSongPages.json"""
     if not MASTER_SONG_FILE.exists():
@@ -85,6 +105,9 @@ def main():
         print(f"Error: {MEDIA_DIR} does not exist")
         return
 
+    # Load existing data to preserve user edits
+    existing_data = load_existing_masterfile()
+    
     # Load existing metadata from MasterSongPages.json
     master_metadata = load_master_song_metadata()
 
@@ -113,9 +136,22 @@ def main():
         base = file.stem.lower()
         stats = file.stat()
         
-        # Check if we have metadata from MasterSongPages.json
         filename_lower = file.name.lower()
+        
+        # Check for existing entry (priority: existing masterfile > MasterSongPages)
+        existing_entry = existing_data.get(filename_lower, {})
         merged_meta = master_metadata.get(filename_lower, {})
+        
+        # Preserve notes from existing masterfile if present, else use MasterSongPages
+        notes = existing_entry.get('notes', '') or merged_meta.get('notes', '')
+        
+        # Preserve tags if they were manually edited
+        existing_tags = existing_entry.get('tags', [])
+        auto_tags = infer_tags(file.stem, ext)
+        tags = existing_tags if existing_tags and set(existing_tags) != set(auto_tags) else auto_tags
+        
+        # Preserve the original 'added' date if it exists
+        added = existing_entry.get('added', datetime.fromtimestamp(stats.st_mtime).isoformat())
         
         entry = {
             "id": slugify(file.stem),
@@ -124,13 +160,24 @@ def main():
             "path": f"media/{file.name}",
             "extension": ext.replace('.', ''),
             "type": map_type(ext),
-            "notes": merged_meta.get('notes', ''),
-            "added": datetime.fromtimestamp(stats.st_mtime).isoformat(),
+            "notes": notes,
+            "added": added,
             "subtitles": subtitle_grouping.get(base, []),
             "image": image_lookup.get(base, ""),
-            "tags": infer_tags(file.stem, ext)
+            "tags": tags
         }
+        
+        # Preserve any additional custom fields from existing entry
+        for key, value in existing_entry.items():
+            if key not in entry:
+                entry[key] = value
+        
         file_entries.append(entry)
+    
+    # Calculate and report preserved entries after building all entries
+    preserved_count = sum(1 for f in file_entries if existing_data.get(f['name'].lower()))
+    if preserved_count:
+        print(f"Preserved existing data for {preserved_count} files.")
     
     # Sort by display name
     file_entries.sort(key=lambda x: x['display_name'].lower())
