@@ -252,8 +252,17 @@
         slug: song.slug,
         title,
         audio: song.audio,
+        mime: song.mime,
         parts: song.parts || []
       };
+      
+      // Set the main player source and MIME type
+      const audioSrc = document.getElementById('audioSrc');
+      if(audioSrc && song.audio){
+        audioSrc.src = song.audio;
+        const mime = song.mime || (song.audio.endsWith('.m4a') ? 'audio/mp4' : 'audio/mpeg');
+        audioSrc.type = mime;
+      }
       renderLives(song.lives || [], song.slug);
       renderInstruments(song.instruments || [], song.slug);
       const notesField = document.getElementById('notesField');

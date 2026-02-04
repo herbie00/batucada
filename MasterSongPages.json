@@ -554,6 +554,7 @@
 			"slug": "fura-dels-baus",
 			"title": "fura dels baus",
 			"audio": "media/fura dels baus.m4a",
+			"mime": "audio/mp4",
 			"parts": [
 				{
 					"id": "id",
@@ -576,7 +577,7 @@
 					"text": "text"
 				}
 			],
-			"notes": "2025-11-27-Thu\nLa phrase des répiniaueques est :\n debout sur mes 2 jambes.  le ''sur'' est enlevé et ''mes'' est accentué \n2016-01-08-Thu \n\nBreak de fin: \n\n 1) Surdos :\n C'est ter-mi-né X3 \n\n 2) Tous les instruments :\n  De-bout sur ma chaise. \nLe ''De'' commence sur le dernier temps des Surdos (le ''né'').    Rmq : phrase ne correspond pas tout à fait sur la version studio, trouver une autre phrase?) \n\n 3) Tous les instruments :\n C'est ter-mi-né",
+			"notes": "2025-11-27-Thu\nLa phrase des répiniaueques est :\n debout sur mes 2 jambes.  le ''sur'' est enlevé et ''mes'' est accentué \n2016-01-08-Thu \n\nBreak de fin: \n\n  1) Surdos :\n C'est ter-mi-né X3 \n\n  2) Tous les instruments :\n  De-bout sur ma chaise. \nLe ''De'' commence sur le dernier temps des Surdos (le ''né'').    Rmq : phrase ne correspond pas tout à fait sur la version studio, trouver une autre phrase?) \n\n  3) Tous les instruments :\n C'est ter-mi-né",
 			"lives": [],
 			"instruments": []
 		},
@@ -746,7 +747,7 @@
 					"text": ""
 				}
 			],
-			"notes": "Prases sur 8 mesures\n 1. 🥇tambourim \n je sais com-pter au moins jus-que 4 1 2 3 4 \n 2. ✌️sourdos \n chat sou-ris (x4)\n 3.𝐈𝐈𝐈repinique \n pam pa lam pam pam pa lam pam (x2) 4.4️⃣agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n\n l'egende =   🅾️snare   🥇tambourim   ✌️surdos   𝐈𝐈𝐈repinique   4️⃣agogo",
+			"notes": "Prases sur 8 mesures\n  1. 🥇tambourim \n je sais com-pter au moins jus-que 4 1 2 3 4 \n  2. ✌️sourdos \n chat sou-ris (x4)\n  3.𝐈𝐈𝐈repinique \n pam pa lam pam pam pa lam pam (x2) 4.4️⃣agogo \n cho-co a-na-nas pomme pomme poire poire \n\n TO DO \n\n l'egende =   🅾️snare   🥇tambourim   ✌️surdos   𝐈𝐈𝐈repinique   4️⃣agogo",
 			"lives": [
 				{
 					"title": "rep <span style=\"color:#56B4E9\">4 dec</span rio banane",
@@ -914,6 +915,15 @@
 				{ "id": "s7-3", "label": "Refrain", "start": 46, "end": 76, "images": [], "text": "" }
 			],
 			"notes": "Saint Nicolas version 7"
+		},
+		{
+			"slug": "zouke-zouke",
+			"title": "Zouké Zouké",
+			"audio": "media/Zouké Zouké.mp3",
+			"parts": [],
+			"notes": "",
+			"lives": [],
+			"instruments": []
 		}
 	],
 	"changelog": [
